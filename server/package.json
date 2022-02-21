@@ -1,6 +1,6 @@
 {
   "name": "kyoserver",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "kyoShop server-side",
   "main": "index.js",
   "scripts": {
