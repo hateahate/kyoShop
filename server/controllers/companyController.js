@@ -2,7 +2,7 @@ class CompanyController {
     async create(req, res) {
 
     }
-    async getData(req, res) {
+    async getAll(req, res) {
     }
 }
 module.exports = new CompanyController();

@@ -10,8 +10,14 @@ const router = require('./routes/index');
 // Подключаем Express и файл конфигурации .env
 const express = require('express');
 
+// Указываем путь до папки со статикой
+const path = require('path');
+
 // Импортируем модели сущностей
 const models = require('./models/models');
+
+// Подключаем загрузчик файлов
+const fileUpload = require('express-fileupload');
 
 // Импортируем подключение к БД
 const sequelize = require('./db');
@@ -26,6 +32,8 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.resolve(__dirname, 'static')));
+app.use(fileUpload({}));
 app.use('/api', router);
 
 // Обработчик ошибок, последний вызываемый middleware

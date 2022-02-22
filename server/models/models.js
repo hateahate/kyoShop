@@ -77,8 +77,9 @@ Basket.hasMany(BasketProduct); // Корзине передаём объект �
 Product.hasMany(ProductInfo); // Товар может содержать множество описаний
 ProductInfo.belongsTo(Product);
 
-Product.hasMany(ProductCategory); // Связываем категории с товаром
-ProductCategory.belongsTo(Product);
+ProductCategory.hasMany(Product);
+Product.belongsTo(ProductCategory);
+
 
 // Экспортируем модели сущностей для дальнейшего использования
 
