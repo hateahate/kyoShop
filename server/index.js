@@ -49,8 +49,7 @@ const start = async () => {
         app.listen(PORT, () => console.log('kyoServer started on port ' + PORT)); // Если всё ок, сообщаем что сервер успешно запущен
     }
     catch (e) {
-        console.log('Я умер, прости');
-        console.log(e);
+        console.log('kyoServer critical error: ' + e);
     }
 }
 start();
