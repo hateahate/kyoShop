@@ -43,10 +43,11 @@ app.use(errorHandler);
 
 // Запускаем сервер
 const start = async () => {
-    console.log('kyoServer starting');
+    console.log('kyoServer starting...');
     try {
         await sequelize.authenticate(); // Подключаемся к базе
         await sequelize.sync(); // Синхронизируем данные
+        console.log('kyoServer connected to database');
         app.listen(PORT, () => console.log('kyoServer started on port ' + PORT)); // Если всё ок, сообщаем что сервер успешно запущен
     }
     catch (e) {

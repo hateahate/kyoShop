@@ -8,6 +8,7 @@ const productRouter = require('./productRouter');
 const userRouter = require('./userRouter');
 const companyRouter = require('./companyRouter');
 
+//Связываем внешние роутеры с путями
 router.use('/user', userRouter);
 router.use('/product', productRouter);
 router.use('/company', companyRouter);
