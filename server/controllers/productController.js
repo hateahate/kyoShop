@@ -2,7 +2,6 @@ const uuid = require('uuid');
 const path = require('path');
 const { Product, ProductInfo } = require('../models/models');
 const ApiError = require('../error/ApiError');
-const { info } = require('console');
 class ProductController {
     async create(req, res, next) {
         try {
@@ -11,9 +10,9 @@ class ProductController {
             let fileName = uuid.v4() + ".jpg";
             img.mv(path.resolve(__dirname, '..', 'static', fileName));
 
-            if (info) {
-                info = JSON.parse(info);
-                info.forEach(i => {
+            if (productInfo) {
+                productInfo = JSON.parse(productInfo);
+                productInfo.forEach(i => {
                     ProductInfo.create({
                         title: i.title,
                         description: i.description,
