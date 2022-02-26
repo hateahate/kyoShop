@@ -1,7 +1,8 @@
 const uuid = require('uuid');
 const path = require('path');
-const { Product } = require('../models/models');
+const { Product, ProductInfo } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const { info } = require('console');
 class ProductController {
     async create(req, res, next) {
         try {
@@ -9,6 +10,17 @@ class ProductController {
             const { img } = req.files;
             let fileName = uuid.v4() + ".jpg";
             img.mv(path.resolve(__dirname, '..', 'static', fileName));
+
+            if (info) {
+                info = JSON.parse(info);
+                info.forEach(i => {
+                    ProductInfo.create({
+                        title: i.title,
+                        description: i.description,
+                        productId: Product.id
+                    })
+                });
+            }
 
             const product = await Product.create({ name, price, productCategoryId, img: fileName });
             return res.json(product);
@@ -18,10 +30,26 @@ class ProductController {
         }
     }
     async getAll(req, res) {
-
+        let { productCategoryId, limit, page } = req.query;
+        page = page || 1;
+        limit = limit || 9;
+        let offset = page * limit - limit;
+        let products;
+        if (!productCategoryId) {
+            products = await Product.findAndCountAll({ limit, offset });
+        }
+        if (productCategoryId) {
+            products = await Product.findAndCountAll({ where: { productCategoryId }, limit, offset });
+        }
+        return res.json(products);
     }
     async getOne(req, res) {
-
+        const { id } = req.params;
+        const product = await Product.findOne({
+            where: { id },
+            include: [{ model: ProductInfo, as: 'info' }]
+        });
+        return res.json(product);
     }
 }
 module.exports = new ProductController();

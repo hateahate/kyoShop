@@ -74,7 +74,7 @@ Company.belongsTo(User);
 
 Basket.hasMany(BasketProduct); // Корзине передаём объект товара в корзине
 
-Product.hasMany(ProductInfo); // Товар может содержать множество описаний
+Product.hasMany(ProductInfo, { as: 'info' }); // Товар может содержать множество описаний
 ProductInfo.belongsTo(Product);
 
 ProductCategory.hasMany(Product);
