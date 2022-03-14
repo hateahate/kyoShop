@@ -5,7 +5,7 @@ const ApiError = require('../error/ApiError');
 class ProductController {
     async create(req, res, next) {
         try {
-            const { name, price, productCategoryId, productInfo } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { name, price, status, stock, moq, qty_step, description, productCategoryId, productInfo } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
@@ -22,7 +22,7 @@ class ProductController {
                     });
                 }
 
-                const product = await Product.create({ name, price, productCategoryId, img: fileName });
+                const product = await Product.create({ name, price, productCategoryId, status, stock, moq, qty_step, description, img: fileName });
                 return res.json(product); // На основе полученных данных пытаемся создать/создаём товар.
             }
             else {
@@ -37,7 +37,7 @@ class ProductController {
                     });
                 }
 
-                const product = await Product.create({ name, price, productCategoryId });
+                const product = await Product.create({ name, price, productCategoryId, status, stock, moq, qty_step, description });
                 return res.json(product);
             }
         }
@@ -69,7 +69,7 @@ class ProductController {
     }
     async update(req, res, next) {
         try {
-            const { id, name, price, productCategoryId, productInfo } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { id, name, price, status, stock, moq, qty_step, description, productCategoryId, productInfo } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
@@ -86,7 +86,7 @@ class ProductController {
                     });
                 }
 
-                const product = await Product.update({ name, price, productCategoryId, img: fileName }, { where: { id } });
+                const product = await Product.update({ name, price, productCategoryId, status, stock, moq, qty_step, description, img: fileName }, { where: { id } });
                 return res.json(product); // На основе полученных данных пытаемся создать/создаём товар.
             }
             else {
@@ -101,7 +101,7 @@ class ProductController {
                     });
                 }
 
-                const product = await Product.update({ name, price, productCategoryId }, { where: { id } });
+                const product = await Product.update({ name, price, productCategoryId, status, stock, moq, qty_step, description }, { where: { id } });
                 return res.json(product);
             }
         }
