@@ -7,11 +7,13 @@ const categoryRouter = require('./categoryRouter');
 const productRouter = require('./productRouter');
 const userRouter = require('./userRouter');
 const companyRouter = require('./companyRouter');
+const postRouter = require('./postRouter');
 
 //Связываем внешние роутеры с путями
 router.use('/user', userRouter);
 router.use('/product', productRouter);
 router.use('/company', companyRouter);
 router.use('/category', categoryRouter);
+router.use('/post', postRouter);
 
 module.exports = router

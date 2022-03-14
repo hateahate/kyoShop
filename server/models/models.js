@@ -29,9 +29,21 @@ const Company = sequelize.define('company', {
 const Product = sequelize.define('product', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
+    description: { type: DataTypes.STRING },
     price: { type: DataTypes.INTEGER, allowNull: false },
-    img: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING },
+    moq: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+    qty_step: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
+    stock: { type: DataTypes.INTEGER },
+    status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Pre-order' },
 });
+
+const Post = sequelize.define('post', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING },
+})
 
 
 // Информация о товаре
@@ -80,6 +92,9 @@ ProductInfo.belongsTo(Product);
 ProductCategory.hasMany(Product);
 Product.belongsTo(ProductCategory);
 
+User.hasMany(Post);
+Post.belongsTo(User);
+
 
 // Экспортируем модели сущностей для дальнейшего использования
 
@@ -91,6 +106,7 @@ module.exports = {
     BasketProduct,
     ProductCategory,
     ProductInfo,
+    Post,
 }
 
 
