@@ -38,8 +38,16 @@ const Product = sequelize.define('product', {
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Pre-order' },
 });
 
-// Сущность поста
+// Сущность поста блога
 const Post = sequelize.define('post', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING },
+})
+
+// Сущность поста вики
+const Wiki = sequelize.define('post', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false },
@@ -95,6 +103,9 @@ Product.belongsTo(ProductCategory);
 
 User.hasMany(Post);
 Post.belongsTo(User);
+
+User.hasMany(Wiki);
+Wiki.belongsTo(User);
 
 
 // Экспортируем модели сущностей для дальнейшего использования
