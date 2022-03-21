@@ -10,5 +10,15 @@ class CategoryController {
         const categories = await ProductCategory.findAll();
         return res.json(categories);
     }
+    async update(req, res) {
+        const { id, name } = req.body;
+        const category = await ProductCategory.update({ name }, { where: { id } });
+        return res.json(category);
+    }
+    async remove(req, res) {
+        const { id } = req.params;
+        await ProductCategory.destroy({ where: { id } });
+        return res.json({ id } + 'successfully removed');
+    }
 }
 module.exports = new CategoryController();
