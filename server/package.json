@@ -23,7 +23,8 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.16.2",
     "uid": "^2.0.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "validate-vat": "^0.8.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"

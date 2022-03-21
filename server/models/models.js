@@ -83,6 +83,13 @@ const ProductCategory = sequelize.define('product_category', {
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
+// Сущность заказа
+
+const Order = sequelize.define('order', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'NEW' },
+});
+
 
 
 // Устанавливаем связи
@@ -107,6 +114,9 @@ Post.belongsTo(User);
 User.hasMany(Wiki);
 Wiki.belongsTo(User);
 
+User.hasMany(Order);
+Order.belongsTo(User);
+
 
 // Экспортируем модели сущностей для дальнейшего использования
 
@@ -119,6 +129,7 @@ module.exports = {
     ProductCategory,
     ProductInfo,
     Post,
+    Order,
 }
 
 
