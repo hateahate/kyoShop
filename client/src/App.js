@@ -6,7 +6,6 @@ const App = () => {
   return (
     <BrowserRouter>
       <AppRouter />
-      <h1>it works</h1>
     </BrowserRouter>
   )
 }
