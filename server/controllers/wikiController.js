@@ -2,7 +2,7 @@ const uuid = require('uuid');
 const path = require('path');
 const { Wiki } = require('../models/models');
 const ApiError = require('../error/ApiError');
-class PostController {
+class WikiController {
     async create(req, res, next) {
         try {
             const { title, description } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
@@ -27,9 +27,8 @@ class PostController {
         page = page || 1; // Создаем пагинацию получения товаров, одна страница по-умолчанию если не указано другого.
         limit = limit || 9; // Лимит товаров на странице.
         let offset = page * limit - limit; // При заданном лимите пилим на странцы.
-        let posts;
-        posts = await Wiki.findAndCountAll({ limit, offset });
-        return res.json(posts);
+        const wiki = await Wiki.findAndCountAll({ limit, offset });
+        return res.json(wiki);
     }
     async getOne(req, res) {
         const { id } = req.params; // Получаем ID из запроса
@@ -68,4 +67,4 @@ class PostController {
         }
     }
 }
-module.exports = new PostController();
+module.exports = new WikiController();

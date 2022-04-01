@@ -47,7 +47,7 @@ const Post = sequelize.define('post', {
 })
 
 // Сущность поста вики
-const Wiki = sequelize.define('post', {
+const Wiki = sequelize.define('wiki', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.STRING, allowNull: false },
@@ -130,6 +130,7 @@ module.exports = {
     ProductInfo,
     Post,
     Order,
+    Wiki,
 }
 
 
