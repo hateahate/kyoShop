@@ -1,4 +1,4 @@
-.default {
+.btn-default {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -14,15 +14,15 @@
     line-height: 16px;
 }
 
-.default:hover {
+.btn-default:hover {
     background: #61D186;
 }
 
-.default:active {
+.btn-default:active {
     background: #2E9E53;
 }
 
-.lined {
+.btn-lined {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -39,18 +39,18 @@
     line-height: 16px;
 }
 
-.lined:hover {
+.btn-lined:hover {
     border: 1px solid #61D186;
     background: #61D186;
     color: white;
 }
 
-.lined:active {
+.btn-lined:active {
     background: #2E9E53;
     color: white;
 }
 
-.dark {
+.btn-dark {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -66,15 +66,15 @@
     line-height: 16px;
 }
 
-.dark:hover {
+.btn-dark:hover {
     background: #525673;
 }
 
-.dark:active {
+.btn-dark:active {
     background: #242638;
 }
 
-.default-small {
+.btn-default-small {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -90,15 +90,15 @@
     line-height: 16px;
 }
 
-.default-small:hover {
+.btn-default-small:hover {
     background: #61D186;
 }
 
-.default-small:active {
+.btn-default-small:active {
     background: #2E9E53;
 }
 
-.lined-small {
+.btn-lined-small {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -115,18 +115,18 @@
     line-height: 16px;
 }
 
-.lined-small:hover {
+.btn-lined-small:hover {
     border: 1px solid #61D186;
     background: #61D186;
     color: white;
 }
 
-.lined-small:active {
+.btn-lined-small:active {
     background: #2E9E53;
     color: white;
 }
 
-.dark-small {
+.btn-dark-small {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -142,15 +142,15 @@
     line-height: 16px;
 }
 
-.dark-small:hover {
+.btn-dark-small:hover {
     background: #525673;
 }
 
-.dark-small:active {
+.btn-dark-small:active {
     background: #242638;
 }
 
-.rounded {
+.btn-rounded {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -168,14 +168,14 @@
     color: #40BF6A;
 }
 
-.rounded:hover {
+.btn-rounded:hover {
     background: #61D186;
     border: 1px solid #61D186;
     text-decoration: underline;
     color: white;
 }
 
-.rounded:active {
+.btn-rounded:active {
     background: #2E9E53;
     border: 1px solid #2E9E53;
     text-decoration: underline;
