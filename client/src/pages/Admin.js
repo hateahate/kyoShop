@@ -133,13 +133,10 @@ function Admin(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-                <Button title="Hello World!" variant="btn-default"></Button>
-                <Button title="Hello World!" variant="btn-lined"></Button>
-                <Button title="Hello World!" variant="btn-dark"></Button>
-                <Button title="Hello World!" variant="btn-rounded"></Button>
-                <Button title="Hello World!" variant="btn-default-small"></Button>
-                <Button title="Hello World!" variant="btn-lined-small"></Button>
-                <Button title="Hello World!" variant="btn-dark-small"></Button>
+                <Button title="Hello World!"></Button>
+                <Button title="kuku" variant="lined"></Button>
+                <Button title="New" variant="dark"></Button>
+                <Button title="GOvno" variant="small"></Button>
                 <File title="File sample" size="15,4" link="/admin"></File>
             </Box>
         </Box>
