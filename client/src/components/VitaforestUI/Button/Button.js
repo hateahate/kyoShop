@@ -141,6 +141,36 @@ line-height: 16px;
 }
 `;
 
+const Rounded = styled.button`
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 2px 17px;
+width: auto;
+height: 23px;
+background: #FFFFFF;
+border: 1px solid #40BF6A;
+box-sizing: border-box;
+border-radius: 12px;
+font-weight: 600;
+font-size: 12px;
+line-height: 19px;
+color: #40BF6A;
+&:hover{
+    background: #61D186;
+    border: 1px solid #61D186;
+    text-decoration: underline;
+    color: white;
+}
+&:active{
+    background: #2E9E53;
+    border: 1px solid #2E9E53;
+    text-decoration: underline;
+    color: white; 
+}
+`
+
 const Button = ({ title, variant }) => {
     switch (variant) {
         case 'lined':
@@ -153,6 +183,8 @@ const Button = ({ title, variant }) => {
             return <LinedSmall>{title}</LinedSmall>
         case 'dark-small':
             return <DarkSmall>{title}</DarkSmall>
+        case 'rounded':
+            return <Rounded>{title}</Rounded>
         default:
             return <OriginButton>{title}</OriginButton>
     }

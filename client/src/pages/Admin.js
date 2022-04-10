@@ -139,6 +139,7 @@ function Admin(props) {
                 <Button title="GOvno" variant="small"></Button>
                 <Button title="lined small" variant="lined-small"></Button>
                 <Button title="dark small" variant="dark-small"></Button>
+                <Button title="rounded" variant="rounded" />
                 <File title="File sample" size="15,4" link="/admin"></File>
             </Box>
         </Box>
