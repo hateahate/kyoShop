@@ -1,0 +1,34 @@
+.file {
+    display: flex;
+    text-decoration: none;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+}
+
+.file-info {
+    margin: 0;
+    margin-left: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.file-title {
+    margin: 0;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    color: #303236;
+}
+
+.file-size {
+    margin: 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 19px;
+    color: #7F878B;
+}

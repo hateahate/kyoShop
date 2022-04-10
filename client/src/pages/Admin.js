@@ -14,7 +14,8 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-
+import Button from '../components/VitaforestUI/Button/Button';
+import File from '../components/VitaforestUI/File/File';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -29,7 +30,7 @@ function Admin(props) {
             <Toolbar />
             <Divider />
             <List>
-                {['Products', 'Posts', 'Wiki', 'Orders','Users','jija'].map((text, index) => (
+                {['Products', 'Posts', 'Wiki', 'Orders', 'Users', 'jija'].map((text, index) => (
                     <ListItem button key={text}>
                         <ListItemIcon>
                             {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
@@ -64,7 +65,7 @@ function Admin(props) {
                         <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap component="div">
-                       Admin Panel
+                        Admin Panel
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -132,6 +133,14 @@ function Admin(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
+                <Button title="Hello World!" variant="default"></Button>
+                <Button title="Hello World!" variant="lined"></Button>
+                <Button title="Hello World!" variant="dark"></Button>
+                <Button title="Hello World!" variant="rounded"></Button>
+                <Button title="Hello World!" variant="default-small"></Button>
+                <Button title="Hello World!" variant="lined-small"></Button>
+                <Button title="Hello World!" variant="dark-small"></Button>
+                <File title="File sample" size="15,4" link="/admin"></File>
             </Box>
         </Box>
     );
