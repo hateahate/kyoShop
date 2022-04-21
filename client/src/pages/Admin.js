@@ -16,6 +16,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '../components/VitaforestUI/Button/Button';
 import File from '../components/VitaforestUI/File/File';
+import ProductCard from '../components/VitaforestUI/ProductCard/ProductCard';
+import Title from '../components/VitaforestUI/Title/Title';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -133,14 +135,7 @@ function Admin(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-                <Button title="Hello World!"></Button>
-                <Button title="kuku" variant="lined"></Button>
-                <Button title="New" variant="dark"></Button>
-                <Button title="GOvno" variant="small"></Button>
-                <Button title="lined small" variant="lined-small"></Button>
-                <Button title="dark small" variant="dark-small"></Button>
-                <Button title="rounded" variant="rounded" />
-                <File title="File sample" size="15,4" link="/admin"></File>
+                <Title variant='product-card' title='Hello, World!' />
             </Box>
         </Box>
     );
