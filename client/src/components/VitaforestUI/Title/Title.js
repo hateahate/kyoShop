@@ -15,7 +15,16 @@ font-style: normal;
 font-weight: 600;
 font-size: 20px;
 line-height: 17px;
-`
+`;
+
+const SKU = styled.p`
+font-family: 'Proxima Nova';
+font-style: normal;
+font-weight: 400;
+font-size: 14px;
+line-height: 17px
+color: #7F878B;
+`;
 
 const Title = ({ title, variant }) => {
     switch (variant) {
@@ -23,6 +32,8 @@ const Title = ({ title, variant }) => {
             return <ProductCardTitle>{title}</ProductCardTitle>
         case 'h4':
             return <H4Title>{title}</H4Title>
+        case 'sku':
+            return <SKU>SKU: {title}</SKU>
         default:
             return <ProductCardTitle>{title}</ProductCardTitle>
     }

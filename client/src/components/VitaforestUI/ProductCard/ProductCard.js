@@ -1,25 +1,36 @@
 import React from "react";
 import styled from "styled-components";
 import Button from "../Button/Button";
+import Status from "../Status/Status";
 import Title from "../Title/Title";
 import WishlistButton from "../WishlistButton/WishlistButton";
 
+const AbsoluteRow = styled.div`
+position: absolute;
+top: 0;
+display: flex;
+justify-content: space-between;
+`;
+
+const CardMain = styled.div`
+position: relative;
+`;
+
 const ProductCard = (props) => {
     return (
-        <div class="product-card">
+        <CardMain>
             <img src="image.jpg" alt="" />
-            <h4 class="product-card__title">
-                Plantain (Plantago) dry extract dry powder
-            </h4>
+            <Title variant="product-card" title="sample product" />
             <div class="product-card__row">
-                <p class="product-card__sku">SKU: 00171</p>
+                <Title variant='sku' title='2555444' />
+                <Button variant='lined-small' title='Request' />
             </div>
-            <div class="product-card__absolute-row">
-                <p class="product-card__status">Avaliable</p>
+            <AbsoluteRow>
+                <Status />
                 <WishlistButton></WishlistButton>
+            </AbsoluteRow>
 
-            </div>
-        </div>
+        </CardMain>
     )
 }
 

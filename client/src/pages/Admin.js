@@ -139,8 +139,6 @@ function Admin(props) {
                 </Typography>
                 <ProductCard>
                 </ProductCard>
-                <WishlistButton variant='liked'></WishlistButton>
-                <Buttonnew width='40px'></Buttonnew>
             </Box>
         </Box>
     );
