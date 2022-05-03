@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Button from "../Button/Button";
 import Title from "../Title/Title";
-
+import WishlistButton from "../WishlistButton/WishlistButton";
 
 const ProductCard = (props) => {
     return (
@@ -13,11 +13,11 @@ const ProductCard = (props) => {
             </h4>
             <div class="product-card__row">
                 <p class="product-card__sku">SKU: 00171</p>
-                <button>Request</button>
             </div>
             <div class="product-card__absolute-row">
                 <p class="product-card__status">Avaliable</p>
-                <button class="product-card__addtowish">СИРДЕЧКО</button>
+                <WishlistButton></WishlistButton>
+
             </div>
         </div>
     )

@@ -18,6 +18,8 @@ import Button from '../components/VitaforestUI/Button/Button';
 import File from '../components/VitaforestUI/File/File';
 import ProductCard from '../components/VitaforestUI/ProductCard/ProductCard';
 import Title from '../components/VitaforestUI/Title/Title';
+import WishlistButton from '../components/VitaforestUI/WishlistButton/WishlistButton';
+import Buttonnew from '../components/VitaforestUI/Button/Buttonnew';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -135,7 +137,10 @@ function Admin(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-                <Title variant='product-card' title='Hello, World!' />
+                <ProductCard>
+                </ProductCard>
+                <WishlistButton variant='liked'></WishlistButton>
+                <Buttonnew width='40px'></Buttonnew>
             </Box>
         </Box>
     );

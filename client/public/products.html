@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Shop unreg grid and search page result</h3>
+    <div class="product-card">
+      <img src="image.jpg" alt="" />
+      <!--Можно заголовок вынести в компонент-->
+      <h4 class="product-card__title">
+        Plantain (Plantago) dry extract dry powder
+      </h4>
+      <div class="product-card__row">
+        <p class="product-card__sku">SKU: 00171</p>
+        <button>Request</button>
+      </div>
+      <div class="product-card__absolute-row">
+        <p class="product-card__status">Avaliable</p>
+        <!-- А НАХУЯ И ГЛАВНОЕ ЗАЧЕМ(У не регнутого вишлиста то хуй)-->
+        <button class="product-card__addtowish">СИРДЕЧКО</button>
+      </div>
+    </div>
+
+    <hr />
+
+    <h3>Shop unreg row</h3>
+    То жи самое что
+    <b style="font-size: larger;">Shop unreg grid</b>
+    только без картинки
+
+    <hr />
+
+    <h3>Shop reg grid</h3>
+    <div class="product-card">
+      <img src="image.jpg" alt="" />
+      <!--Можно заголовок вынести в компонент-->
+      <h4 class="product-card__title">
+        Plantain (Plantago) dry extract dry powder
+      </h4>
+      <p class="product__card-stock">
+        In stock:
+        <span>60 box</span>
+      </p>
+      <div class="product-card__row">
+        <p class="product-card__sku">SKU: 00171</p>
+        <p class="product-card__price">€70.00</p>
+      </div>
+      <div class="product-card__row">
+        <div class="product-card__calc">
+          <button class="plus">+</button>
+          <input type="text" class="qty" />
+          <button class="minus">-</button>
+        </div>
+        <button>Add to cart</button>
+      </div>
+      <div class="product-card__absolute-row">
+        <p class="product-card__status">Avaliable</p>
+        <button class="product-card__addtowish">СИРДЕЧКО</button>
+      </div>
+    </div>
+
+    <hr />
+
+    <h3>Shop reg row</h3>
+
+    <div class="product-card">
+      <div class="product-card__row">
+        <h4 class="product-card__title">
+          Plantain (Plantago) dry extract dry powder
+        </h4>
+        <p class="product-card__price">€70.00</p>
+        <button class="product-card__addtowish">СИРДЕЧКО</button>
+      </div>
+      <div class="product-card__row">
+        <p class="product-card__sku">SKU: 00171</p>
+        <div class="product-card__calc">
+          <button class="plus">+</button>
+          <input type="text" class="qty" />
+          <button class="minus">-</button>
+        </div>
+        <button>Add to cart</button>
+      </div>
+      <div class="product-card__absolute-row">
+        <p class="product-card__status">Avaliable</p>
+        <p class="product__card-stock">
+          In stock:
+          <span>60 box</span>
+        </p>
+      </div>
+    </div>
+    <hr />
+
+    <h3>Related products carousel</h3>
+
+    <div class="product-card">
+      <img src="image.jpg" alt="" />
+      <h4 class="product-card__title">
+        Plantain (Plantago) dry extract dry powder
+      </h4>
+      <a href="#" class="product-card__link">Shop now</a>
+    </div>
+
+    <h3>Live search</h3>
+
+    <div class="product-card">
+      <img src="image.jpg" alt="" />
+      <a href="#" class="product-card__link">
+        <h4 class="product-card__title">
+          Plantain (Plantago) dry extract dry powder
+        </h4>
+      </a>
+    </div>
+
+    <h3>Live cart and order summary</h3>
+
+    <div class="product-card">
+      <img src="image.jpg" alt="" />
+      <div class="product-card__column">
+        <h4 class="product-card__title">
+          Plantain (Plantago) dry extract dry powder
+        </h4>
+        <p class="product-card__price">€70.00</p>
+        <div class="product-card__calc">
+          <button class="plus">+</button>
+          <input type="text" class="qty" />
+          <button class="minus">-</button>
+        </div>
+        <p class="product-card__status">Avaliable</p>
+      </div>
+    </div>
+  </body>
+</html>
