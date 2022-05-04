@@ -24,6 +24,8 @@ import RoundedButton from '../components/VitaforestUI/Buttons/RoundedButton';
 import CartStatus from '../components/VitaforestUI/Status/CartStatus';
 import StockInfo from '../components/VitaforestUI/TextElements/StockInfo';
 import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
+import AddToCart from '../components/VitaforestUI/Product/ProductCard/AddToCart';
+import AddToCartButton from '../components/VitaforestUI/Buttons/AddToCartButton';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -153,6 +155,7 @@ function Admin(props) {
                 <CartStatus />
                 <StockInfo quantity='5' />
                 <Trashcan></Trashcan>
+                <AddToCart price='10.5' />
             </Box>
         </Box>
     );
