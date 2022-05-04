@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import ProductCard from '../components/VitaforestUI/ProductCard/ProductCard'
+import ProductCard from '../components/VitaforestUI/Product/ProductCard/ProductCard'
 function Shop() {
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import Status from '../Status/Status';
-import Title from '../TextElements/Title';
-import WishlistButton from '../WishlistButton/WishlistButton';
-import LinedButton from '../Buttons/LinedButton';
+import Status from '../../Status/Status';
+import Title from '../../TextElements/Title';
+import WishlistButton from '../../WishlistButton/WishlistButton';
+import LinedButton from '../../Buttons/LinedButton';
 
 const AbsoluteRow = styled.div`
   position: absolute;
