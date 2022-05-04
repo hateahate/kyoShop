@@ -14,12 +14,13 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '../components/VitaforestUI/Button/Button';
 import File from '../components/VitaforestUI/File/File';
 import ProductCard from '../components/VitaforestUI/ProductCard/ProductCard';
 import Title from '../components/VitaforestUI/Title/Title';
 import WishlistButton from '../components/VitaforestUI/WishlistButton/WishlistButton';
-import Buttonnew from '../components/VitaforestUI/Button/Buttonnew';
+import LinedButton from '../components/VitaforestUI/Button/LinedButton';
+import DefaultButton from '../components/VitaforestUI/Button/DefaultButton';
+import RoundedButton from '../components/VitaforestUI/Button/RoundedButton';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -139,6 +140,11 @@ function Admin(props) {
                 </Typography>
                 <ProductCard>
                 </ProductCard>
+
+                <LinedButton title='Hello, World!' />
+                <DefaultButton title='Hello, World! Default' />
+                <DefaultButton title='Hello, World! Dark' variant='dark' />
+                <RoundedButton title='Hello, World! Rounded' />
             </Box>
         </Box>
     );

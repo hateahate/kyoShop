@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
-import Button from '../Button/Button'
 import Status from '../Status/Status'
 import Title from '../Title/Title'
 import WishlistButton from '../WishlistButton/WishlistButton'
+import LinedButton from '../Button/LinedButton'
 
 const AbsoluteRow = styled.div`
   position: absolute;
@@ -44,7 +44,7 @@ const ProductCard = (props) => {
         <Title variant="product-card" title={props.title} />
         <div class="product-card__row">
           <Title variant="sku" title={props.sku} />
-          <Button
+          <LinedButton
             class="request-button"
             variant="lined-small"
             title="Request"
