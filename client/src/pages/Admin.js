@@ -21,6 +21,8 @@ import WishlistButton from '../components/VitaforestUI/WishlistButton/WishlistBu
 import LinedButton from '../components/VitaforestUI/Buttons/LinedButton';
 import DefaultButton from '../components/VitaforestUI/Buttons/DefaultButton';
 import RoundedButton from '../components/VitaforestUI/Buttons/RoundedButton';
+import CartStatus from '../components/VitaforestUI/Status/CartStatus';
+import StockInfo from '../components/VitaforestUI/TextElements/StockInfo';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -146,6 +148,9 @@ function Admin(props) {
                 <DefaultButton title='Hello, World! Dark' variant='dark' />
                 <RoundedButton title='Hello, World! Rounded' />
                 <textarea></textarea>
+                <CartStatus status='soon' />
+                <CartStatus />
+                <StockInfo quantity='5' />
             </Box>
         </Box>
     );

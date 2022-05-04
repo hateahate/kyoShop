@@ -26,7 +26,7 @@ cursor: pointer;
 `;
 
 const DefaultButton = (props) => {
-    return <Component width={props.width} height={props.height} variant={props.variant}>{props.title}</Component>
+    return <Component width={props.width} height={props.height} variant={props.variant} className={props.className}>{props.title}</Component>
 }
 
 export default DefaultButton;

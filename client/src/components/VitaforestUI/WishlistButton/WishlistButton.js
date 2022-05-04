@@ -6,6 +6,7 @@ const ButtonUnliked = styled.button`
   border: none;
   background: none;
   margin: 5px;
+  cursor: pointer;
 `
 const ButtonLiked = styled(ButtonUnliked)`
   path {

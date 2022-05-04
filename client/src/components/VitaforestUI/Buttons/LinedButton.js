@@ -30,7 +30,7 @@ cursor: pointer;
 `;
 
 const LinedButton = (props) => {
-    return <Component width={props.width} height={props.height}>{props.title}</Component>
+    return <Component width={props.width} height={props.height} className={props.className}>{props.title}</Component>
 }
 
 export default LinedButton;
