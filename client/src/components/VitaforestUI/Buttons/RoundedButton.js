@@ -13,6 +13,7 @@ background: #FFFFFF;
 border: 1px solid #40BF6A;
 box-sizing: border-box;
 border-radius: 12px;
+font-family: 'Proxima Nova';
 font-weight: 600;
 font-size: 12px;
 line-height: 19px;

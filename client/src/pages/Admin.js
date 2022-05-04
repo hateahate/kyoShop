@@ -16,11 +16,11 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import File from '../components/VitaforestUI/File/File';
 import ProductCard from '../components/VitaforestUI/ProductCard/ProductCard';
-import Title from '../components/VitaforestUI/Title/Title';
+import Title from '../components/VitaforestUI/TextElements/Title';
 import WishlistButton from '../components/VitaforestUI/WishlistButton/WishlistButton';
-import LinedButton from '../components/VitaforestUI/Button/LinedButton';
-import DefaultButton from '../components/VitaforestUI/Button/DefaultButton';
-import RoundedButton from '../components/VitaforestUI/Button/RoundedButton';
+import LinedButton from '../components/VitaforestUI/Buttons/LinedButton';
+import DefaultButton from '../components/VitaforestUI/Buttons/DefaultButton';
+import RoundedButton from '../components/VitaforestUI/Buttons/RoundedButton';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -145,6 +145,7 @@ function Admin(props) {
                 <DefaultButton title='Hello, World! Default' />
                 <DefaultButton title='Hello, World! Dark' variant='dark' />
                 <RoundedButton title='Hello, World! Rounded' />
+                <textarea></textarea>
             </Box>
         </Box>
     );
