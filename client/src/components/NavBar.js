@@ -1,11 +1,16 @@
-import React, {useContext} from 'react';
-import {Context} from "../index";
-import {Link} from "react-router-dom";
+import React, { useContext } from 'react';
+import { Context } from "../index";
+import { Link } from "react-router-dom";
+import styled from 'styled-components';
+
+const NavBarContainer = styled.div`
+width: 100%;
+`;
 
 const NavBar = () => {
-    const {user} = useContext(Context)
+    const { user } = useContext(Context)
     return (
-        <div>
+        <NavBarContainer>
             <li>
                 <Link to="/">Home</Link>
             </li>
@@ -21,7 +26,10 @@ const NavBar = () => {
             <li>
                 <Link to="/registration">Registration</Link>
             </li>
-        </div>
+            <li>
+                <Link to="/ui-kit">UI-Kit</Link>
+            </li>
+        </NavBarContainer>
     );
 };
 

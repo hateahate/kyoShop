@@ -26,6 +26,7 @@ import StockInfo from '../components/VitaforestUI/TextElements/StockInfo';
 import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
 import AddToCart from '../components/VitaforestUI/Product/ProductCard/AddToCart';
 import AddToCartButton from '../components/VitaforestUI/Buttons/AddToCartButton';
+import OrderElement from '../components/VitaforestUI/Order/OrderElement';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -145,17 +146,6 @@ function Admin(props) {
                 </Typography>
                 <ProductCard>
                 </ProductCard>
-
-                <LinedButton title='Hello, World!' />
-                <DefaultButton title='Hello, World! Default' />
-                <DefaultButton title='Hello, World! Dark' variant='dark' />
-                <RoundedButton title='Hello, World! Rounded' />
-                <textarea></textarea>
-                <CartStatus status='soon' />
-                <CartStatus />
-                <StockInfo quantity='5' />
-                <Trashcan></Trashcan>
-                <AddToCart price='10.5' />
             </Box>
         </Box>
     );

@@ -9,10 +9,11 @@ import {
   SHOP_ROUTE,
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
-  PRODUCT_ROUTE, HOME_ROUTE,
+  PRODUCT_ROUTE, HOME_ROUTE, UI_KIT,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
+import Ui from './pages/Ui';
 
 export const authRoutes = [
 
@@ -27,8 +28,8 @@ export const publicRoutes = [
     Component: Admin,
   },
   {
-    path:HOME_ROUTE,
-    Component:HomePage
+    path: HOME_ROUTE,
+    Component: HomePage
   },
   {
     path: SHOP_ROUTE,
@@ -45,5 +46,9 @@ export const publicRoutes = [
   {
     path: PRODUCT_ROUTE + '/:id',
     Component: ProductPage,
+  },
+  {
+    path: UI_KIT,
+    Component: Ui,
   },
 ]

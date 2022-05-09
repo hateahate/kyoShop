@@ -20,13 +20,13 @@ height: 135px;
 `;
 
 const FirstRow = styled.div`
-display flex;
-width: 100%
+display: flex;
+width: 100%;
 `;
 
 const SecondRow = styled.div`
-display flex;
-width: 100%
+display: flex;
+width: 100%;
 `;
 
 const PricePerUnit = styled.p`
