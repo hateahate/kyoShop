@@ -14,19 +14,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import File from '../components/VitaforestUI/File/File';
 import ProductCard from '../components/VitaforestUI/Product/ProductCard/ProductCard';
-import Title from '../components/VitaforestUI/TextElements/Title';
-import WishlistButton from '../components/VitaforestUI/WishlistButton/WishlistButton';
-import LinedButton from '../components/VitaforestUI/Buttons/LinedButton';
-import DefaultButton from '../components/VitaforestUI/Buttons/DefaultButton';
-import RoundedButton from '../components/VitaforestUI/Buttons/RoundedButton';
-import CartStatus from '../components/VitaforestUI/Status/CartStatus';
-import StockInfo from '../components/VitaforestUI/TextElements/StockInfo';
-import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
-import AddToCart from '../components/VitaforestUI/Product/ProductCard/AddToCart';
-import AddToCartButton from '../components/VitaforestUI/Buttons/AddToCartButton';
-import OrderElement from '../components/VitaforestUI/Order/OrderElement';
 const drawerWidth = 240;
 
 function Admin(props) {
