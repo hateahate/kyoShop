@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const UnderDevelopment = styled.p`
+  font-family: 'Proxima Nova';
   display: flex;
   flex-direction: row;
   align-items: center;
