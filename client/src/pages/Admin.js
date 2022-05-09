@@ -14,7 +14,6 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import ProductCard from '../components/VitaforestUI/Product/ProductCard/ProductCard';
 const drawerWidth = 240;
 
 function Admin(props) {
@@ -132,8 +131,6 @@ function Admin(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-                <ProductCard>
-                </ProductCard>
             </Box>
         </Box>
     );

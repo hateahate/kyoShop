@@ -20,8 +20,23 @@
                 <input type="text" name="title" id="title">
                 <label for="description">Description</label>
                 <input type="text" name="description" id="description">
+                <label for="link">link</label>
+                <input type="text" name="link" id="link">
+                <label for="postCategoryId">postCategoryId</label>
+                <input type="number" name="postCategoryId" id="postCategoryId">
                 <label for="file">Img</label>
                 <input type="file" name="img" id="img">
+                <button type="submit">Create</button>
+            </form>
+        </div>
+        <div style="display: flex; flex-direction: column;">
+            <h2>Создание категории поста</h2>
+            <form action="http://5.144.96.71:66/api/postcat" method="post" enctype="multipart/form-data"
+                style="display: flex; flex-direction: column;">
+                <label for="name">name</label>
+                <input type="text" name="name" id="name">
+                <label for="categorylink">categorylink</label>
+                <input type="text" name="categorylink" id="categorylink">
                 <button type="submit">Create</button>
             </form>
         </div>

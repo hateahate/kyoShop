@@ -42,8 +42,9 @@ const Product = sequelize.define('product', {
 const Post = sequelize.define('post', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.TEXT, allowNull: false },
     img: { type: DataTypes.STRING },
+    link: { type: DataTypes.STRING, unique: true, allowNull: false },
 })
 
 // Сущность поста вики
@@ -83,6 +84,14 @@ const ProductCategory = sequelize.define('product_category', {
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
+// Сущность категории поста
+
+const PostCategory = sequelize.define('post_category', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
+    categorylink: { type: DataTypes.STRING, allowNull: false, unique: true },
+})
+
 // Сущность заказа
 
 const Order = sequelize.define('order', {
@@ -104,6 +113,9 @@ Basket.hasMany(BasketProduct); // Корзине передаём объект �
 
 Product.hasMany(ProductInfo, { as: 'info' }); // Товар может содержать множество описаний
 ProductInfo.belongsTo(Product);
+
+PostCategory.hasMany(Post);
+Post.belongsTo(PostCategory);
 
 ProductCategory.hasMany(Product);
 Product.belongsTo(ProductCategory);
@@ -131,6 +143,7 @@ module.exports = {
     Post,
     Order,
     Wiki,
+    PostCategory,
 }
 
 
