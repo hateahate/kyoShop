@@ -4,6 +4,7 @@ import OrderElement from '../components/VitaforestUI/Order/OrderElement';
 import styled from 'styled-components';
 import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
 import BlogElement from '../components/VitaforestUI/Blog/BlogElement';
+import Input from '../components/VitaforestUI/Input/Input';
 
 const UIFlex = styled.div`
 width: 100%;
@@ -35,6 +36,9 @@ function Ui() {
                     <BlogElement title='Hello, World' description='Hello, World! This is sample of blog card...' categorylink='/admin' date='Jan. 20, 2022' category='Untitled category' img='https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg' />
                     <BlogElement title='Hello, World' description='Hello, World! This is sample of blog card...' categorylink='/admin' date='Jan. 20, 2022' category='Untitled category' img='https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg' />
                     <BlogElement title='Hello, World' description='Hello, World! This is sample of blog card...' categorylink='/admin' date='Jan. 20, 2022' category='Untitled category' img='https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg' />
+                </Section>
+                <Section>
+                    <Input placeholder='Hello, World!' label='Test input' />
                 </Section>
             </Main>
         </div>
