@@ -44,11 +44,11 @@ class WikiController {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const wiki = await Wiki.set({ title, description, img: fileName }, { where: { id } });
+                const wiki = await Wiki.update({ title, description, img: fileName }, { where: { id } });
                 return res.json(wiki);
             }
             else {
-                const wiki = await Wiki.set({ title, description }, { where: { id } });
+                const wiki = await Wiki.update({ title, description }, { where: { id } });
                 return res.json(wiki);
             }
         }

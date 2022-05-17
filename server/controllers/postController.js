@@ -45,11 +45,11 @@ class PostController {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const post = await Post.set({ title, description, img: fileName }, { where: { id } });
+                const post = await Post.update({ title, description, img: fileName }, { where: { id } });
                 return res.json(post);
             }
             else {
-                const post = await Post.set({ title, description }, { where: { id } });
+                const post = await Post.update({ title, description }, { where: { id } });
                 return res.json(post);
             }
         }

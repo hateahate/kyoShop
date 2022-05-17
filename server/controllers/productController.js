@@ -86,7 +86,7 @@ class ProductController {
                     });
                 }
 
-                const product = await Product.set({ name, price, productCategoryId, status, stock, moq, qty_step, description, img: fileName }, { where: { id } });
+                const product = await Product.update({ name, price, productCategoryId, status, stock, moq, qty_step, description, img: fileName }, { where: { id } });
                 return res.json(product); // На основе полученных данных пытаемся создать/создаём товар.
             }
             else {
