@@ -12,7 +12,7 @@ class PostCategoryController {
     }
     async update(req, res) {
         const { id, name, categorylink } = req.body;
-        const category = await PostCategory.update({ name, categorylink }, { where: { id } });
+        const category = await PostCategory.set({ name, categorylink }, { where: { id } });
         return res.json(category);
     }
     async remove(req, res) {

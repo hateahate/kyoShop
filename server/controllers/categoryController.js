@@ -12,7 +12,7 @@ class CategoryController {
     }
     async update(req, res) {
         const { id, name } = req.body;
-        const category = await ProductCategory.update({ name }, { where: { id } });
+        const category = await ProductCategory.set({ name }, { where: { id } });
         return res.json(category);
     }
     async remove(req, res) {
