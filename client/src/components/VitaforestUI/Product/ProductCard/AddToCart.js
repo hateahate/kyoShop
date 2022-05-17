@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import AddToCartButton from "../../Buttons/AddToCartButton";
+import AddToCartButton from "../../Interface/Buttons/AddToCartButton";
 
 const Main = styled.div`
 display: flex;

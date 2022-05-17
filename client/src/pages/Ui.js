@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import DefaultButton from '../components/VitaforestUI/Buttons/DefaultButton';
+import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton';
 import OrderElement from '../components/VitaforestUI/Interface/Order/OrderElement';
 import styled from 'styled-components';
-import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
+import Trashcan from '../components/VitaforestUI/Interface/Buttons/Trashcan';
 import BlogElement from '../components/VitaforestUI/Blog/BlogElement';
 import Input from '../components/VitaforestUI/Interface/Input/Input';
 
