@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import DefaultButton from '../components/VitaforestUI/Buttons/DefaultButton';
-import OrderElement from '../components/VitaforestUI/Order/OrderElement';
+import OrderElement from '../components/VitaforestUI/Interface/Order/OrderElement';
 import styled from 'styled-components';
 import Trashcan from '../components/VitaforestUI/Buttons/Trashcan';
 import BlogElement from '../components/VitaforestUI/Blog/BlogElement';
-import Input from '../components/VitaforestUI/Input/Input';
+import Input from '../components/VitaforestUI/Interface/Input/Input';
 
 const UIFlex = styled.div`
 width: 100%;

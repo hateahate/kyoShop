@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import Status from '../../Status/Status';
-import WishlistButton from '../../WishlistButton/WishlistButton';
+import Status from '../../Interface/Status/Status';
+import WishlistButton from '../../Interface/WishlistButton/WishlistButton';
 import LinedButton from '../../Buttons/LinedButton';
 
 const AbsoluteRow = styled.div`
