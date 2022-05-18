@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import DefaultButton from "../../Buttons/DefaultButton";
+import DefaultButton from "../Interface/Buttons/DefaultButton";
 
 
 const Component = styled.div`
