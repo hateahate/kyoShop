@@ -5,7 +5,8 @@ import styled from 'styled-components'
 import Trashcan from '../components/VitaforestUI/Interface/Buttons/Trashcan'
 import BlogElement from '../components/VitaforestUI/Blog/BlogElement'
 import Input from '../components/VitaforestUI/Interface/Input/Input'
-import Header from '../components/VitaforestUI/Interface/Header/Header'
+import MobileAccountHead from '../components/VitaforestUI/Account/MobileAccountHead'
+import Counter from '../components/VitaforestUI/Interface/Counter/Counter'
 
 const UIFlex = styled.div`
   width: 100%;
@@ -26,60 +27,15 @@ const Section = styled.div`
 function Ui() {
   return (
     <div>
-      <Header></Header>
       <Main>
-        <UIFlex>
-          <OrderElement
-            number="111111111"
-            date="12.12.2007"
-            status="On hold"
-            total="100"
-            items="10"
-          />
-          <OrderElement
-            number="111111111"
-            date="12.12.2007"
-            status="Cancelled"
-            total="100"
-            items="10"
-          />
-          <OrderElement
-            number="111111111"
-            date="12.12.2007"
-            status="Complete"
-            total="100"
-            items="120"
-          />
-        </UIFlex>
         <Section>
-          <BlogElement
-            title="Hello, World"
-            description="Hello, World! This is sample of blog card..."
-            categorylink="/admin"
-            date="Jan. 20, 2022"
-            category="Untitled category"
-            img="https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg"
-          />
-          <BlogElement
-            title="Hello, World"
-            description="Hello, World! This is sample of blog card..."
-            categorylink="/admin"
-            date="Jan. 20, 2022"
-            category="Untitled category"
-            img="https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg"
-          />
-          <BlogElement
-            title="Hello, World"
-            description="Hello, World! This is sample of blog card..."
-            categorylink="/admin"
-            date="Jan. 20, 2022"
-            category="Untitled category"
-            img="https://dev.vitaforest.eu/wp-content/uploads/2021/10/astragalus-astragalus-dasyanthus-dry-extract-e1618476656769.jpg"
-          />
+          <MobileAccountHead
+            fullName="Test User"
+            email="test@test.com"
+          ></MobileAccountHead>
+          <Counter qty="10" step="10" />
         </Section>
-        <Section>
-          <Input placeholder="Hello, World!" label="Test input" />
-        </Section>
+        <Section></Section>
       </Main>
     </div>
   )
