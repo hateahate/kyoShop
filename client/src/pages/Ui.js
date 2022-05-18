@@ -6,6 +6,7 @@ import Trashcan from '../components/VitaforestUI/Interface/Buttons/Trashcan';
 import BlogElement from '../components/VitaforestUI/Blog/BlogElement';
 import Input from '../components/VitaforestUI/Interface/Input/Input';
 import MobileAccountHead from '../components/VitaforestUI/Account/MobileAccountHead';
+import Counter from '../components/VitaforestUI/Interface/Counter/Counter';
 
 const UIFlex = styled.div`
 width: 100%;
@@ -30,6 +31,7 @@ function Ui() {
             <Main>
                 <Section>
                     <MobileAccountHead fullName='Test User' email='test@test.com'></MobileAccountHead>
+                    <Counter qty='10' step='10' />
                 </Section>
                 <Section>
                 </Section>
