@@ -7,6 +7,7 @@ import BlogElement from '../components/VitaforestUI/Blog/BlogElement';
 import Input from '../components/VitaforestUI/Interface/Input/Input';
 import MobileAccountHead from '../components/VitaforestUI/Account/MobileAccountHead';
 import Counter from '../components/VitaforestUI/Interface/Counter/Counter';
+import ProductPage from '../components/VitaforestUI/Product/ProductCard/ProductPage/ProductPage';
 
 const UIFlex = styled.div`
 width: 100%;
@@ -35,6 +36,7 @@ function Ui() {
                 </Section>
                 <Section>
                 </Section>
+                <ProductPage></ProductPage>
             </Main>
         </div>
     );
