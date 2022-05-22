@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-import React, { useState, useEffect } from 'react'
-import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton'
-import OrderElement from '../components/VitaforestUI/Order/OrderElement'
-import styled from 'styled-components'
-import Trashcan from '../components/VitaforestUI/Interface/Buttons/Trashcan'
-import BlogElement from '../components/VitaforestUI/Blog/BlogElement'
-import Input from '../components/VitaforestUI/Interface/Input/Input'
-import MobileAccountHead from '../components/VitaforestUI/Account/MobileAccountHead'
-import Counter from '../components/VitaforestUI/Interface/Counter/Counter'
-=======
 import React, { useState, useEffect } from 'react';
 import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton';
 import OrderElement from '../components/VitaforestUI/Order/OrderElement';
@@ -19,7 +8,7 @@ import Input from '../components/VitaforestUI/Interface/Input/Input';
 import MobileAccountHead from '../components/VitaforestUI/Account/MobileAccountHead';
 import Counter from '../components/VitaforestUI/Interface/Counter/Counter';
 import ProductPage from '../components/VitaforestUI/Product/ProductCard/ProductPage/ProductPage';
->>>>>>> b85fbc70a8f83a77dd8599db5b2b05746f4951b8
+import Header from '../components/VitaforestUI/Interface/Header/Header';
 
 const UIFlex = styled.div`
   width: 100%;
@@ -38,22 +27,6 @@ const Section = styled.div`
 `
 
 function Ui() {
-<<<<<<< HEAD
-  return (
-    <div>
-      <Main>
-        <Section>
-          <MobileAccountHead
-            fullName="Test User"
-            email="test@test.com"
-          ></MobileAccountHead>
-          <Counter qty="10" step="10" />
-        </Section>
-        <Section></Section>
-      </Main>
-    </div>
-  )
-=======
     return (
         <div>
             <Main>
@@ -62,12 +35,12 @@ function Ui() {
                     <Counter qty='10' step='10' />
                 </Section>
                 <Section>
+                    <Header />
                 </Section>
                 <ProductPage></ProductPage>
             </Main>
         </div>
     );
->>>>>>> b85fbc70a8f83a77dd8599db5b2b05746f4951b8
 }
 
 export default Ui
