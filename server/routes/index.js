@@ -10,6 +10,7 @@ const companyRouter = require('./companyRouter');
 const postRouter = require('./postRouter');
 const wikiRouter = require('./wikiRouter');
 const postCategoryRouter = require('./postCategoryRouter');
+const liveSearchRouter = require('./liveSearchRouter');
 
 //Связываем внешние роутеры с путями
 router.use('/user', userRouter);
@@ -19,6 +20,7 @@ router.use('/category', categoryRouter);
 router.use('/post', postRouter);
 router.use('/wiki', wikiRouter);
 router.use('/postcat', postCategoryRouter);
+router.use('/search', liveSearchRouter);
 
 
 module.exports = router;
