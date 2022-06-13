@@ -49,7 +49,7 @@ class WikiController {
             }
             else {
                 const wiki = await Wiki.update({ title, description }, { where: { id } });
-                return res.json(wiki);
+                return res.json(wiki)
             }
         }
         catch (e) {
