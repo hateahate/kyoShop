@@ -1,9 +1,38 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 
 const Nav = styled.nav`
   background-color: #fff;
   margin-top: 50px;
+  @keyframes down1 {
+    0% {
+      height: 0%;
+    }
+    10% {
+      height: 10%;
+    }
+    25% {
+      height: 25%;
+    }
+    40% {
+      height: 40%;
+    }
+    50% {
+      height: 50%;
+    }
+    60% {
+      height: 60%;
+    }
+    75% {
+      height: 75%;
+    }
+    80% {
+      height: 80%;
+    }
+    100% {
+      height: max-content;
+    }
+  }
 `
 const MainList = styled.div`
   list-style: none;
@@ -13,6 +42,15 @@ const SubList = styled.ul`
   list-style: none;
   padding: 20px 18px;
   background: #f7f8f9;
+  height: 0px;
+  display: none;
+  &.sub-expanded {
+    display: block;
+    height: max-content;
+    animation-name: down1;
+    animation-duration: 1s;
+    animation-timing-function: ease-in;
+  }
   .first-sub-item {
     padding-top: 0px;
   }
@@ -64,11 +102,20 @@ const SubItemMain = styled.li`
   }
 `
 const Navigation = () => {
+  const [isSubFirstNavExpanded, setIsSubFirstNavExpanded] = useState(false)
+  const [isSubSecondNavExpanded, setIsSubSecondExpanded] = useState(false)
+
   return (
     <Nav>
       <MainList>
-        <MainItem>Products</MainItem>
-        <SubList>
+        <MainItem
+          onClick={() => {
+            setIsSubFirstNavExpanded(!isSubFirstNavExpanded)
+          }}
+        >
+          Products
+        </MainItem>
+        <SubList className={isSubFirstNavExpanded ? 'sub-expanded' : 'null'}>
           <SubItemMain className="first-sub-item">Extracts</SubItemMain>
           <SubItem>Herbal extracts</SubItem>
           <SubItem>Mushroom extracts</SubItem>
@@ -78,8 +125,14 @@ const Navigation = () => {
           <SubItem>Mushroom powders</SubItem>
           <SubItem>Fruit powders</SubItem>
         </SubList>
-        <MainItem>Company</MainItem>
-        <SubList>
+        <MainItem
+          onClick={() => {
+            setIsSubSecondExpanded(!isSubSecondNavExpanded)
+          }}
+        >
+          Company
+        </MainItem>
+        <SubList className={isSubSecondNavExpanded ? 'sub-expanded' : 'null'}>
           <SubItem className="first-sub-item">About us</SubItem>
           <SubItem>Production</SubItem>
           <SubItem>FAQ</SubItem>
