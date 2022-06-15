@@ -107,12 +107,15 @@ const Copyright = styled.div`
     opacity: 0.9;
   }
 `
+const FooterWrapper = styled.div`
+  flex: 0 0 auto;
+`
 const Footer = () => {
   const [isCompanyExpanded, setIsCompanyExpanded] = useState(false)
   const [isCustomerExpanded, setIsCustomerExpanded] = useState(false)
   const [isInspiredExpanded, setIsInspiredExpanded] = useState(false)
   return (
-    <div>
+    <FooterWrapper>
       <FooterContainer>
         <FooterInner>
           <Contacts>
@@ -222,7 +225,7 @@ const Footer = () => {
           <p className="linktext">Privacy Policy</p>
         </Link>
       </Copyright>
-    </div>
+    </FooterWrapper>
   )
 }
 
