@@ -15,6 +15,8 @@ const Content = styled.div`
   flex: 1 0 auto;
 `
 const App = () => {
+  console.log(window.location.pathname)
+  if (window.location.pathname !== "/admin"){
   return (
     <Page>
       <BrowserRouter>
@@ -26,6 +28,18 @@ const App = () => {
       </BrowserRouter>
     </Page>
   )
+}else{
+  return(
+  <Page>
+  <BrowserRouter>
+    
+    <Content>
+      <AppRouter />
+    </Content>
+   
+  </BrowserRouter>
+</Page>)
+}
 }
 
 export default App
