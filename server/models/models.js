@@ -99,6 +99,11 @@ const Order = sequelize.define('order', {
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'NEW' },
 });
 
+const MetaTag = sequelize.define('metatag', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Unknown' },
+})
+
 
 
 // Устанавливаем связи
@@ -144,6 +149,7 @@ module.exports = {
     Order,
     Wiki,
     PostCategory,
+    MetaTag,
 }
 
 
