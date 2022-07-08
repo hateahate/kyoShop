@@ -12,7 +12,7 @@ const wikiRouter = require('./wikiRouter');
 const postCategoryRouter = require('./postCategoryRouter');
 const liveSearchRouter = require('./liveSearchRouter');
 
-//Связываем внешние роутеры с путями
+// Связываем внешние роутеры с путями
 router.use('/user', userRouter);
 router.use('/product', productRouter);
 router.use('/company', companyRouter);
