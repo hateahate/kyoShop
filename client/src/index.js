@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import App from './App'
 import UserStore from './store/UserStore'
 import { Normalize } from 'styled-normalize'
+import 'bootstrap/dist/css/bootstrap.min.css';
 export const Context = createContext(null)
 console.log(process.env.REACT_APP_API_URL)
 

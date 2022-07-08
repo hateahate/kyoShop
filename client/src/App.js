@@ -5,6 +5,7 @@ import AppRouter from './components/AppRouter'
 import styled from 'styled-components'
 import Header from './components/VitaforestUI/Interface/Header/Header'
 import Footer from './components/VitaforestUI/Interface/Footer/Footer'
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Page = styled.div`
   display: flex;
@@ -16,30 +17,30 @@ const Content = styled.div`
 `
 const App = () => {
   console.log(window.location.pathname)
-  if (window.location.pathname !== "/admin"){
-  return (
-    <Page>
-      <BrowserRouter>
-        <Header />
-        <Content>
-          <AppRouter />
-        </Content>
-        <Footer />
-      </BrowserRouter>
-    </Page>
-  )
-}else{
-  return(
-  <Page>
-  <BrowserRouter>
-    
-    <Content>
-      <AppRouter />
-    </Content>
-   
-  </BrowserRouter>
-</Page>)
-}
+  if (window.location.pathname !== "/admin") {
+    return (
+      <Page>
+        <BrowserRouter>
+          <Header />
+          <Content>
+            <AppRouter />
+          </Content>
+          <Footer />
+        </BrowserRouter>
+      </Page>
+    )
+  } else {
+    return (
+      <Page>
+        <BrowserRouter>
+
+          <Content>
+            <AppRouter />
+          </Content>
+
+        </BrowserRouter>
+      </Page>)
+  }
 }
 
 export default App

@@ -1,26 +1,30 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
-import ProductsAdmin from '../components/VitaforestUI/Admin/subpages/Products';
-const Container = styled.div`
-    display:flex;
-    width:100%;
-    height:100%;
+import { Button, Container } from 'react-bootstrap';
+import Footer from '../components/VitaforestUI/Interface/Footer/Footer';
+import Header from '../components/VitaforestUI/Interface/Header/Header';
+import CreateProduct from '../components/modals/CreateProduct';
+import CreateCategory from '../components/modals/CreateCategory';
+const Page = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 `
 
-const SideMenu = styled.div`
-    width:30%;
-`
-const MainContent =styled.div`
-    width:70%;
-`
-const Admin =()=>{
-    return(
-        <Container>
-            <SideMenu>
-              JIJA
-            </SideMenu>
-            <ProductsAdmin/>
-        </Container>
+const Admin = () => {
+    const [categoryVisible, setCategoryVisible] = useState(false);
+    return (
+        <Page>
+            <Header />
+            <Container className='d-flex flex-column'>
+                <h1>kyoShop Admin Panel</h1>
+                <Button variant={'primary'} className='mt-2' onClick={() => setCategoryVisible(true)}>Category</Button>
+                <Button variant={'primary'} className='mt-2'>Post</Button>
+                <Button variant={'primary'} className='mt-2'>Wiki</Button>
+            </Container>
+            <CreateCategory show={categoryVisible} onHide={() => setCategoryVisible(false)} />
+            <Footer />
+        </Page>
     )
 }
 
