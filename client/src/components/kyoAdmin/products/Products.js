@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Table } from 'react-bootstrap'
-import styled from 'styled-components'
+import { Table, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import RemoveProduct from './RemoveProduct';
 
 const TableContainer = styled.div`
 width: 90%;
@@ -53,6 +54,8 @@ function AdminProducts() {
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
+                                <td><RemoveProduct itemId={item.id} /></td>
+                                <td><Button variant={'primary'}>Edit</Button></td>
                             </tr>
                         ))}
                     </tbody>

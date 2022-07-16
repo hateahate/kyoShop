@@ -11,6 +11,11 @@ export const fetchCategories = async () => {
     return data
 }
 
+export const removeProduct = async (id) => {
+    const { data } = await $host.post('api/product/remove', id)
+    return data
+}
+
 
 export const createProduct = async (product) => {
     const { data } = await $authHost.post('api/product', product)

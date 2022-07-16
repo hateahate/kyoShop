@@ -47,8 +47,8 @@ function AdminUI() {
                     <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
-                                <Button variant={'primary'} className='mt-2 product-controls-btn' onClick={() => setCategoryVisible(true)}>Category</Button>
-                                <Button variant={'primary'} className='mt-2' onClick={() => setProductVisible(true)}>Product</Button>
+                                <Button variant={'primary'} className='mt-2 product-controls-btn' onClick={() => setCategoryVisible(true)}>Add category</Button>
+                                <Button variant={'success'} className='mt-2' onClick={() => setProductVisible(true)}>Add product</Button>
                                 <AdminProducts />
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">

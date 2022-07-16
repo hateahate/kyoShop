@@ -111,7 +111,7 @@ class ProductController {
     }
     async remove(req, res, next) {
         try {
-            const { id } = req.query;
+            const { id } = req.body;
             await Product.destroy({ where: { id } });
             return res.json('Removed');
         }
