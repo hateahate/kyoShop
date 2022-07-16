@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import Modal from "react-bootstrap/Modal";
 import { Button, Dropdown, Form, Row, Col } from "react-bootstrap";
-import { Context } from "../../index";
-import { createProduct, fetchProducts, fetchCategories } from "../../http/productAPI";
+import { Context } from "../../../index";
+import { createProduct, fetchProducts, fetchCategories } from "../../../http/productAPI";
 import { observer } from "mobx-react-lite";
 import styled from 'styled-components';
 

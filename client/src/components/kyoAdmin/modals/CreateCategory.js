@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Modal from "react-bootstrap/Modal";
 import { Form, Button } from "react-bootstrap";
-import { createCategory, fetchCategories } from '../../http/productAPI';
+import { createCategory, fetchCategories } from '../../../http/productAPI';
 const CreateCategory = ({ show, onHide }) => {
     const [value, setValue] = useState('')
 
