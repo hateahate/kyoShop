@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { Table } from 'react-bootstrap'
+import styled from 'styled-components'
+
+const TableContainer = styled.div`
+width: 90%;
+`
 
 function AdminProducts() {
     const [error, setError] = useState(null)
@@ -31,26 +36,28 @@ function AdminProducts() {
         return <div>Загрузка</div>
     } else {
         return (
-            <Table striped>
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Stock</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {items.map((item) => (
+            <TableContainer>
+                <Table striped>
+                    <thead>
                         <tr>
-                            <td>{item.id}</td>
-                            <td>{item.name}</td>
-                            <td>{item.price}</td>
-                            <td>{item.stock}</td>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Stock</th>
                         </tr>
-                    ))}
-                </tbody>
-            </Table>
+                    </thead>
+                    <tbody>
+                        {items.map((item) => (
+                            <tr>
+                                <td>{item.id}</td>
+                                <td>{item.name}</td>
+                                <td>{item.price}</td>
+                                <td>{item.stock}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </Table>
+            </TableContainer>
         )
     }
 }
