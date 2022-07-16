@@ -44,7 +44,7 @@ const Post = sequelize.define('post', {
     title: { type: DataTypes.STRING, allowNull: false },
     description: { type: DataTypes.TEXT, allowNull: false },
     img: { type: DataTypes.STRING },
-    link: { type: DataTypes.STRING, unique: true, allowNull: false },
+    link: { type: DataTypes.STRING, unique: true, allowNull: true },
 })
 
 // Сущность поста вики
@@ -134,6 +134,13 @@ Wiki.belongsTo(User);
 User.hasMany(Order);
 Order.belongsTo(User);
 
+Wiki.hasMany(MetaTag);
+Product.hasMany(MetaTag);
+Post.hasMany(MetaTag);
+
+MetaTag.belongsTo(Wiki);
+MetaTag.belongsTo(Post);
+MetaTag.belongsTo(Product);
 
 // Экспортируем модели сущностей для дальнейшего использования
 

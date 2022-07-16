@@ -13,16 +13,18 @@ const Page = styled.div`
 
 const Admin = () => {
     const [categoryVisible, setCategoryVisible] = useState(false);
+    const [productVisible, setProductVisible] = useState(false);
     return (
         <Page>
             <Header />
             <Container className='d-flex flex-column'>
                 <h1>kyoShop Admin Panel</h1>
                 <Button variant={'primary'} className='mt-2' onClick={() => setCategoryVisible(true)}>Category</Button>
-                <Button variant={'primary'} className='mt-2'>Post</Button>
+                <Button variant={'primary'} className='mt-2' onClick={() => setProductVisible(true)}>Product</Button>
                 <Button variant={'primary'} className='mt-2'>Wiki</Button>
             </Container>
             <CreateCategory show={categoryVisible} onHide={() => setCategoryVisible(false)} />
+            <CreateProduct show={productVisible} onHide={() => setProductVisible(false)} />
             <Footer />
         </Page>
     )

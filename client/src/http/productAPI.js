@@ -1,4 +1,4 @@
-import { $authHost, $host } from "./index";
+import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode";
 
 export const createCategory = async (category) => {

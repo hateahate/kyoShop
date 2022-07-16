@@ -4,6 +4,12 @@ import { Button, Dropdown, Form, Row, Col } from "react-bootstrap";
 import { Context } from "../../index";
 import { createProduct, fetchProducts, fetchCategories } from "../../http/productAPI";
 import { observer } from "mobx-react-lite";
+import styled from 'styled-components';
+
+const FieldTitle = styled.p`
+margin: 0;
+font-weight: 600;
+`;
 
 const CreateProduct = observer(({ show, onHide }) => {
     const { product } = useContext(Context);
@@ -11,6 +17,9 @@ const CreateProduct = observer(({ show, onHide }) => {
     const [price, setPrice] = useState(0);
     const [file, setFile] = useState(null);
     const [info, setInfo] = useState([]);
+    const [moq, setMoq] = useState(0);
+    const [qtyStep, setQtyStep] = useState(0);
+    const [stock, setStock] = useState(0);
 
     const addInfo = () => {
         setInfo([...info, { title: '', description: '', number: Date.now() }])
@@ -30,8 +39,10 @@ const CreateProduct = observer(({ show, onHide }) => {
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', `${price}`)
+        formData.append('stock', `${stock}`)
+        formData.append('moq', `${moq}`)
+        formData.append('qty_step', `${qtyStep}`)
         formData.append('img', file)
-        formData.append('categoryId', product.selectedCategory.id)
         formData.append('info', JSON.stringify(info))
         createProduct(formData).then(data => onHide())
     }
@@ -49,32 +60,38 @@ const CreateProduct = observer(({ show, onHide }) => {
             </Modal.Header>
             <Modal.Body>
                 <Form>
-                    <Dropdown className="mt-2 mb-2">
-                        <Dropdown.Toggle>{product.selectedType.name || "Выберите тип"}</Dropdown.Toggle>
-                        <Dropdown.Menu>
-                            {product.types.map(type =>
-                                <Dropdown.Item
-                                    onClick={() => product.setSelectedType(type)}
-                                    key={type.id}
-                                >
-                                    {type.name}
-                                </Dropdown.Item>
-                            )}
-                        </Dropdown.Menu>
-                    </Dropdown>
+                    <FieldTitle>Product name</FieldTitle>
                     <Form.Control
                         value={name}
                         onChange={e => setName(e.target.value)}
                         className="mt-3"
-                        placeholder="Введите название"
+                        placeholder="Enter product name"
                     />
+                    <FieldTitle>Price</FieldTitle>
                     <Form.Control
                         value={price}
                         onChange={e => setPrice(Number(e.target.value))}
                         className="mt-3"
-                        placeholder="Введите стоимость"
+                        placeholder="Price"
                         type="number"
                     />
+                    <FieldTitle>Stock</FieldTitle>
+                    <Form.Control
+                        value={stock}
+                        onChange={e => setStock(Number(e.target.value))}
+                        className="mt-3"
+                        placeholder="Currently in stock"
+                        type="number"
+                    />
+                    <FieldTitle>MOQ</FieldTitle>
+                    <Form.Control
+                        value={moq}
+                        onChange={e => setMoq(Number(e.target.value))}
+                        className="mt-3"
+                        placeholder="Currently in stock"
+                        type="number"
+                    />
+                    <FieldTitle>Product image</FieldTitle>
                     <Form.Control
                         className="mt-3"
                         type="file"
@@ -85,7 +102,7 @@ const CreateProduct = observer(({ show, onHide }) => {
                         variant={"outline-dark"}
                         onClick={addInfo}
                     >
-                        Добавить новое свойство
+                        WIP
                     </Button>
                     {info.map(i =>
                         <Row className="mt-4" key={i.number}>
