@@ -10,13 +10,13 @@ import { Button, Container } from 'react-bootstrap';
 import AdminProducts from '../products/Products';
 import styled from 'styled-components';
 import AdminNavbar from './AdminNavbar';
+import './AdminUI.css';
 
 const Page = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
 `
-
 const ProductsRenderContainer = styled.div`
 
 `;
@@ -47,7 +47,7 @@ function AdminUI() {
                     <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
-                                <Button variant={'primary'} className='mt-2' onClick={() => setCategoryVisible(true)}>Category</Button>
+                                <Button variant={'primary'} className='mt-2 product-controls-btn' onClick={() => setCategoryVisible(true)}>Category</Button>
                                 <Button variant={'primary'} className='mt-2' onClick={() => setProductVisible(true)}>Product</Button>
                                 <AdminProducts />
                             </Tab.Pane>
@@ -59,7 +59,7 @@ function AdminUI() {
                 <CreateCategory show={categoryVisible} onHide={() => setCategoryVisible(false)} />
                 <CreateProduct show={productVisible} onHide={() => setProductVisible(false)} />
             </Tab.Container>
-        </Page>
+        </Page >
     );
 }
 
