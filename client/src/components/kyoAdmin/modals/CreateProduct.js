@@ -11,7 +11,7 @@ margin: 0;
 font-weight: 600;
 `;
 
-const CreateProduct = observer(({ show, onHide }) => {
+const CreateProduct = observer(({ show, onHide, needReload }) => {
     const { product } = useContext(Context);
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);

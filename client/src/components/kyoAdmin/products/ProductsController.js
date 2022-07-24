@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Button, Table, Dropdown, Form, Row, Col } from "react-bootstrap";
-import Modal from "react-bootstrap/Modal";
-import { Context } from "../../..";
-import { createProduct, fetchProducts, fetchCategories, removeProduct } from "../../../http/productAPI";
-import { observer } from "mobx-react-lite";
+import { fetchProducts, removeProduct } from "../../../http/productAPI";
+import { Button, Table } from "react-bootstrap";
 import styled from "styled-components";
 
+const RemoveButton = styled.button`
+    
+`
+const TableContainer = styled.div`
+
+`
 
 function AdminProducts() {
-    const TableContainer = styled.div`
-
+    const RemoveButton = styled.button`
+    
 `
     // Items store and reload control
     const [items, setItems] = useState([])
@@ -22,13 +25,8 @@ function AdminProducts() {
         const formData = new FormData();
         formData.append('id', id);
         removeProduct(formData);
-    }
-
-    const HandleClicker = (id) => {
-        console.log('XYU');
-        RemoveProduct(id);
-        console.log(needReload)
         setNeedReload(true);
+        console.log(needReload)
     }
 
     // useEffect for item loading
@@ -37,7 +35,7 @@ function AdminProducts() {
             (result) => {
                 setIsLoaded(true)
                 setItems(result.rows)
-                setNeedReload(false)
+                setNeedReload(true)
             },
             (error) => {
                 setIsLoaded(true)
@@ -71,7 +69,7 @@ function AdminProducts() {
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
-                                <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
+                                <td><RemoveButton onClick={() => RemoveProduct(item.id)}>Delete</RemoveButton></td>
                                 <td><Button variant={'primary'}>Edit</Button></td>
                             </tr>
                         ))}
