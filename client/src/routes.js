@@ -1,4 +1,4 @@
-import Admin from './pages/Admin'
+import AdminPage from './pages/AdminPage'
 import Basket from './pages/Basket'
 import Shop from './pages/Shop'
 import ProductPage from './pages/Product'
@@ -25,7 +25,7 @@ export const authRoutes = [
 export const publicRoutes = [
   {
     path: ADMIN_ROUTE,
-    Component: Admin,
+    Component: AdminPage,
   },
   {
     path: HOME_ROUTE,

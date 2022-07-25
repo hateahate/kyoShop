@@ -3,7 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function AdminNavbar() {
+function HeaderNavBar() {
     return (
         <Navbar bg="light">
             <Navbar.Brand href="#home">kyoShop | Admin Panel</Navbar.Brand>
@@ -23,4 +23,4 @@ function AdminNavbar() {
     );
 }
 
-export default AdminNavbar;
+export default HeaderNavBar;
