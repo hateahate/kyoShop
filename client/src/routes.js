@@ -9,12 +9,13 @@ import {
   SHOP_ROUTE,
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
-  PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT,
+  PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
 import Ui from './pages/Ui';
-import AddProduct from './components/Admin/SubPages/AddProduct'
+import AddProduct from './components/Admin/Pages/AddProduct/AddProduct'
+import ProductListPage from './components/Admin/Pages/ProductsList/ProductListPage'
 
 export const authRoutes = [
 
@@ -55,5 +56,9 @@ export const publicRoutes = [
   {
     path: ADMIN_ADD_PRODUCT,
     Component: AddProduct,
+  },
+  {
+    path: ADMIN_SEE_PRODUCTS,
+    Component: ProductListPage,
   },
 ]

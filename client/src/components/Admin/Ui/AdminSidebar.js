@@ -8,6 +8,12 @@ import {
     CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 import styled from 'styled-components';
 
 const SidebarContainer = styled.div`
@@ -35,7 +41,8 @@ const AdminSidebar = () => {
                 </CDBSidebarHeader>
                 <CDBSidebarContent>
                     <CDBSidebarMenu>
-                        <CDBSidebarMenuItem>HELLO BLYAD</CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><Link to='/admin/products'>Products</Link></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><Link to='/admin/products/add'>Add new product</Link></CDBSidebarMenuItem>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
                 <CDBSidebarFooter>

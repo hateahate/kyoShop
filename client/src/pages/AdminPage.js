@@ -6,8 +6,7 @@ const Page = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
-  width: 95%;
-  margin-left: 2.5%;
+  width: 100%;
 `
 
 const AdminPage = () => {

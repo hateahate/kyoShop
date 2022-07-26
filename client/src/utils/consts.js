@@ -7,5 +7,6 @@ export const HOME_ROUTE = '/'
 export const UI_KIT = '/ui-kit'
 
 // Admin panel
+export const ADMIN_SEE_PRODUCTS = '/admin/products/'
 export const ADMIN_ADD_PRODUCT = '/admin/products/add'
 export const ADMIN_ROUTE = '/admin'
