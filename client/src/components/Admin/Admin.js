@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Tab from 'react-bootstrap/Tab';
+import AdminProducts from './SubPages/AdminProducts';
 const Page = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,6 +31,7 @@ const Admin = () =>{
                     <Col sm={9}>
                         <Tab.Content>
                             <Tab.Pane eventKey="first">
+                                <AdminProducts/>   
                             </Tab.Pane>
                             <Tab.Pane eventKey="second">
                             </Tab.Pane>
