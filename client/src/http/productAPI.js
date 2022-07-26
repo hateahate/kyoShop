@@ -22,6 +22,11 @@ export const createProduct = async (product) => {
     return data
 }
 
+export const updateProduct = async (id) => {
+    const { data } = await $host.post('api/product/update', id)
+    return data
+}
+
 export const fetchProducts = async (categoryId, page, limit = 5) => {
     const { data } = await $host.get('api/product', {
         params: {
@@ -31,7 +36,7 @@ export const fetchProducts = async (categoryId, page, limit = 5) => {
     return data
 }
 
-export const fetchOneDevice = async (id) => {
+export const fetchOneProduct = async (id) => {
     const { data } = await $host.get('api/product/' + id)
     return data
 }

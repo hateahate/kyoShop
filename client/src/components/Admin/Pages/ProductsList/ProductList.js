@@ -4,6 +4,7 @@ import Modal from "react-bootstrap/Modal";
 import { Context } from "../../../..";
 import { createProduct, fetchProducts, fetchCategories, removeProduct } from "../../../../http/productAPI";
 import styled from "styled-components";
+import { Link, Route } from "react-router-dom";
 const TableContainer = styled.div`
 
 `
@@ -82,7 +83,7 @@ function ProductList(props) {
                                     <td>{item.price}</td>
                                     <td>{item.stock}</td>
                                     <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
-                                    <td><Button variant={'primary'}>Edit</Button></td>
+                                    <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}>Edit</Link></Button></td>
                                 </tr>
                             ))}
                         </tbody>
