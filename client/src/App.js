@@ -17,30 +17,15 @@ const Content = styled.div`
 `
 const App = () => {
   console.log(window.location.pathname)
-  if (window.location.pathname !== "/admin") {
-    return (
-      <Page>
-        <BrowserRouter>
-          <Header />
-          <Content>
-            <AppRouter />
-          </Content>
-          <Footer />
-        </BrowserRouter>
-      </Page>
-    )
-  } else {
-    return (
-      <Page>
-        <BrowserRouter>
-
-          <Content>
-            <AppRouter />
-          </Content>
-
-        </BrowserRouter>
-      </Page>)
-  }
+  return (
+    <Page>
+      <BrowserRouter>
+        <Content>
+          <AppRouter />
+        </Content>
+      </BrowserRouter>
+    </Page>
+  )
 }
 
 export default App
