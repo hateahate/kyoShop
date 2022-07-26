@@ -63,13 +63,15 @@ function ProductList(props) {
         return (
             <>
                 <TableContainer>
-                    <Table striped>
+                    <Table striped bordered hover variant="dark">
                         <thead>
                             <tr>
                                 <th>#</th>
                                 <th>Name</th>
                                 <th>Price</th>
                                 <th>Stock</th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>

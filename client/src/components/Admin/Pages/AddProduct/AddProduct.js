@@ -11,7 +11,7 @@ import AdminProducts from '../ProductsList/ProductList';
 
 const FlexBox = styled.div`
 display: flex;
-justify-content: space-evenly;
+justify-content: space-between;
 `
 
 
@@ -61,6 +61,7 @@ const AddProduct = () => {
 
     return (
         <AdminUI>
+
             <SuccessNotification name={name} draw={created} />
             <Form>
                 <FlexBox>
@@ -116,12 +117,14 @@ const AddProduct = () => {
                         <Form.Control
                             value={moq}
                             onChange={e => setMoq(Number(e.target.value))}
-                            placeholder="Currently in stock"
+                            placeholder="Minimal order quantity"
                             type="number"
                         />
                     </Card.Body>
+                    <Card.Footer>
+                        <Button variant="outline-success" onClick={addProduct}>Add</Button>
+                    </Card.Footer>
                 </Card>
-                <Button variant="outline-success" onClick={addProduct}>Добавить</Button>
             </Form>
         </AdminUI >
     )
