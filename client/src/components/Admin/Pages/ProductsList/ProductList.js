@@ -14,14 +14,14 @@ color: white;
 `
 
 function ProductList(props) {
-    // Хранение товаров и контроль перезагрузки
+    // States
     const [productVisible, setProductVisible] = useState(false);
     const [items, setItems] = useState([])
     const [needReload, setNeedReload] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [error, setError] = useState(null)
 
-    // Удаление выбранного товара
+    // Remove selected product
 
     const RemoveProduct = (id) => {
         const formData = new FormData();
@@ -43,7 +43,7 @@ function ProductList(props) {
 
 
 
-    // useEffect для загрузки товаров
+    // useEffect for products loading
     useEffect(() => {
         fetchProducts(null, 1, 100).then(
             (result) => {
@@ -74,7 +74,7 @@ function ProductList(props) {
     } else {
         return (
 
-            // Вёрстка
+            // HTML
 
             <TableContainer>
                 <Table striped bordered hover variant="dark">
