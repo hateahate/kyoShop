@@ -43,7 +43,15 @@ const EditProduct = () => {
         formData.append('qty_step', `${qtyStep}`);
         formData.append('img', file);
         formData.append('info', JSON.stringify(info));
-        updateProduct(formData).then(NotificationManager.success(`Product ${name} successfully updated`, 'Success'));
+        updateProduct(formData).then((data) => {
+            if (data == true) {
+                console.log(data)
+                NotificationManager.success(`Product ${name} successfully created`, 'Success')
+            }
+            else {
+                NotificationManager.error(`Product ${name} cannot be updated.`, `${data}`);
+            }
+        });
     }
 
     // Получаем ID из URL
@@ -69,8 +77,8 @@ const EditProduct = () => {
     if (error) {
         return (
             <AdminUI>
-                {NotificationManager.error(`${error.message}`, 'Error')}
                 <NotificationContainer />
+                {NotificationManager.error(`${error.message}`, 'Error')}
             </AdminUI>
         )
     } else if (!isLoaded) {

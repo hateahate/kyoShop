@@ -12,19 +12,34 @@ export const fetchCategories = async () => {
 }
 
 export const removeProduct = async (id) => {
-    const { data } = await $host.post('api/product/remove', id)
-    return data
+    try {
+        const { data } = await $host.post('api/product/remove', id)
+        return data
+    }
+    catch {
+        return false
+    }
 }
 
 
 export const createProduct = async (product) => {
-    const { data } = await $authHost.post('api/product', product)
-    return data
+    try {
+        const { data } = await $authHost.post('api/product', product)
+        return true
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
 export const updateProduct = async (product) => {
-    const { data } = await $host.post('api/product/update', product)
-    return data
+    try {
+        const { data } = await $host.post('api/product/update', product)
+        return true
+    }
+    catch (e) {
+        return e.message;
+    }
 }
 
 export const fetchProducts = async (categoryId, page, limit = 5) => {

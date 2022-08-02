@@ -7,6 +7,7 @@ import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
 import './AddProduct.css'
 import AdminProducts from '../ProductsList/ProductList';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 const FlexBox = styled.div`
 display: flex;
@@ -48,12 +49,21 @@ const AddProduct = () => {
         formData.append('qty_step', `${qtyStep}`)
         formData.append('img', file)
         formData.append('info', JSON.stringify(info))
-        createProduct(formData).then(data => setCreated(true)).then(console.log('chto eto: ' + created))
+        createProduct(formData).then((data) => {
+            if (data == true) {
+                console.log(data)
+                NotificationManager.success(`Product ${name} successfully created`, 'Success')
+            }
+            else {
+                NotificationManager.error(`Product ${name} cannot be created.`, `${data}`);
+            }
+        });
 
     }
 
     return (
         <AdminUI>
+            <NotificationContainer />
             <Form>
                 <FlexBox>
                     <Card className='product-title'>
