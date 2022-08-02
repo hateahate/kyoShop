@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { fetchOneProduct, updateProduct } from "../../../../API/productAPI";
+import { fetchOneProduct, updateProduct } from "../../../../api/productAPI";
 import styled from 'styled-components';
 import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
