@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
 import './AddProduct.css'
-import SuccessNotification from '../../Notifications/SuccessNotification';
 import AdminProducts from '../ProductsList/ProductList';
 
 const FlexBox = styled.div`
@@ -49,20 +48,12 @@ const AddProduct = () => {
         formData.append('qty_step', `${qtyStep}`)
         formData.append('img', file)
         formData.append('info', JSON.stringify(info))
-        createProduct(formData).then(data => setCreated(true)).then(console.log('chto eto: ' + created)).then(showNotificationSuccess({ name, created }))
+        createProduct(formData).then(data => setCreated(true)).then(console.log('chto eto: ' + created))
 
-    }
-
-    const showNotificationSuccess = ({ name, created }) => {
-        return (
-            <SuccessNotification name={name} draw={created} />
-        )
     }
 
     return (
         <AdminUI>
-
-            <SuccessNotification name={name} draw={created} />
             <Form>
                 <FlexBox>
                     <Card className='product-title'>

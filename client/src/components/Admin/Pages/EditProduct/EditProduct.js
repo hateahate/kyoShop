@@ -4,8 +4,8 @@ import { fetchOneProduct, updateProduct } from "../../../../http/productAPI";
 import styled from 'styled-components';
 import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
-import SuccessNotification from '../../Notifications/SuccessNotification';
 import { useParams } from 'react-router-dom';
+import { NotificationContainer, NotificationManager } from 'react-notifications';
 
 
 const FlexBox = styled.div`
@@ -42,7 +42,7 @@ const EditProduct = () => {
         formData.append('qty_step', `${qtyStep}`)
         formData.append('img', file)
         formData.append('info', JSON.stringify(info))
-        updateProduct(formData).then(data => setCreated(true))
+        updateProduct(formData).then(data => setCreated(true)).then(NotificationManager.success(`Product ${name} successfully updated`, 'Success'));
 
     }
 
@@ -52,6 +52,7 @@ const EditProduct = () => {
             setName(data.name);
             setPrice(data.price);
             setMoq(data.moq);
+            setStock(data.stock);
             setIsLoaded(true);
         },
             (error) => {
@@ -67,8 +68,8 @@ const EditProduct = () => {
     } else {
         return (
             <AdminUI>
+                <NotificationContainer />
                 {console.log(price)}
-                <SuccessNotification name={name} draw={created} />
                 <Form>
                     <FlexBox>
                         <Card className='product-title'>
