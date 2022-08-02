@@ -15,7 +15,9 @@ justify-content: space-between;
 
 
 const EditProduct = () => {
-    const [productId, setProductId] = useState(0);
+
+    // Информация о товаре
+
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
     const [file, setFile] = useState(null);
@@ -23,15 +25,15 @@ const EditProduct = () => {
     const [moq, setMoq] = useState(0);
     const [qtyStep, setQtyStep] = useState(0);
     const [stock, setStock] = useState(0);
-    const [created, setCreated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState('');
 
+    // Изображение товара
     const selectFile = e => {
         setFile(e.target.files[0]);
     }
 
-    const updProduct = () => {
+    const productUpdate = () => {
         const formData = new FormData();
         formData.append('id', id);
         formData.append('name', name);
@@ -41,10 +43,15 @@ const EditProduct = () => {
         formData.append('qty_step', `${qtyStep}`);
         formData.append('img', file);
         formData.append('info', JSON.stringify(info));
-        updateProduct(formData).then(data => setCreated(true)).then(NotificationManager.success(`Product ${name} successfully updated`, 'Success'));
+        updateProduct(formData).then(NotificationManager.success(`Product ${name} successfully updated`, 'Success'));
     }
 
+    // Получаем ID из URL
+
     const { id } = useParams()
+
+    // Получаем товар через productAPI по ID
+
     useEffect(() => {
         fetchOneProduct(id).then((data) => {
             setName(data.name);
@@ -60,11 +67,23 @@ const EditProduct = () => {
         )
     }, [])
     if (error) {
-        return <div>Error: {error.message}</div>
+        return (
+            <AdminUI>
+                {NotificationManager.error(`${error.message}`, 'Error')}
+                <NotificationContainer />
+            </AdminUI>
+        )
     } else if (!isLoaded) {
-        return <div>Loading {console.log(isLoaded)}</div>
+        return (
+            <AdminUI>
+                <h1>Loading</h1>
+            </AdminUI>
+        )
     } else {
         return (
+
+            // Страница обёрнутая в UI
+
             <AdminUI>
                 <NotificationContainer />
                 {console.log(price)}
@@ -127,7 +146,7 @@ const EditProduct = () => {
                             />
                         </Card.Body>
                         <Card.Footer>
-                            <Button variant="outline-success" onClick={updProduct}>Update</Button>
+                            <Button variant="outline-success" onClick={productUpdate}>Update</Button>
                         </Card.Footer>
                     </Card>
                 </Form>
