@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
 import { Context } from "../../../../index";
-import { createProduct, fetchProducts, fetchCategories } from "../../../../http/productAPI";
+import { createProduct, fetchProducts, fetchCategories } from "../../../../API/productAPI";
 import styled from 'styled-components';
 import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';

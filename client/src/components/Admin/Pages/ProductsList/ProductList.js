@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Button, Table, Dropdown, Form, Row, Col } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { Context } from "../../../..";
-import { createProduct, fetchProducts, fetchCategories, removeProduct } from "../../../../http/productAPI";
+import { createProduct, fetchProducts, fetchCategories, removeProduct } from "../../../../API/productAPI";
 import styled from "styled-components";
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { Link, Route } from "react-router-dom";
