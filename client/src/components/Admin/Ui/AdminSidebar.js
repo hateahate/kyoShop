@@ -43,6 +43,7 @@ const AdminSidebar = () => {
                     <CDBSidebarMenu>
                         <CDBSidebarMenuItem><Link to='/admin/products'>Products</Link></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/products/add'>Add new product</Link></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><Link to='/admin/posts/add'>Add new post</Link></CDBSidebarMenuItem>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
                 <CDBSidebarFooter>
