@@ -15,7 +15,6 @@ justify-content: space-between;
 
 
 const EditProduct = () => {
-    let productRaw = [];
     const [productId, setProductId] = useState(0);
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -26,24 +25,23 @@ const EditProduct = () => {
     const [stock, setStock] = useState(0);
     const [created, setCreated] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
-    const [error, setError] = useState('')
+    const [error, setError] = useState('');
 
     const selectFile = e => {
-        setFile(e.target.files[0])
+        setFile(e.target.files[0]);
     }
 
     const updProduct = () => {
-        const formData = new FormData()
-        formData.append('id', id)
-        formData.append('name', name)
-        formData.append('price', `${price}`)
-        formData.append('stock', `${stock}`)
-        formData.append('moq', `${moq}`)
-        formData.append('qty_step', `${qtyStep}`)
-        formData.append('img', file)
-        formData.append('info', JSON.stringify(info))
+        const formData = new FormData();
+        formData.append('id', id);
+        formData.append('name', name);
+        formData.append('price', `${price}`);
+        formData.append('stock', `${stock}`);
+        formData.append('moq', `${moq}`);
+        formData.append('qty_step', `${qtyStep}`);
+        formData.append('img', file);
+        formData.append('info', JSON.stringify(info));
         updateProduct(formData).then(data => setCreated(true)).then(NotificationManager.success(`Product ${name} successfully updated`, 'Success'));
-
     }
 
     const { id } = useParams()
@@ -56,15 +54,15 @@ const EditProduct = () => {
             setIsLoaded(true);
         },
             (error) => {
-                setIsLoaded(true)
-                setError(error)
+                setIsLoaded(true);
+                setError(error);
             },
         )
     }, [])
     if (error) {
-        return <div>Ошибка: {error.message}</div>
+        return <div>Error: {error.message}</div>
     } else if (!isLoaded) {
-        return <div>Загрузка {console.log(isLoaded)}</div>
+        return <div>Loading {console.log(isLoaded)}</div>
     } else {
         return (
             <AdminUI>
