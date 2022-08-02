@@ -8,6 +8,9 @@ import { Link, Route } from "react-router-dom";
 const TableContainer = styled.div`
 
 `
+const EditLabel = styled.span`
+color: white;
+`
 
 function ProductList(props) {
     const [productVisible, setProductVisible] = useState(false);
@@ -83,7 +86,7 @@ function ProductList(props) {
                                     <td>{item.price}</td>
                                     <td>{item.stock}</td>
                                     <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
-                                    <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}>Edit</Link></Button></td>
+                                    <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                                 </tr>
                             ))}
                         </tbody>
