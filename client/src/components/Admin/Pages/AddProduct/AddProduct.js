@@ -25,6 +25,18 @@ const AddProduct = () => {
     const [qtyStep, setQtyStep] = useState(0);
     const [stock, setStock] = useState(0);
     const [created, setCreated] = useState(false)
+    const [preview, setPreview] = useState()
+
+    useEffect(() => {
+        if (!file) {
+            setPreview(undefined)
+            return
+        }
+        const objectUrl = URL.createObjectURL(file)
+        setPreview(objectUrl)
+
+        return () => URL.revokeObjectURL(objectUrl)
+    }, [file])
 
     const addInfo = () => {
         setInfo([...info, { title: '', description: '', number: Date.now() }])
@@ -80,6 +92,7 @@ const AddProduct = () => {
                         </Card.Body>
                     </Card>
                     <Card className='product-image'>
+                        <img src={preview}></img>
                         <Card.Header>Product image</Card.Header>
                         <Card.Body>
                             <Form.Control
