@@ -2,7 +2,7 @@ import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode";
 
 export const removePost = async (id) => {
-    const { data } = await $host.post('api/product/remove', id)
+    const { data } = await $host.post('api/post/remove', id)
     return data
 }
 
@@ -27,6 +27,6 @@ export const fetchPosts = async (page, limit = 5) => {
 }
 
 export const fetchOnePost = async (id) => {
-    const { data } = await $host.get(`api/product/${id}`)
+    const { data } = await $host.get(`api/post/${id}`)
     return data
 }
