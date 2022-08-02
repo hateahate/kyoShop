@@ -22,8 +22,8 @@ export const createProduct = async (product) => {
     return data
 }
 
-export const updateProduct = async (id) => {
-    const { data } = await $host.post('api/product/update', id)
+export const updateProduct = async (product) => {
+    const { data } = await $host.post('api/product/update', product)
     return data
 }
 
@@ -37,6 +37,6 @@ export const fetchProducts = async (categoryId, page, limit = 5) => {
 }
 
 export const fetchOneProduct = async (id) => {
-    const { data } = await $host.get('api/product/' + id)
+    const { data } = await $host.get(`api/product/${id}`)
     return data
 }
