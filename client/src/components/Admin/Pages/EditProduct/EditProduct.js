@@ -16,7 +16,7 @@ justify-content: space-between;
 
 const EditProduct = () => {
 
-    // Информация о товаре
+    // Product info states
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -28,7 +28,7 @@ const EditProduct = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState('');
 
-    // Изображение товара
+    // Product image
     const selectFile = e => {
         setFile(e.target.files[0]);
     }
@@ -46,19 +46,19 @@ const EditProduct = () => {
         updateProduct(formData).then((data) => {
             if (data == true) {
                 console.log(data)
-                NotificationManager.success(`Product ${name} successfully created`, 'Success')
+                NotificationManager.success(`Product "${name}" successfully updated`, 'Success')
             }
             else {
-                NotificationManager.error(`Product ${name} cannot be updated.`, `${data}`);
+                NotificationManager.error(`Product "${name}" cannot be updated`, `${data}`);
             }
         });
     }
 
-    // Получаем ID из URL
+    // Get the id from url
 
     const { id } = useParams()
 
-    // Получаем товар через productAPI по ID
+    // Get product using productAPI by ID
 
     useEffect(() => {
         fetchOneProduct(id).then((data) => {
@@ -90,7 +90,7 @@ const EditProduct = () => {
     } else {
         return (
 
-            // Страница обёрнутая в UI
+            // HTML
 
             <AdminUI>
                 <NotificationContainer />

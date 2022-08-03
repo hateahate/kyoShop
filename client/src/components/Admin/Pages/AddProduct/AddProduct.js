@@ -64,10 +64,10 @@ const AddProduct = () => {
         createProduct(formData).then((data) => {
             if (data == true) {
                 console.log(data)
-                NotificationManager.success(`Product ${name} successfully created`, 'Success')
+                NotificationManager.success(`Product "${name}" successfully created`, 'Success')
             }
             else {
-                NotificationManager.error(`Product ${name} cannot be created.`, `${data}`);
+                NotificationManager.error(`Product "${name}" cannot be created`, `${data}`);
             }
         });
 
@@ -141,7 +141,7 @@ const AddProduct = () => {
                     </Card.Footer>
                 </Card>
             </Form>
-        </AdminUI >
+        </AdminUI>
     )
 }
 

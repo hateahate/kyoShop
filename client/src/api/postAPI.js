@@ -8,11 +8,16 @@ export const removePost = async (id) => {
 
 
 export const createPost = async (post) => {
-    const { data } = await $authHost.post('api/post', post)
-    return data
+    try {
+        const { data } = await $authHost.post('api/post', post)
+        return true
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
-export const updatePost = async (product) => {
+export const updatePost = async (post) => {
     const { data } = await $host.post('api/post/update', post)
     return data
 }

@@ -104,6 +104,12 @@ const MetaTag = sequelize.define('metatag', {
     name: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Unknown' },
 })
 
+const DashboardNotification = sequelize.define('dashboardnotifications', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    title: { type: DataTypes.STRING },
+    body: { type: DataTypes.TEXT },
+})
+
 
 
 // Устанавливаем связи
@@ -157,6 +163,7 @@ module.exports = {
     Wiki,
     PostCategory,
     MetaTag,
+    DashboardNotification,
 }
 
 

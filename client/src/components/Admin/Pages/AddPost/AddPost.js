@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button } from "react-bootstrap";
 import styled from "styled-components";
+import { createPost } from "../../../../api/postAPI";
+import { NotificationContainer, NotificationManager } from "react-notifications";
+
+// Стилизованные компоненты
+const FlexBox = styled.div`
+display: flex;
+justify-content: space-between;
+`;
 
 const AddPost = () => {
-    // Стилизованные компоненты
-    const FlexBox = styled.div`
-    display: flex;
-    justify-content: space-between;
-    `
 
     // States
     const [title, setTitle] = useState('');
     const [editorState, setEditorState] = useState('');
     const [file, setFile] = useState(null);
     const [link, setLink] = useState('');
+
+
+    // SEO url generator
+    useEffect(() => {
+        let result = title.replace(/\s+/g, '-').toLowerCase();
+        setLink(result)
+        console.log(link)
+    }, [title])
 
     // Editor state handler
     const onEditorStateChange = (editorState) => {
@@ -30,12 +41,24 @@ const AddPost = () => {
     }
 
     const addPost = () => {
-
+        const formData = new FormData();
+        formData.append('title', title);
+        formData.append('description', editorState)
+        formData.append('link', link)
+        createPost(formData).then((data) => {
+            if (data == true) {
+                console.log(data)
+                NotificationManager.success(`Post "${title}" successfully created`, 'Success')
+            }
+            else {
+                NotificationManager.error(`Post "${title}" cannot be created`, `${data}`);
+            }
+        })
     }
 
     return (
         <AdminUI>
-            {console.log(editorState)}
+            <NotificationContainer />
             <Card>
                 <Card.Header>Add new post</Card.Header>
                 <FlexBox>
@@ -48,8 +71,17 @@ const AddPost = () => {
                             type="text"
                         />
                     </Card>
+                    <Card className='product-link'>
+                        <Card.Header>SEO URL</Card.Header>
+                        <Form.Control aria-label="large"
+                            value={link}
+                            onChange={e => setLink(String(e.target.value))}
+                            placeholder="SEO Url"
+                            type="text"
+                        />
+                    </Card>
                     <Card className='product-image'>
-                        <Card.Header>Product image</Card.Header>
+                        <Card.Header>Post image</Card.Header>
                         <Card.Body>
                             <Form.Control
                                 className="mt-3"
