@@ -3,7 +3,7 @@ import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Card, Form, Button } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { createPost } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
@@ -59,49 +59,52 @@ const AddPost = () => {
     return (
         <AdminUI>
             <NotificationContainer />
+            <h1>Add new post</h1>
+            <Form>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Card>
+                                <Card.Header>Title</Card.Header>
+                                <Card.Body>
+                                    <Form.Control aria-label="large"
+                                        value={title}
+                                        onChange={e => setTitle(String(e.target.value))}
+                                        placeholder="Post title"
+                                        type="text"
+                                    />
+                                </Card.Body>
+                                <Card.Footer />
+                            </Card>
+                        </Col>
+                        <Col>
+                            <Card>
+                                <Card.Header>SEO Url</Card.Header>
+                                <Card.Body>
+                                    <Form.Control aria-label="large"
+                                        value={link}
+                                        onChange={e => setTitle(String(e.target.value))}
+                                        placeholder="Post title"
+                                        type="text"
+                                        disabled
+                                    />
+                                </Card.Body>
+                                <Card.Footer />
+                            </Card>
+                        </Col>
+                    </Row>
+                </Container>
+            </Form>
             <Card>
-                <Card.Header>Add new post</Card.Header>
-                <FlexBox>
-                    <Card className='product-title'>
-                        <Card.Header>Title</Card.Header>
-                        <Form.Control aria-label="large"
-                            value={title}
-                            onChange={e => setTitle(String(e.target.value))}
-                            placeholder="Post title"
-                            type="text"
-                        />
-                    </Card>
-                    <Card className='product-link'>
-                        <Card.Header>SEO URL</Card.Header>
-                        <Form.Control aria-label="large"
-                            value={link}
-                            onChange={e => setLink(String(e.target.value))}
-                            placeholder="SEO Url"
-                            type="text"
-                        />
-                    </Card>
-                    <Card className='product-image'>
-                        <Card.Header>Post image</Card.Header>
-                        <Card.Body>
-                            <Form.Control
-                                className="mt-3"
-                                type="file"
-                                onChange={selectFile}
-                            />
-                        </Card.Body>
-                    </Card>
-                </FlexBox>
-                <Card>
-                    <Card.Header>Description</Card.Header>
+                <Card.Header>Editor</Card.Header>
+                <Card.Body>
                     <Editor editorState={editorState}
                         toolbarClassName="toolbarClassName"
                         wrapperClassName="wrapperClassName"
                         editorClassName="editorClassName"
                         onEditorStateChange={onEditorStateChange} />
-                </Card>
-                <Card.Footer>
-                    <Button variant="outline-success" onClick={addPost}>Add</Button>
-                </Card.Footer>
+                </Card.Body>
+                <Card.Footer><Button variant="success" onClick={addPost}>Add</Button></Card.Footer>
             </Card>
         </AdminUI>
     )
