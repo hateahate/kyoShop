@@ -12,3 +12,5 @@ export const ADMIN_ADD_PRODUCT = '/admin/products/add';
 export const ADMIN_ROUTE = '/admin';
 export const ADMIN_EDIT_PRODUCT = '/admin/products/edit/:id';
 export const ADMIN_ADD_POST = '/admin/posts/add';
+export const ADMIN_EDIT_POST = '/admin/posts/edit/:id';
+

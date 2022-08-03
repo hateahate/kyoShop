@@ -2,7 +2,7 @@ const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
 
-const generateJwt = (id, email, role) => {
+const generateJwt = (id, email, first_name, last_name, role) => {
     return Jwt.sign(
         { id, email, role },
         process.env.SECRET_KEY,
@@ -13,7 +13,7 @@ const generateJwt = (id, email, role) => {
 const { User, Basket } = require('../models/models');
 class UserController {
     async registration(req, res, next) {
-        const { email, password, role } = req.body;
+        const { email, password, first_name, last_name, role } = req.body;
         if (!email || !password) {
             return next(ApiError.badRequest('Uncorrent email or password')); //Проверяем получаемые данные
         }
@@ -22,7 +22,7 @@ class UserController {
             return next(ApiError.badRequest('User with this email already exist'));
         }
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({ email, role, password: hashPassword }); // Создаём пользователя в БД
+        const user = await User.create({ email, first_name, last_name, role, password: hashPassword }); // Создаём пользователя в БД
         const basket = await Basket.create({ userId: user.id });
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });

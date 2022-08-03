@@ -14,10 +14,10 @@ export const fetchCategories = async () => {
 export const removeProduct = async (id) => {
     try {
         const { data } = await $host.post('api/product/remove', id)
-        return data
+        return true
     }
-    catch {
-        return false
+    catch (e) {
+        return e.message
     }
 }
 

@@ -14,7 +14,7 @@ class PostController {
                 return res.json(post);
             }
             else {
-                const post = await Post.create({ title, description });
+                const post = await Post.create({ title, description, link });
                 return res.json(post);
             }
         }

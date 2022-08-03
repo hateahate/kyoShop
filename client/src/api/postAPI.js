@@ -18,8 +18,13 @@ export const createPost = async (post) => {
 }
 
 export const updatePost = async (post) => {
-    const { data } = await $host.post('api/post/update', post)
-    return data
+    try {
+        const { data } = await $host.post('api/post/update', post)
+        return true
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
 export const fetchPosts = async (page, limit = 5) => {
@@ -32,6 +37,11 @@ export const fetchPosts = async (page, limit = 5) => {
 }
 
 export const fetchOnePost = async (id) => {
-    const { data } = await $host.get(`api/post/${id}`)
-    return data
+    try {
+        const { data } = await $host.get(`api/post/${id}`)
+        return data
+    }
+    catch (e) {
+        return e.message
+    }
 }
