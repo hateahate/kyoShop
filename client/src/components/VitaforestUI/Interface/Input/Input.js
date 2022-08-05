@@ -60,7 +60,7 @@ const Input = (props) => {
     return (
         <Container>
             <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
-            <InputElement placeholder={props.placeholder} />
+            <InputElement placeholder={props.placeholder} type={props.type} />
         </Container>
     )
 }
