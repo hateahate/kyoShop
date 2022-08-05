@@ -28,7 +28,7 @@ class CompanyController {
         const { id } = req.params; // Получаем ID из запроса
         const company = await Company.findOne({
             where: { id }
-        }); // Получаем товар с заданным айди и возвращаем
+        });
         return res.json(company);
     }
 

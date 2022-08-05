@@ -1,5 +1,6 @@
 import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode";
+import { convertFromRaw, convertToRaw } from "draft-js";
 
 export const removePost = async (id) => {
     try {
@@ -54,4 +55,12 @@ export const fetchOnePost = async (id) => {
     catch (e) {
         return e.message
     }
+}
+
+export const decodePostBody = (body) => {
+    return convertFromRaw(JSON.parse(body));
+}
+
+export const encodePostBody = (body) => {
+    return JSON.stringify(convertToRaw(body.getCurrentContent()))
 }
