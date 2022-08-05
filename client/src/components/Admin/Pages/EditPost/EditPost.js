@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
+import { EditorState } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { createPost, fetchOnePost } from "../../../../api/postAPI";
+import { createPost, decodePostBody, fetchOnePost } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useParams } from 'react-router-dom';
 
@@ -21,7 +22,7 @@ const EditPost = () => {
 
     // States
     const [title, setTitle] = useState('');
-    const [editorState, setEditorState] = useState('');
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [file, setFile] = useState(null);
     const [link, setLink] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
@@ -33,12 +34,6 @@ const EditPost = () => {
         setLink(result)
         console.log(link)
     }, [title])
-
-    // Editor state handler
-    const onEditorStateChange = (editorState) => {
-        setEditorState(editorState)
-    }
-
 
     const selectFile = e => {
         setFile(e.target.files[0])
@@ -59,12 +54,19 @@ const EditPost = () => {
             }
         })
     }
+
+    // Editor state handler
+    const onEditorStateChange = (editorState) => {
+        setEditorState(editorState)
+    }
+
     useEffect(() => {
         fetchOnePost(id).then((data) => {
-            setTitle(data.title);
-            setEditorState(data.description);
-            setLink(data.link);
-            console.log('desc here: ' + data.description)
+            console.log(data)
+            setEditorState(decodePostBody(data.description))
+            setTitle(data.title)
+            setLink(data.link)
+            setIsLoaded(true)
         },
             (error) => {
                 setIsLoaded(true);
@@ -127,7 +129,7 @@ const EditPost = () => {
                 <Card>
                     <Card.Header>Editor</Card.Header>
                     <Card.Body>
-                        <Editor editorState={editorState}
+                        <Editor value={editorState}
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
                             editorClassName="editorClassName"
