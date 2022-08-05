@@ -43,15 +43,25 @@ export const updateProduct = async (product) => {
 }
 
 export const fetchProducts = async (categoryId, page, limit = 5) => {
-    const { data } = await $host.get('api/product', {
-        params: {
-            categoryId, page, limit
-        }
-    })
-    return data
+    try {
+        const { data } = await $host.get('api/product', {
+            params: {
+                categoryId, page, limit
+            }
+        })
+        return data
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
 export const fetchOneProduct = async (id) => {
-    const { data } = await $host.get(`api/product/${id}`)
-    return data
+    try {
+        const { data } = await $host.get(`api/product/${id}`)
+        return data
+    }
+    catch (e) {
+        return e.message
+    }
 }

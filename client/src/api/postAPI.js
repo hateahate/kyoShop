@@ -2,8 +2,13 @@ import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode";
 
 export const removePost = async (id) => {
-    const { data } = await $host.post('api/post/remove', id)
-    return data
+    try {
+        const { data } = await $host.post('api/post/remove', id)
+        return true
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
 
@@ -28,12 +33,17 @@ export const updatePost = async (post) => {
 }
 
 export const fetchPosts = async (page, limit = 5) => {
-    const { data } = await $host.get('api/post', {
-        params: {
-            page, limit
-        }
-    })
-    return data
+    try {
+        const { data } = await $host.get('api/post', {
+            params: {
+                page, limit
+            }
+        })
+        return data
+    }
+    catch (e) {
+        return e.message
+    }
 }
 
 export const fetchOnePost = async (id) => {
