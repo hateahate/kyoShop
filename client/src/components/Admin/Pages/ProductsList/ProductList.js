@@ -6,6 +6,7 @@ import { createProduct, fetchProducts, fetchCategories, removeProduct } from "..
 import styled from "styled-components";
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { Link, Route } from "react-router-dom";
+import RemoveModal from "./RemoveModal";
 const TableContainer = styled.div`
 
 `
@@ -20,6 +21,7 @@ function ProductList(props) {
     const [needReload, setNeedReload] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [error, setError] = useState(null)
+    const [modalActive, setModalActive] = useState(true);
 
     // Remove selected product
 
@@ -101,6 +103,7 @@ function ProductList(props) {
                         ))}
                     </tbody>
                 </Table>
+                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} />
             </TableContainer>
         )
     }
