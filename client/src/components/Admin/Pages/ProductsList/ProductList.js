@@ -21,20 +21,33 @@ function ProductList(props) {
     const [needReload, setNeedReload] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [error, setError] = useState(null)
-    const [modalActive, setModalActive] = useState(true);
+    const [modalActive, setModalActive] = useState(false);
+    const [removeState, setRemoveState] = useState(false);
+    const [currentItemId, setCurrentItemId] = useState(0);
 
     // Remove selected product
 
+    const acceptRemoval = () => {
+        setRemoveState(true);
+    }
+
     const RemoveProduct = (id) => {
-        const formData = new FormData();
-        formData.append('id', id);
-        removeProduct(formData);
+        if (removeState) {
+            const formData = new FormData();
+            formData.append('id', id);
+            setRemoveState(false);
+            removeProduct(formData);
+        }
+        else {
+            return false
+        }
     }
 
     const HandleClicker = (id) => {
-        RemoveProduct(id);
-        console.log(needReload)
-        setNeedReload(true);
+        setCurrentItemId(Number(id))
+        console.log('handleclicker entry point: ' + id)
+        setModalActive(true)
+        console.log('check itemid set: ' + currentItemId)
     }
 
     const updateProducts = () => {
@@ -97,13 +110,14 @@ function ProductList(props) {
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
+                                {console.log(item.id)}
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
                                 <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
-                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} />
+                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} acceptRemoval={acceptRemoval} itemId={currentItemId} removeItem={removeProduct} />
             </TableContainer>
         )
     }

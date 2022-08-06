@@ -30,6 +30,11 @@ color: white;
 }
 `
 
+const FooterText = styled.p`
+color: white;
+font-size: 10px;
+`
+
 const AdminSidebar = () => {
     return (
         <SidebarContainer>
@@ -41,6 +46,8 @@ const AdminSidebar = () => {
                 </CDBSidebarHeader>
                 <CDBSidebarContent>
                     <CDBSidebarMenu>
+                        <CDBSidebarMenuItem><FooterText>kyoShop альфа как бэ</FooterText></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><FooterText>С божьей помощью во славу релиза</FooterText></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/products'>Products</Link></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/products/add'>Add new product</Link></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/posts/add'>Add new post</Link></CDBSidebarMenuItem>
@@ -49,7 +56,7 @@ const AdminSidebar = () => {
                 <CDBSidebarFooter>
                 </CDBSidebarFooter>
             </CDBSidebar>
-        </SidebarContainer>
+        </SidebarContainer >
     );
 };
 
