@@ -46,7 +46,7 @@ const AddPost = () => {
     const addPost = () => {
         const formData = new FormData();
         formData.append('title', title);
-        formData.append('description', JSON.stringify(convertToRaw(editorState.getCurrentContent())))
+        formData.append('description', encodePostBody(editorState))
         formData.append('link', link)
         createPost(formData).then((data) => {
             if (data == true) {

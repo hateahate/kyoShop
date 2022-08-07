@@ -40,12 +40,12 @@ class PostController {
     }
     async update(req, res, next) {
         try {
-            const { id, title, description } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { id, title, description, link } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const post = await Post.update({ title, description, img: fileName }, { where: { id } });
+                const post = await Post.update({ title, description, link, img: fileName }, { where: { id } });
                 return res.json(post);
             }
             else {

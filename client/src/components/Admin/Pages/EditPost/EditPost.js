@@ -6,7 +6,7 @@ import { EditorState } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { createPost, decodePostBody, fetchOnePost } from "../../../../api/postAPI";
+import { createPost, decodePostBody, fetchOnePost, updatePost, encodePostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useParams } from 'react-router-dom';
 
@@ -39,12 +39,14 @@ const EditPost = () => {
         setFile(e.target.files[0])
     }
 
-    const updatePost = () => {
+    const PostUpdate = () => {
         const formData = new FormData();
+        formData.append('id', id)
         formData.append('title', title);
-        formData.append('description', editorState)
-        formData.append('link', link)
-        createPost(formData).then((data) => {
+        formData.append('description', encodePostBody(editorState));
+        formData.append('link', link);
+        console.log(formData);
+        updatePost(formData).then((data) => {
             if (data == true) {
                 console.log(data)
                 NotificationManager.success(`Post "${title}" successfully created`, 'Success')
@@ -136,7 +138,7 @@ const EditPost = () => {
                             editorClassName="editorClassName"
                             onEditorStateChange={onEditorStateChange} />
                     </Card.Body>
-                    <Card.Footer><Button variant="success" onClick={updatePost}>Add</Button></Card.Footer>
+                    <Card.Footer><Button variant="success" onClick={PostUpdate}>Update</Button></Card.Footer>
                 </Card>
             </AdminUI>
         )
