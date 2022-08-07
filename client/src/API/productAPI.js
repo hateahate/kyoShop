@@ -25,7 +25,7 @@ export const removeProduct = async (id) => {
 export const createProduct = async (product) => {
     try {
         const { data } = await $authHost.post('api/product', product)
-        return true
+        return data
     }
     catch (e) {
         return e.message

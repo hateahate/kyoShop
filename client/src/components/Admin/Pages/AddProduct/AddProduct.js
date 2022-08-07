@@ -8,6 +8,7 @@ import { Card } from 'react-bootstrap';
 import './AddProduct.css'
 import AdminProducts from '../ProductsList/ProductList';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { useNavigate } from 'react-router-dom'
 
 const FlexBox = styled.div`
 display: flex;
@@ -52,7 +53,14 @@ const AddProduct = () => {
         setFile(e.target.files[0])
     }
 
+    const RedirectToEdit = (id) => {
+        let nav = useNavigate();
+        let navLink = '/admin/products/edit' + id;
+        nav(navLink, { replace: true });
+    }
+
     const addProduct = () => {
+        let itemId = 0;
         const formData = new FormData()
         formData.append('name', name)
         formData.append('price', `${price}`)
@@ -62,14 +70,19 @@ const AddProduct = () => {
         formData.append('img', file)
         formData.append('info', JSON.stringify(info))
         createProduct(formData).then((data) => {
-            if (data == true) {
+            if (data) {
                 console.log(data)
+                itemId = data.id;
                 NotificationManager.success(`Product "${name}" successfully created`, 'Success')
             }
             else {
                 NotificationManager.error(`Product "${name}" cannot be created`, `${data}`);
             }
-        });
+        }).then((data) => {
+            console.log('before rd: ' + itemId);
+            RedirectToEdit(itemId);
+        }
+        );
 
     }
 
