@@ -6,7 +6,7 @@ import { EditorState } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { createPost, decodePostBody, fetchOnePost, updatePost, encodePostBody } from "../../../../api/postAPI";
+import { createPost, decodePostBody, fetchOnePost, updatePost, encodePostBody, htmlPostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useParams } from 'react-router-dom';
 
