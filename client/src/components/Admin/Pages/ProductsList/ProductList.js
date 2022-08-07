@@ -86,12 +86,11 @@ function ProductList() {
                     </thead>
                     <tbody>
                         {items.map((item) => (
-                            <tr>
+                            <tr key={item.id}>
                                 <td>{item.id}</td>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
-                                {console.log(item.id)}
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
                                 <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>
