@@ -14,49 +14,29 @@ const EditLabel = styled.span`
 color: white;
 `
 
-function ProductList(props) {
+function ProductList() {
+
     // States
-    const [productVisible, setProductVisible] = useState(false);
     const [items, setItems] = useState([])
     const [needReload, setNeedReload] = useState(false)
     const [isLoaded, setIsLoaded] = useState(false)
     const [error, setError] = useState(null)
     const [modalActive, setModalActive] = useState(false);
-    const [removeState, setRemoveState] = useState(false);
     const [currentItemId, setCurrentItemId] = useState(0);
 
     // Remove selected product
 
-    const acceptRemoval = () => {
-        setRemoveState(true);
-    }
-
     const RemoveProduct = (id) => {
-        if (removeState) {
-            const formData = new FormData();
-            formData.append('id', id);
-            setRemoveState(false);
-            removeProduct(formData);
-        }
-        else {
-            return false
-        }
+        const formData = new FormData();
+        formData.append('id', id);
+        removeProduct(formData).then(NotificationManager.success(`Product removed`, 'Success'));
+        setNeedReload(true);
     }
 
     const HandleClicker = (id) => {
         setCurrentItemId(Number(id))
-        console.log('handleclicker entry point: ' + id)
         setModalActive(true)
-        console.log('check itemid set: ' + currentItemId)
     }
-
-    const updateProducts = () => {
-        setNeedReload(true);
-        console.log(needReload);
-        setProductVisible(false);
-    }
-
-
 
     // useEffect for products loading
     useEffect(() => {
@@ -84,14 +64,15 @@ function ProductList(props) {
         )
     } else if (!isLoaded) {
         return (
-            <h1>Loading</h1>
+            <h1>Loading...</h1>
         )
     } else {
         return (
 
             // HTML
-
             <TableContainer>
+                <h1>Products</h1>
+                <NotificationContainer />
                 <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
@@ -117,7 +98,7 @@ function ProductList(props) {
                         ))}
                     </tbody>
                 </Table>
-                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} acceptRemoval={acceptRemoval} itemId={currentItemId} removeItem={removeProduct} />
+                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} itemId={currentItemId} removeItem={RemoveProduct} />
             </TableContainer>
         )
     }

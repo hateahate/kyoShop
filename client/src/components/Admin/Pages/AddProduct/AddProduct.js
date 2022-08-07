@@ -76,6 +76,7 @@ const AddProduct = () => {
     return (
         <AdminUI>
             {console.log(file)}
+            <h1>Add new product</h1>
             <NotificationContainer />
             <Form>
                 <FlexBox>
