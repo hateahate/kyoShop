@@ -67,5 +67,5 @@ export const encodePostBody = (body) => {
 }
 
 export const htmlPostBody = (body) => {
-    return convertToHTML(convertFromRaw(JSON.parse(body)))
+    return convertToHTML(decodePostBody(body));
 }
