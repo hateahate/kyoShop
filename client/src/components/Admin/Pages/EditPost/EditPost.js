@@ -63,10 +63,11 @@ const EditPost = () => {
     useEffect(() => {
         fetchOnePost(id).then((data) => {
             console.log(data)
-            setEditorState(decodePostBody(data.description))
+            setEditorState(EditorState.createWithContent(decodePostBody(data.description)))
             setTitle(data.title)
             setLink(data.link)
             setIsLoaded(true)
+            console.log(editorState)
         },
             (error) => {
                 setIsLoaded(true);
@@ -129,7 +130,7 @@ const EditPost = () => {
                 <Card>
                     <Card.Header>Editor</Card.Header>
                     <Card.Body>
-                        <Editor value={editorState}
+                        <Editor editorState={editorState}
                             toolbarClassName="toolbarClassName"
                             wrapperClassName="wrapperClassName"
                             editorClassName="editorClassName"
