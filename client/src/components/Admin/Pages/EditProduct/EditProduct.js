@@ -6,6 +6,7 @@ import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
+import { $host } from '../../../../api';
 
 
 const FlexBox = styled.div`
@@ -27,6 +28,18 @@ const EditProduct = () => {
     const [stock, setStock] = useState(0);
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState('');
+    const [preview, setPreview] = useState(null);
+
+    // Preview render
+    useEffect(() => {
+        if (!file) {
+            setPreview(undefined)
+            return
+        }
+        setPreview($host + '/static/' + file)
+
+        return true
+    }, [file])
 
     // Product image
     const selectFile = e => {
@@ -67,6 +80,8 @@ const EditProduct = () => {
             setMoq(data.moq);
             setStock(data.stock);
             setIsLoaded(true);
+            setFile(data.img);
+            console.log(data.img)
         },
             (error) => {
                 setIsLoaded(true);
@@ -111,6 +126,7 @@ const EditProduct = () => {
                         </Card>
                         <Card className='product-image'>
                             <Card.Header>Product image</Card.Header>
+                            <img src={preview}></img>
                             <Card.Body>
                                 <Form.Control
                                     className="mt-3"

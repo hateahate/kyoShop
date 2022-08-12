@@ -25,8 +25,8 @@ const AddProduct = () => {
     const [moq, setMoq] = useState(0);
     const [qtyStep, setQtyStep] = useState(0);
     const [stock, setStock] = useState(0);
-    const [created, setCreated] = useState(false)
-    const [preview, setPreview] = useState()
+    const [created, setCreated] = useState(false);
+    const [preview, setPreview] = useState(null);
 
     useEffect(() => {
         if (!file) {
