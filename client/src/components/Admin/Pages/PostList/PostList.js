@@ -3,7 +3,7 @@ import { Button, Table, Dropdown, Form, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { Link, Route } from "react-router-dom";
-import RemoveModal from "./RemoveModal";
+import RemoveModal from  "./../ProductsList/RemoveModal"
 import { fetchPosts, removePost } from "../../../../api/postAPI";
 const TableContainer = styled.div`
 
@@ -22,7 +22,7 @@ function PostList() {
     const [modalActive, setModalActive] = useState(false);
     const [currentItemId, setCurrentItemId] = useState(0);
 
-    const RemovePost = (id) => {
+    const RemoveProduct = (id) => {
         const formData = new FormData();
         formData.append('id', id);
         removePost(formData).then(NotificationManager.success(`Product removed`, 'Success'));

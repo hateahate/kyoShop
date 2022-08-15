@@ -1,31 +1,37 @@
 import React, { useContext, useState } from 'react';
 import { NavLink, useLocation } from "react-router-dom";
 import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
-import { login, registration } from "../api/userAPI";
+import { login } from "../api/userAPI";
+import { Form } from 'react-bootstrap'
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
-
+import styled from 'styled-components';
+import Input from '../components/VitaforestUI/Interface/Input/Input';
+import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton';
+const LoginForm = styled.div`
+`
 const Auth = observer(() => {
 
   const { user } = useContext(Context)
-  const location = useLocation()
-  const isLogin = location.pathname === LOGIN_ROUTE
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   const click = async () => {
-    let userData;
-    if (isLogin) {
-      userData = await login(email, password);
-    }
-    else {
-      userData = await registration(email, password);
-    }
-    user.setUser(user);
-    user.setIsAuth(true);
+   let data;
+   data = await login(email, password);
+   user.setUser(user);
+   user.setIsAuth(true);
+   console.log(user.user);
   }
   return (
-    <div>Hello</div>
+    <LoginForm>
+      <Form.Label>Email</Form.Label>
+      <Form.Control type="text" value = {email}   onChange ={(e)=>setEmail(e.target.value)} ></Form.Control>
+      <Form.Label>Password</Form.Label>
+      <Form.Control type="password"  value = {password}   onChange ={(e)=>setPassword(e.target.value)}></Form.Control>
+      <DefaultButton type='submit' onClick ={()=>click()} title='Submit'/>
+    </LoginForm>
+    
   )
 })
 
