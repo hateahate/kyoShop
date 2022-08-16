@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './App.css'
 import 'react-notifications/lib/notifications.css';
 import { BrowserRouter } from 'react-router-dom'
@@ -7,6 +7,11 @@ import styled from 'styled-components'
 import Header from './components/VitaforestUI/Interface/Header/Header'
 import Footer from './components/VitaforestUI/Interface/Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { observer } from 'mobx-react-lite';
+import { check } from './api/userAPI';
+import { Spinner } from 'react-bootstrap';
+import { Context } from '.';
+
 
 const Page = styled.div`
   display: flex;
@@ -16,8 +21,21 @@ const Page = styled.div`
 const Content = styled.div`
   flex: 1 0 auto;
 `
-const App = () => {
-  console.log(window.location.pathname)
+const App = observer(() => {
+  const { user } = useContext(Context)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    check().then(data => {
+      user.setUser(data)
+      user.setIsAuth(true)
+    }).finally(() => setLoading(false))
+  }, [])
+
+  if (loading) {
+    return <Spinner animation={"grow"} />
+  }
+
   return (
     <Page>
       <BrowserRouter>
@@ -27,6 +45,6 @@ const App = () => {
       </BrowserRouter>
     </Page>
   )
-}
+})
 
 export default App

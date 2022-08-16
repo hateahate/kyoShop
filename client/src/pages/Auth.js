@@ -17,21 +17,26 @@ const Auth = observer(() => {
   const [password, setPassword] = useState('')
 
   const click = async () => {
-   let data;
-   data = await login(email, password);
-   user.setUser(user);
-   user.setIsAuth(true);
-   console.log(user.user);
+    try {
+      let data;
+      data = await login(email, password);
+      user.setUser(data);
+      user.setIsAuth(true);
+      console.log(user)
+    }
+    catch (e) {
+      return e.response.data.message
+    }
   }
   return (
     <LoginForm>
       <Form.Label>Email</Form.Label>
-      <Form.Control type="text" value = {email}   onChange ={(e)=>setEmail(e.target.value)} ></Form.Control>
+      <Form.Control type="text" value={email} onChange={(e) => setEmail(e.target.value)} ></Form.Control>
       <Form.Label>Password</Form.Label>
-      <Form.Control type="password"  value = {password}   onChange ={(e)=>setPassword(e.target.value)}></Form.Control>
-      <DefaultButton type='submit' onClick ={()=>click()} title='Submit'/>
+      <Form.Control type="password" value={password} onChange={(e) => setPassword(e.target.value)}></Form.Control>
+      <DefaultButton type='submit' onClick={() => click()} title='Submit' />
     </LoginForm>
-    
+
   )
 })
 
