@@ -1,7 +1,7 @@
 import { $authHost, $host } from ".";
 import jwt_decode from "jwt-decode";
 import { convertFromRaw, convertToRaw } from "draft-js";
-import { convertToHTML } from 'draft-convert';
+import draftToHtml from 'draftjs-to-html';
 
 export const removePost = async (id) => {
     try {
@@ -66,6 +66,7 @@ export const encodePostBody = (body) => {
     return JSON.stringify(convertToRaw(body.getCurrentContent()))
 }
 
-export const htmlPostBody = (body) => {
-    return convertToHTML(decodePostBody(body));
+export const makePostHtml = (body) => {
+    const rawPost = decodePostBody(body)
+    return draftToHtml(convertToRaw(rawPost))
 }
