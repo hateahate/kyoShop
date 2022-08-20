@@ -8,13 +8,12 @@ const AppRouter = () => {
   console.log(user);
   return (
     <Routes>
-      {user.isAuth && authRoutes.map(({ path, Component }) =>
+      {user.isAuth && user.user.role == 'admin' && authRoutes.map(({ path, Component }) =>
         <Route key={path} path={path} element={<Component />} exact />
       )}
       {publicRoutes.map(({ path, Component }) =>
         <Route key={path} path={path} element={<Component />} exact />
       )}
-
     </Routes>
   )
 }

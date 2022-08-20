@@ -17,7 +17,7 @@ export const removePost = async (id) => {
 export const createPost = async (post) => {
     try {
         const { data } = await $authHost.post('api/post', post)
-        return true
+        return data
     }
     catch (e) {
         return e.message

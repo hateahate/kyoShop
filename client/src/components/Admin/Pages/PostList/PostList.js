@@ -3,7 +3,7 @@ import { Button, Table, Dropdown, Form, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { Link, Route } from "react-router-dom";
-import RemoveModal from  "./../ProductsList/RemoveModal"
+import RemoveModal from "../RemoveModal"
 import { fetchPosts, removePost } from "../../../../api/postAPI";
 const TableContainer = styled.div`
 
@@ -22,7 +22,8 @@ function PostList() {
     const [modalActive, setModalActive] = useState(false);
     const [currentItemId, setCurrentItemId] = useState(0);
 
-    const RemoveProduct = (id) => {
+    const RemovePost = (id) => {
+        console.log(id)
         const formData = new FormData();
         formData.append('id', id);
         removePost(formData).then(NotificationManager.success(`Product removed`, 'Success'));
@@ -36,7 +37,7 @@ function PostList() {
 
     // useEffect for products loading
     useEffect(() => {
-        fetchPosts(null, 1, 100).then(
+        fetchPosts(1, 100).then(
             (result) => {
                 setIsLoaded(true)
                 setItems(result.rows)
@@ -74,23 +75,24 @@ function PostList() {
                         <tr>
                             <th>#</th>
                             <th>Title</th>
+                            <th>Author ID</th>
                             <th></th>
                             <th></th>
                         </tr>
                     </thead>
                     <tbody>
                         {items.map((item) => (
-                            <tr>
+                            <tr key={item.id}>
                                 <td>{item.id}</td>
                                 <td>{item.title}</td>
-                                {console.log(item.id)}
+                                <td>{item.userId}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
-                                <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
+                                <td><Button variant={'primary'}><Link to={'/admin/posts/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>
                         ))}
                     </tbody>
                 </Table>
-                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} itemId={currentItemId} removeItem={RemoveProduct} />
+                <RemoveModal modalActive={modalActive} setModalActive={setModalActive} itemId={currentItemId} removeItem={RemovePost} />
             </TableContainer>
         )
     }

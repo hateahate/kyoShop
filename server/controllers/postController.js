@@ -5,16 +5,16 @@ const ApiError = require('../error/ApiError');
 class PostController {
     async create(req, res, next) {
         try {
-            let { title, description, link, postCategoryId } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            let { title, description, link, userId, postCategoryId } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const post = await Post.create({ title, description, img: fileName, link, postCategoryId });
+                const post = await Post.create({ title, description, img: fileName, link, postCategoryId, userId });
                 return res.json(post);
             }
             else {
-                const post = await Post.create({ title, description, link });
+                const post = await Post.create({ title, description, link, userId, postCategoryId });
                 return res.json(post);
             }
         }
@@ -59,7 +59,7 @@ class PostController {
     }
     async remove(req, res, next) {
         try {
-            const { id } = req.query;
+            const { id } = req.body;
             await Post.destroy({ where: { id } });
             return res.json('Removed');
         }

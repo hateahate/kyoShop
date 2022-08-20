@@ -1,22 +1,22 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import AdminUI from './Ui/AdminUI';
-import { fetchOnePost, htmlPostBody } from '../../api/postAPI';
+import { fetchOnePost, htmlPostBody, decodePostBody } from '../../api/postAPI';
+import { Interweave, Markup } from 'interweave'
 
 const Admin = () => {
     const [title, setTitle] = useState('');
     const [body, setBody] = useState(null);
-    fetchOnePost(2).then(data => {
+    fetchOnePost(11).then(data => {
         setTitle(data.title)
-        setBody(htmlPostBody(data.description))
+        setBody(data.description)
     })
     return (
         <AdminUI>
             <h1>Dashboard</h1>
             <h2>Render post test</h2>
             <h3>Title: {title}</h3>
-            <div dangerouslySetInnerHTML={{ __html: body }}>
-            </div>
+            <Markup content={body} />
         </AdminUI>
     )
 }

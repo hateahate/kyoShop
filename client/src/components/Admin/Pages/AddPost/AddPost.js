@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useContext } from "react";
 import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { createPost, decodePostBody, encodePostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { convertToRaw } from "draft-js";
+import { Context } from "../../../..";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`
@@ -18,12 +19,12 @@ justify-content: space-between;
 const AddPost = () => {
 
     // States
+    const { user } = useContext(Context)
     const [title, setTitle] = useState('');
     const [editorState, setEditorState] = useState('');
     const [file, setFile] = useState(null);
     const [link, setLink] = useState('');
     const [rawData, setRaw] = useState(null);
-
 
     // SEO url generator
     useEffect(() => {
@@ -48,9 +49,10 @@ const AddPost = () => {
         formData.append('title', title);
         formData.append('description', encodePostBody(editorState))
         formData.append('link', link)
+        console.log('Айди автора из контекста ' + user.user.id)
+        formData.append('userId', user.user.id)
         createPost(formData).then((data) => {
-            if (data == true) {
-                console.log(data)
+            if (data.id) {
                 NotificationManager.success(`Post "${title}" successfully created`, 'Success')
             }
             else {

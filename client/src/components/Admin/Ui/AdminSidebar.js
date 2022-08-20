@@ -41,15 +41,18 @@ const AdminSidebar = () => {
             <CDBSidebar textColor="#fff" backgroundColor="#333">
                 <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
                     <SidebarHeadLink href='/'>
-                        kyoShop
+                        kyoShop 0.10.3α
                     </SidebarHeadLink>
                 </CDBSidebarHeader>
                 <CDBSidebarContent>
                     <CDBSidebarMenu>
-                        <CDBSidebarMenuItem><FooterText>kyoShop альфа как бэ</FooterText></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><FooterText>С божьей помощью во славу релиза</FooterText></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><Link to='/admin/'>Dashboard</Link></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem>------Товары--------</CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/products'>Products</Link></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/products/add'>Add new product</Link></CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem>------Посты-------</CDBSidebarMenuItem>
+                        <CDBSidebarMenuItem><Link to='/admin/posts'>Posts</Link></CDBSidebarMenuItem>
                         <CDBSidebarMenuItem><Link to='/admin/posts/add'>Add new post</Link></CDBSidebarMenuItem>
                     </CDBSidebarMenu>
                 </CDBSidebarContent>
