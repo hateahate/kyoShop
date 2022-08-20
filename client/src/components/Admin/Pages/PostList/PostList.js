@@ -68,7 +68,7 @@ function PostList() {
 
             // HTML
             <TableContainer>
-                <h1>Products</h1>
+                <h1>All posts</h1>
                 <NotificationContainer />
                 <Table striped bordered hover variant="dark">
                     <thead>

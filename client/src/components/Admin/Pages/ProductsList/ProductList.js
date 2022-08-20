@@ -71,7 +71,7 @@ function ProductList() {
 
             // HTML
             <TableContainer>
-                <h1>Products</h1>
+                <h1>All products</h1>
                 <NotificationContainer />
                 <Table striped bordered hover variant="dark">
                     <thead>

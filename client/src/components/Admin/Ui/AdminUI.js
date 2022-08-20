@@ -26,14 +26,10 @@ width: 100%;
 const AdminUI = ({ children }) => {
     return (
         <Main>
-            <FlexContainer>
-                <SidebarArea>
-                    <AdminSidebar />
-                </SidebarArea>
-                <ContentArea>
-                    {children}
-                </ContentArea>
-            </FlexContainer>
+            <AdminSidebar />
+            <ContentArea>
+                {children}
+            </ContentArea>
         </Main>
     )
 }

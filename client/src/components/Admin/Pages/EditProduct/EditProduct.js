@@ -108,6 +108,7 @@ const EditProduct = () => {
             // HTML
 
             <AdminUI>
+                <h1>Edit product "{name}"</h1>
                 <NotificationContainer />
                 {console.log(price)}
                 <Form>
