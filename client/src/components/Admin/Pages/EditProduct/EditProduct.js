@@ -6,7 +6,6 @@ import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
 import { useParams } from 'react-router-dom';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-import { $host } from '../../../../api';
 
 
 const FlexBox = styled.div`
@@ -36,8 +35,7 @@ const EditProduct = () => {
             setPreview(undefined)
             return
         }
-        setPreview($host + '/static/' + file)
-
+        setPreview(`${process.env.REACT_APP_API_URL}/${file}`)
         return true
     }, [file])
 

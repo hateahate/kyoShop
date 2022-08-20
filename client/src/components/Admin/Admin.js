@@ -19,7 +19,7 @@ const Admin = () => {
     useEffect(() => {
         getUserById(user.user.id).then((data) => {
             setUserData(data)
-            fetchOnePost(4).then(data => {
+            fetchOnePost(6).then(data => {
                 setTitle(data.title)
                 setPostId(data.id)
                 setBody(makePostHtml(data.description))
@@ -30,7 +30,6 @@ const Admin = () => {
     if (isLoaded == false) {
         return <h1>Loading</h1>
     }
-    if (isLoaded == true) { }
     return (
         <AdminUI>
             <h1>Dashboard</h1>

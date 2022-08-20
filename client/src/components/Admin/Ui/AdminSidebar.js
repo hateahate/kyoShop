@@ -19,8 +19,8 @@ function AdminSidebar() {
         <Navbar variant="dark" bg="dark" expand="lg">
             <Container fluid>
                 <Navbar.Brand href="#home">kyoShop</Navbar.Brand>
-                <Navbar.Toggle aria-controls="navbar-dark-example" />
-                <Navbar.Collapse id="navbar-dark-example">
+                <Navbar.Toggle aria-controls="navbar-dark" />
+                <Navbar.Collapse id="navbar-dark kyoadmin-nav">
                     <Nav>
                         <Nav.Link><CustomLink to='/admin/'>Dashboard</CustomLink></Nav.Link>
                         <NavDropdown
