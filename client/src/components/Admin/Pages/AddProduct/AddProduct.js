@@ -17,6 +17,7 @@ justify-content: space-between;
 
 
 const AddProduct = () => {
+    const navigate = useNavigate();
     const { product } = useContext(Context);
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
@@ -53,12 +54,6 @@ const AddProduct = () => {
         setFile(e.target.files[0])
     }
 
-    const RedirectToEdit = (id) => {
-        let nav = useNavigate();
-        let navLink = '/admin/products/edit' + id;
-        nav(navLink, { replace: true });
-    }
-
     const addProduct = () => {
         let itemId = 0;
         const formData = new FormData()
@@ -71,16 +66,16 @@ const AddProduct = () => {
         formData.append('info', JSON.stringify(info))
         createProduct(formData).then((data) => {
             if (data) {
-                console.log(data)
-                itemId = data.id;
                 NotificationManager.success(`Product "${name}" successfully created`, 'Success')
+                return data.id
             }
             else {
                 NotificationManager.error(`Product "${name}" cannot be created`, `${data}`);
             }
-        }).then((data) => {
-            console.log('before rd: ' + itemId);
-            RedirectToEdit(itemId);
+        }).then((id) => {
+            setTimeout(() => {
+                navigate(`/admin/products/edit/${id}`)
+            }, 2000)
         }
         );
 

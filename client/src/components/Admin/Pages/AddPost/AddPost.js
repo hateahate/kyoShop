@@ -9,6 +9,8 @@ import { createPost, decodePostBody, encodePostBody } from "../../../../api/post
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { convertToRaw } from "draft-js";
 import { Context } from "../../../..";
+import { useNavigate } from "react-router-dom";
+import { ADMIN_EDIT_POST } from "../../../../utils/consts";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`
@@ -25,6 +27,7 @@ const AddPost = () => {
     const [file, setFile] = useState(null);
     const [link, setLink] = useState('');
     const [rawData, setRaw] = useState(null);
+    const navigate = useNavigate();
 
     // SEO url generator
     useEffect(() => {
@@ -54,10 +57,15 @@ const AddPost = () => {
         createPost(formData).then((data) => {
             if (data.id) {
                 NotificationManager.success(`Post "${title}" successfully created`, 'Success')
+                return data.id
             }
             else {
                 NotificationManager.error(`Post "${title}" cannot be created`, `${data}`);
             }
+        }).then(id => {
+            setTimeout(() => {
+                navigate(`/admin/posts/edit/${id}`)
+            }, 2000)
         })
     }
 
