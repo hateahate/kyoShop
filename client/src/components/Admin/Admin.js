@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
 import AdminUI from './Ui/AdminUI';
 import { fetchOnePost, makePostHtml, decodePostBody } from '../../api/postAPI';
 import { Interweave, Markup } from 'interweave'
 import { convertToRaw, convertFromRaw } from 'draft-js';
 import draftToHtml from 'draftjs-to-html';
+import { Context } from '../..';
+import { getUserById } from '../../api/userAPI';
+
 
 const Admin = () => {
+    const { user } = useContext(Context);
     const [title, setTitle] = useState('');
     const [body, setBody] = useState(null);
-    fetchOnePost(3).then(data => {
-        setTitle(data.title)
-        setBody(makePostHtml(data.description))
-    })
+    const [userData, setUserData] = useState(null);
+    useEffect(() => {
+        getUserById(user.user.id).then(data => {
+            setUserData(data)
+            console.log(data)
+        })
+        fetchOnePost(3).then(data => {
+            setTitle(data.title)
+            setBody(makePostHtml(data.description))
+        })
+    }, [])
     return (
         <AdminUI>
             <h1>Dashboard</h1>
+            <h2>Приветствуем тебя, {userData.first_name}</h2>
             <h2>Render post test</h2>
             <h3>Title: {title}</h3>
             {console.log(body)}
