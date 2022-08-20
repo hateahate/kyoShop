@@ -12,8 +12,12 @@ import RemoveModal from "../RemoveModal";
 const TableContainer = styled.div`
 
 `
-const EditLabel = styled.span`
+const EditLabel = styled(Link)`
 color: white;
+text-decoration: none;
+&:hover{
+    color: white;
+}
 `
 
 function ProductList() {
@@ -94,7 +98,7 @@ function ProductList() {
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
-                                <td><Button variant={'primary'}><Link to={'/admin/products/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
+                                <td><Button variant={'primary'}><EditLabel to={'/admin/products/edit/' + item.id}>Edit</EditLabel></Button></td>
                             </tr>
                         ))}
                     </tbody>

@@ -10,7 +10,6 @@ color: white;
 text-decoration: none;
 &:hover{
     color: white;
-    text-decoration: underline;
 }
 `
 

@@ -26,7 +26,7 @@ function PostList() {
         console.log(id)
         const formData = new FormData();
         formData.append('id', id);
-        removePost(formData).then(NotificationManager.success(`Product removed`, 'Success'));
+        removePost(formData).then(NotificationManager.success(`Post removed`, 'Success'));
         setNeedReload(true);
     }
 
