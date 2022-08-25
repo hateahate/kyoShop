@@ -3,7 +3,7 @@ import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
 import styled from "styled-components";
 import { createPost, decodePostBody, encodePostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
@@ -11,6 +11,7 @@ import { convertToRaw } from "draft-js";
 import { Context } from "../../../..";
 import { useNavigate } from "react-router-dom";
 import { ADMIN_EDIT_POST } from "../../../../utils/consts";
+import { fetchCategories } from "../../../../api/productAPI";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`
@@ -28,12 +29,19 @@ const AddPost = () => {
     const [link, setLink] = useState('');
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
+    const [categoryList, setCategoryList] = useState('');
+    const selectedCats = [];
 
     // SEO url generator
     useEffect(() => {
         let result = title.replace(/\s+/g, '-').toLowerCase();
         setLink(result)
     }, [title])
+
+
+    useEffect(() => {
+        fetchCategories().then(data => setCategoryList(data))
+    }, [])
 
     // Editor state handler
     const onEditorStateChange = (editorState) => {
@@ -45,6 +53,10 @@ const AddPost = () => {
 
     const selectFile = e => {
         setFile(e.target.files[0])
+    }
+
+    const appendList = (id) => {
+        selectedCats.push(id)
     }
 
     const addPost = () => {
@@ -71,6 +83,7 @@ const AddPost = () => {
 
     return (
         <AdminUI>
+            {console.log(categoryList)}
             <NotificationContainer />
             <h1>Add new post</h1>
             <Form>
@@ -106,6 +119,13 @@ const AddPost = () => {
                             </Card>
                         </Col>
                     </Row>
+                    <ButtonGroup size="lg" className="mb-2">
+                        {categoryList.map(item => {
+                            return (
+                                <Button key={item.id} onClick={() => appendList(item.id)}>{item.name}</Button>
+                            )
+                        })}
+                    </ButtonGroup>
                 </Container>
             </Form>
             <Card>
