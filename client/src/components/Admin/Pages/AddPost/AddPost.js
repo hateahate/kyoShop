@@ -19,6 +19,9 @@ display: flex;
 justify-content: space-between;
 `;
 
+const CatsViewer = styled.ul`
+`
+
 const AddPost = () => {
 
     // States
@@ -30,8 +33,9 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const selectedCats = [];
+    const selectedCats = [2];
     const [loadedCats, setLoadedCats] = useState(false);
+    const [catsReload, setCatsReload] = useState(false);
 
     // SEO url generator
     useEffect(() => {
@@ -40,14 +44,16 @@ const AddPost = () => {
     }, [title])
 
 
+
     useEffect(() => {
         fetchCategories().then((data) => {
             setCategoryList(data)
-            console.log('случился фетч')
-            console.log(data)
             setLoadedCats(true)
         })
     }, [])
+
+    // Categories update
+
 
     // Editor state handler
     const onEditorStateChange = (editorState) => {
@@ -70,7 +76,6 @@ const AddPost = () => {
             console.log(selectedCats)
         }
     }
-
     const addPost = () => {
         const formData = new FormData();
         formData.append('title', title);
@@ -137,6 +142,15 @@ const AddPost = () => {
                                 )
                             })}
                         </ButtonGroup>
+                        {console.log(selectedCats)}
+                        {
+                            selectedCats.map(i => {
+                                for (let value of categoryList)
+                                    if (value.id == i) {
+                                        console.log(value.name)
+                                    }
+                            })
+                        }
                     </Container>
                 </Form>
                 <Card>
@@ -150,7 +164,7 @@ const AddPost = () => {
                     </Card.Body>
                     <Card.Footer><Button variant="success" onClick={addPost}>Add</Button></Card.Footer>
                 </Card>
-            </AdminUI>
+            </AdminUI >
         )
     }
     else {
