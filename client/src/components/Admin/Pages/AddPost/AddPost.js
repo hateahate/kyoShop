@@ -12,6 +12,7 @@ import { Context } from "../../../..";
 import { useNavigate } from "react-router-dom";
 import { ADMIN_EDIT_POST } from "../../../../utils/consts";
 import { fetchCategories } from "../../../../api/productAPI";
+import CatsDrawer from "../categoriesDrawer";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`
@@ -33,7 +34,7 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const selectedCats = [2];
+    const selectedCats = [2, 1];
     const [loadedCats, setLoadedCats] = useState(false);
     const [catsReload, setCatsReload] = useState(false);
 
@@ -62,17 +63,6 @@ const AddPost = () => {
         console.log(decodePostBody(i))
     }
 
-    const CatView = ({ list }) => {
-        console.log(list)
-        list.map(i => {
-            for (let value of categoryList)
-                if (value.id == i) {
-                    return (
-                        <li key={value.id}>{value.name}</li>
-                    )
-                }
-        })
-    }
 
 
     const selectFile = e => {
@@ -154,9 +144,7 @@ const AddPost = () => {
                                 )
                             })}
                         </ButtonGroup>
-                        <ul>
-                            <CatView list={selectedCats} />
-                        </ul>
+                        <CatsDrawer list={categoryList} />
                     </Container>
                 </Form>
                 <Card>
