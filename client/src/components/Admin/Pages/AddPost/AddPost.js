@@ -43,7 +43,7 @@ const AddPost = () => {
     useEffect(() => {
         fetchCategories().then((data) => {
             setCategoryList(data)
-            console.log('случился фетс')
+            console.log('случился фетч')
             console.log(data)
             setLoadedCats(true)
         })
@@ -62,8 +62,13 @@ const AddPost = () => {
     }
 
     const appendList = (id) => {
-        selectedCats.push(id)
-        console.log(selectedCats)
+        if (selectedCats.includes(id)) {
+            alert(id + ' уже добавлен в список')
+        }
+        else {
+            selectedCats.push(id)
+            console.log(selectedCats)
+        }
     }
 
     const addPost = () => {
