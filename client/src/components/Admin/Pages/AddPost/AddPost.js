@@ -29,8 +29,9 @@ const AddPost = () => {
     const [link, setLink] = useState('');
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
-    const [categoryList, setCategoryList] = useState('');
+    const [categoryList, setCategoryList] = useState(null);
     const selectedCats = [];
+    const [loadedCats, setLoadedCats] = useState(false);
 
     // SEO url generator
     useEffect(() => {
@@ -40,7 +41,12 @@ const AddPost = () => {
 
 
     useEffect(() => {
-        fetchCategories().then(data => setCategoryList(data))
+        fetchCategories().then((data) => {
+            setCategoryList(data)
+            console.log('случился фетс')
+            console.log(data)
+            setLoadedCats(true)
+        })
     }, [])
 
     // Editor state handler
@@ -57,6 +63,7 @@ const AddPost = () => {
 
     const appendList = (id) => {
         selectedCats.push(id)
+        console.log(selectedCats)
     }
 
     const addPost = () => {
@@ -80,67 +87,72 @@ const AddPost = () => {
             }, 2000)
         })
     }
-
-    return (
-        <AdminUI>
-            {console.log(categoryList)}
-            <NotificationContainer />
-            <h1>Add new post</h1>
-            <Form>
-                <Container>
-                    <Row>
-                        <Col>
-                            <Card>
-                                <Card.Header>Title</Card.Header>
-                                <Card.Body>
-                                    <Form.Control aria-label="large"
-                                        value={title}
-                                        onChange={e => setTitle(String(e.target.value))}
-                                        placeholder="Post title"
-                                        type="text"
-                                    />
-                                </Card.Body>
-                                <Card.Footer />
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Card.Header>SEO Url</Card.Header>
-                                <Card.Body>
-                                    <Form.Control aria-label="large"
-                                        value={link}
-                                        onChange={e => setTitle(String(e.target.value))}
-                                        placeholder="Post title"
-                                        type="text"
-                                        disabled
-                                    />
-                                </Card.Body>
-                                <Card.Footer />
-                            </Card>
-                        </Col>
-                    </Row>
-                    <ButtonGroup size="lg" className="mb-2">
-                        {categoryList.map(item => {
-                            return (
-                                <Button key={item.id} onClick={() => appendList(item.id)}>{item.name}</Button>
-                            )
-                        })}
-                    </ButtonGroup>
-                </Container>
-            </Form>
-            <Card>
-                <Card.Header>Editor</Card.Header>
-                <Card.Body>
-                    <Editor editorState={editorState}
-                        toolbarClassName="toolbarClassName"
-                        wrapperClassName="wrapperClassName"
-                        editorClassName="editorClassName"
-                        onEditorStateChange={onEditorStateChange} />
-                </Card.Body>
-                <Card.Footer><Button variant="success" onClick={addPost}>Add</Button></Card.Footer>
-            </Card>
-        </AdminUI>
-    )
+    if (loadedCats) {
+        return (
+            <AdminUI>
+                <NotificationContainer />
+                <h1>Add new post</h1>
+                <Form>
+                    <Container>
+                        <Row>
+                            <Col>
+                                <Card>
+                                    <Card.Header>Title</Card.Header>
+                                    <Card.Body>
+                                        <Form.Control aria-label="large"
+                                            value={title}
+                                            onChange={e => setTitle(String(e.target.value))}
+                                            placeholder="Post title"
+                                            type="text"
+                                        />
+                                    </Card.Body>
+                                    <Card.Footer />
+                                </Card>
+                            </Col>
+                            <Col>
+                                <Card>
+                                    <Card.Header>SEO Url</Card.Header>
+                                    <Card.Body>
+                                        <Form.Control aria-label="large"
+                                            value={link}
+                                            onChange={e => setTitle(String(e.target.value))}
+                                            placeholder="Post title"
+                                            type="text"
+                                            disabled
+                                        />
+                                    </Card.Body>
+                                    <Card.Footer />
+                                </Card>
+                            </Col>
+                        </Row>
+                        <ButtonGroup size="lg" className="mb-2">
+                            {categoryList.map(item => {
+                                return (
+                                    <Button key={item.id} onClick={() => appendList(item.id)}>{item.name}</Button>
+                                )
+                            })}
+                        </ButtonGroup>
+                    </Container>
+                </Form>
+                <Card>
+                    <Card.Header>Editor</Card.Header>
+                    <Card.Body>
+                        <Editor editorState={editorState}
+                            toolbarClassName="toolbarClassName"
+                            wrapperClassName="wrapperClassName"
+                            editorClassName="editorClassName"
+                            onEditorStateChange={onEditorStateChange} />
+                    </Card.Body>
+                    <Card.Footer><Button variant="success" onClick={addPost}>Add</Button></Card.Footer>
+                </Card>
+            </AdminUI>
+        )
+    }
+    else {
+        return (
+            <h1>Loading</h1>
+        )
+    }
 }
 
 export default AddPost
