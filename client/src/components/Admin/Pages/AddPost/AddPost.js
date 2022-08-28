@@ -35,10 +35,8 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const [selectedCats, setSelected] = useState([2]);
     const [loadedCats, setLoadedCats] = useState(false);
-    const [catsReload, setCatsReload] = useState(false);
-    const [renderState, setRenderState] = useState(true);
+    const [selectedCategories, setSelectedCategories] = useState([])
 
     // SEO url generator
     useEffect(() => {
@@ -64,27 +62,23 @@ const AddPost = () => {
         console.log(decodePostBody(i))
     }
 
+    const appendCategories = (id) => {
+        let previous = selectedCategories;
+        if (previous.includes(id)) {
+            previous.splice(previous.indexOf(id), 1)
+            console.log('Стало так' + previous)
+            setSelectedCategories(previous)
+        }
+        else {
+            previous.push(id)
+            console.log('А тут теперь так ' + previous)
+            setSelectedCategories(previous)
+        }
+    }
 
 
     const selectFile = e => {
         setFile(e.target.files[0])
-    }
-
-    const appendList = (id) => {
-        let prev = selectedCats;
-        if (prev.includes(id)) {
-            let index = prev.indexOf(id)
-            prev.splice(index, 1)
-            setSelected(prev)
-            console.log(selectedCats)
-            setRenderState(!renderState)
-        }
-        else {
-            prev.push(id)
-            setSelected(prev)
-            console.log(selectedCats)
-            setRenderState(!renderState)
-        }
     }
 
     const addPost = () => {
@@ -144,16 +138,21 @@ const AddPost = () => {
                                     </Card.Body>
                                     <Card.Footer />
                                 </Card>
+                                <Card>
+                                    <Card.Header>Categories</Card.Header>
+                                    <Card.Body>
+                                        {categoryList.map(item => {
+                                            return (
+                                                <Form.Check key={item.id} type={'checkbox'}>
+                                                    <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} />
+                                                    <Form.Check.Label>{item.name}</Form.Check.Label>
+                                                </Form.Check>
+                                            )
+                                        })}
+                                    </Card.Body>
+                                </Card>
                             </Col>
                         </Row>
-                        <ButtonGroup size="lg" className="mb-2">
-                            {categoryList.map(item => {
-                                return (
-                                    <Button key={item.id} onClick={() => appendList(item.id)}>{item.name}</Button>
-                                )
-                            })}
-                        </ButtonGroup>
-                        <CatsDrawer list={selectedCats} rerender={renderState} />
                     </Container>
                 </Form>
                 <Card>
