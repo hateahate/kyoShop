@@ -62,6 +62,18 @@ const AddPost = () => {
         console.log(decodePostBody(i))
     }
 
+    const CatView = ({ list }) => {
+        console.log(list)
+        list.map(i => {
+            for (let value of categoryList)
+                if (value.id == i) {
+                    return (
+                        <li key={value.id}>{value.name}</li>
+                    )
+                }
+        })
+    }
+
 
     const selectFile = e => {
         setFile(e.target.files[0])
@@ -142,15 +154,9 @@ const AddPost = () => {
                                 )
                             })}
                         </ButtonGroup>
-                        {console.log(selectedCats)}
-                        {
-                            selectedCats.map(i => {
-                                for (let value of categoryList)
-                                    if (value.id == i) {
-                                        console.log(value.name)
-                                    }
-                            })
-                        }
+                        <ul>
+                            <CatView list={selectedCats} />
+                        </ul>
                     </Container>
                 </Form>
                 <Card>
