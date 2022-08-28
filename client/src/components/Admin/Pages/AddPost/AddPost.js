@@ -34,7 +34,7 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const selectedCats = [2];
+    const [selectedCats, setSelected] = useState([]);
     const [loadedCats, setLoadedCats] = useState(false);
     const [catsReload, setCatsReload] = useState(false);
 
@@ -69,12 +69,13 @@ const AddPost = () => {
     }
 
     const appendList = (id) => {
-        if (selectedCats.includes(id)) {
+        const prev = selectedCats
+        if (prev.includes(id)) {
             alert(id + ' уже добавлен в список')
         }
         else {
-            selectedCats.push(id)
-            console.log(selectedCats)
+            prev.push(id)
+            setSelected(prev)
         }
     }
     const addPost = () => {
