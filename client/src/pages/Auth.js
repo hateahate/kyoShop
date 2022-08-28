@@ -1,13 +1,10 @@
 import React, { useContext, useState } from 'react';
-import { NavLink, useLocation } from "react-router-dom";
-import { LOGIN_ROUTE, REGISTRATION_ROUTE, SHOP_ROUTE } from "../utils/consts";
 import { login } from "../api/userAPI";
 import { Form } from 'react-bootstrap'
 import { observer } from "mobx-react-lite";
 import { Context } from "../index";
 import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import Input from '../components/VitaforestUI/Interface/Input/Input';
 import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton';
 import { NotificationContainer, NotificationManager } from "react-notifications";
 
