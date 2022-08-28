@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 
-const CatsDrawer = ({ list }) => {
-    const [currentList, setCurrentList] = useState(list);
-    console.log('Переход в отрисовщик, далее говно из пропса')
-    console.log(list)
+const CatsDrawer = ({ list, rerender }) => {
+    const [drawerState, setDrawerState] = useState(rerender);
     return (
         <ul>
-            {currentList.map(item => {
+            {list.map(item => {
                 return (
                     <li>{item}</li>
                 )

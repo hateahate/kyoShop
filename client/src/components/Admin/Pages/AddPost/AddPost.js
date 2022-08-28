@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { ADMIN_EDIT_POST } from "../../../../utils/consts";
 import { fetchCategories } from "../../../../api/productAPI";
 import CatsDrawer from "../categoriesDrawer";
+import { render } from "react-dom";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`
@@ -34,9 +35,10 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const [selectedCats, setSelected] = useState([]);
+    const [selectedCats, setSelected] = useState([2]);
     const [loadedCats, setLoadedCats] = useState(false);
     const [catsReload, setCatsReload] = useState(false);
+    const [renderState, setRenderState] = useState(true);
 
     // SEO url generator
     useEffect(() => {
@@ -69,15 +71,22 @@ const AddPost = () => {
     }
 
     const appendList = (id) => {
-        const prev = selectedCats
+        let prev = selectedCats;
         if (prev.includes(id)) {
-            alert(id + ' уже добавлен в список')
+            let index = prev.indexOf(id)
+            prev.splice(index, 1)
+            setSelected(prev)
+            console.log(selectedCats)
+            setRenderState(!renderState)
         }
         else {
             prev.push(id)
             setSelected(prev)
+            console.log(selectedCats)
+            setRenderState(!renderState)
         }
     }
+
     const addPost = () => {
         const formData = new FormData();
         formData.append('title', title);
@@ -144,7 +153,7 @@ const AddPost = () => {
                                 )
                             })}
                         </ButtonGroup>
-                        <CatsDrawer list={selectedCats} />
+                        <CatsDrawer list={selectedCats} rerender={renderState} />
                     </Container>
                 </Form>
                 <Card>
