@@ -34,7 +34,7 @@ const AddPost = () => {
     const [rawData, setRaw] = useState(null);
     const navigate = useNavigate();
     const [categoryList, setCategoryList] = useState(null);
-    const selectedCats = [2, 1];
+    const selectedCats = [2];
     const [loadedCats, setLoadedCats] = useState(false);
     const [catsReload, setCatsReload] = useState(false);
 
@@ -43,7 +43,6 @@ const AddPost = () => {
         let result = title.replace(/\s+/g, '-').toLowerCase();
         setLink(result)
     }, [title])
-
 
 
     useEffect(() => {
@@ -144,7 +143,7 @@ const AddPost = () => {
                                 )
                             })}
                         </ButtonGroup>
-                        <CatsDrawer list={categoryList} />
+                        <CatsDrawer list={selectedCats} />
                     </Container>
                 </Form>
                 <Card>
