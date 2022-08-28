@@ -56,5 +56,15 @@ class UserController {
         const users = await User.findAll();
         return res.json(users)
     }
+    async remove(req, res, next) {
+        try {
+            const { id } = req.body;
+            await User.destroy({ where: { id } });
+            return res.json('Removed');
+        }
+        catch (e) {
+            next(ApiError.badRequest(e.message));
+        }
+    }
 }
 module.exports = new UserController();

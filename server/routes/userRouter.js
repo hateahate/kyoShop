@@ -10,5 +10,6 @@ router.post('/login', userController.login);
 router.get('/auth', authMiddleware, userController.check);
 router.get('/:id', checkRole('admin'), userController.getUser);
 router.get('/', checkRole('admin'), userController.getAllUsers);
+router.post('/remove', checkRole('admin'), userController.remove);
 
 module.exports = router;
