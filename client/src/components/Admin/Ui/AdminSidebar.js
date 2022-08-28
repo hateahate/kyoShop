@@ -42,6 +42,15 @@ function AdminSidebar() {
                             <NavDropdown.Divider></NavDropdown.Divider>
                             <NavDropdown.Item><CustomLink to='/admin/posts/add'>Add new post</CustomLink></NavDropdown.Item>
                         </NavDropdown>
+                        <NavDropdown
+                            id="nav-dropdown-posts"
+                            title="Users"
+                            menuVariant='dark'
+                        >
+                            <NavDropdown.Item><CustomLink to='/admin/users'>See all users</CustomLink></NavDropdown.Item>
+                            <NavDropdown.Divider></NavDropdown.Divider>
+                            <NavDropdown.Item><CustomLink to='/admin/'>Add new user</CustomLink></NavDropdown.Item>
+                        </NavDropdown>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
