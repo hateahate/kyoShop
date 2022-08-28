@@ -28,6 +28,8 @@ const AddProduct = () => {
     const [stock, setStock] = useState(0);
     const [created, setCreated] = useState(false);
     const [preview, setPreview] = useState(null);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [categoryList, setCategoryList] = useState(null);
 
     useEffect(() => {
         if (!file) {
@@ -52,6 +54,20 @@ const AddProduct = () => {
 
     const selectFile = e => {
         setFile(e.target.files[0])
+    }
+
+    const appendCategories = (id) => {
+        let previous = selectedCategories;
+        if (previous.includes(id)) {
+            previous.splice(previous.indexOf(id), 1)
+            console.log('Стало так' + previous)
+            setSelectedCategories(previous)
+        }
+        else {
+            previous.push(id)
+            console.log('А тут теперь так ' + previous)
+            setSelectedCategories(previous)
+        }
     }
 
     const addProduct = () => {
@@ -109,6 +125,19 @@ const AddProduct = () => {
                                 type="file"
                                 onChange={selectFile}
                             />
+                        </Card.Body>
+                    </Card>
+                    <Card>
+                        <Card.Header>Categories</Card.Header>
+                        <Card.Body>
+                            {categoryList.map(item => {
+                                return (
+                                    <Form.Check key={item.id} type={'checkbox'}>
+                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} />
+                                        <Form.Check.Label>{item.name}</Form.Check.Label>
+                                    </Form.Check>
+                                )
+                            })}
                         </Card.Body>
                     </Card>
                 </FlexBox>
