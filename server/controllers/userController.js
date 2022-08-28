@@ -52,5 +52,9 @@ class UserController {
             'last_name': user.last_name,
         });
     }
+    async getAllUsers(req, res) {
+        const users = await User.findAll();
+        return res.json(users)
+    }
 }
 module.exports = new UserController();

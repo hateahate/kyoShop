@@ -33,3 +33,13 @@ export const getUserById = async (id) => {
         return e.message
     }
 }
+
+export const getAllUsersByAdmin = async () => {
+    try {
+        const { data } = await $authHost.get('/api/user/');
+        return data
+    }
+    catch (e) {
+        return e.message
+    }
+}

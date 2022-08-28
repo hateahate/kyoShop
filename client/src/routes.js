@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS, ADMIN_EDIT_PRODUCT, ADMIN_ADD_POST,
-  ADMIN_EDIT_POST, ADMIN_SEE_POSTS,
+  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
@@ -21,6 +21,7 @@ import EditProduct from './components/Admin/Pages/EditProduct/EditProduct'
 import AddPost from './components/Admin/Pages/AddPost/AddPost'
 import EditPost from './components/Admin/Pages/EditPost/EditPost'
 import PostListPage from './components/Admin/Pages/PostList/PostListPage'
+import UsersListPage from './components/Admin/Pages/UsersList/UsersListPage'
 
 export const authRoutes = [
 
@@ -55,6 +56,10 @@ export const authRoutes = [
   {
     path: ADMIN_ROUTE,
     Component: AdminPage,
+  },
+  {
+    path: ADMIN_SEE_USERS,
+    Component: UsersListPage,
   },
 ]
 export const publicRoutes = [

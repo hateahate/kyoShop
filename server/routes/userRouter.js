@@ -9,5 +9,6 @@ router.post('/registration', userController.registration);
 router.post('/login', userController.login);
 router.get('/auth', authMiddleware, userController.check);
 router.get('/:id', checkRole('admin'), userController.getUser);
+router.get('/', checkRole('admin'), userController.getAllUsers);
 
 module.exports = router;
