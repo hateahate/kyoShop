@@ -1,8 +1,12 @@
 const { ProductCategory } = require('../models/models');
 const ApiError = require('../error/ApiError');
 class CategoryController {
-    async create(req, res) {
+    async create(req, res, next) {
         const { name } = req.body;
+        const candidate = await ProductCategory.findOne({ where: { name } })
+        if (candidate) {
+            return res.json('Category with this name already exist');
+        }
         const category = await ProductCategory.create({ name });
         return res.json(category);
     }

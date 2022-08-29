@@ -80,6 +80,7 @@ const AddProduct = () => {
         formData.append('qty_step', `${qtyStep}`)
         formData.append('img', file)
         formData.append('info', JSON.stringify(info))
+        formData.append('category', selectedCategories)
         createProduct(formData).then((data) => {
             if (data) {
                 NotificationManager.success(`Product "${name}" successfully created`, 'Success')
@@ -104,92 +105,93 @@ const AddProduct = () => {
         })
     }, [])
 
-    if (loadedCats) { return (
-        <AdminUI>
-            {console.log(file)}
-            <h1>Add new product</h1>
-            <NotificationContainer />
-            <Form>
-                <FlexBox>
-                    <Card className='product-title'>
-                        <Card.Header>Product name</Card.Header>
+    if (loadedCats) {
+        return (
+            <AdminUI>
+                {console.log(file)}
+                <h1>Add new product</h1>
+                <NotificationContainer />
+                <Form>
+                    <FlexBox>
+                        <Card className='product-title'>
+                            <Card.Header>Product name</Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large"
+                                    value={name}
+                                    onChange={e => setName(String(e.target.value))}
+                                    placeholder="Product name"
+                                    type="text"
+                                >
+                                </Form.Control>
+                            </Card.Body>
+                        </Card>
+                        <Card className='product-image'>
+                            <img src={preview}></img>
+                            <Card.Header>Product image</Card.Header>
+                            <Card.Body>
+                                <Form.Control
+                                    className="mt-3"
+                                    type="file"
+                                    onChange={selectFile}
+                                />
+                            </Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>Categories</Card.Header>
+                            <Card.Body>
+                                {categoryList.map(item => {
+                                    return (
+                                        <Form.Check key={item.id} type={'checkbox'}>
+                                            <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} />
+                                            <Form.Check.Label>{item.name}</Form.Check.Label>
+                                        </Form.Check>
+                                    )
+                                })}
+                            </Card.Body>
+                        </Card>
+                    </FlexBox>
+                    <Card>
+                        <Card.Header>
+                            Product details
+                        </Card.Header>
                         <Card.Body>
-                            <Form.Control aria-label="large"
-                                value={name}
-                                onChange={e => setName(String(e.target.value))}
-                                placeholder="Product name"
-                                type="text"
-                            >
-                            </Form.Control>
-                        </Card.Body>
-                    </Card>
-                    <Card className='product-image'>
-                        <img src={preview}></img>
-                        <Card.Header>Product image</Card.Header>
-                        <Card.Body>
+                            <Form.Label>
+                                Price
+                            </Form.Label>
                             <Form.Control
-                                className="mt-3"
-                                type="file"
-                                onChange={selectFile}
+                                value={price}
+                                onChange={e => setPrice(Number(e.target.value))}
+                                placeholder="Price"
+                                type="number"
+                            />
+                            <Form.Label>
+                                Stock
+                            </Form.Label>
+                            <Form.Control
+                                value={stock}
+                                onChange={e => setStock(Number(e.target.value))}
+                                placeholder="Currently in stock"
+                                type="number"
+                            />
+                            <Form.Label>
+                                Minimal order quantity (MOQ)
+                            </Form.Label>
+                            <Form.Control
+                                value={moq}
+                                onChange={e => setMoq(Number(e.target.value))}
+                                placeholder="Minimal order quantity"
+                                type="number"
                             />
                         </Card.Body>
+                        <Card.Footer>
+                            <Button variant="outline-success" onClick={addProduct}>Add</Button>
+                        </Card.Footer>
                     </Card>
-                    <Card>
-                        <Card.Header>Categories</Card.Header>
-                        <Card.Body>
-                            {categoryList.map(item => {
-                                return (
-                                    <Form.Check key={item.id} type={'checkbox'}>
-                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} />
-                                        <Form.Check.Label>{item.name}</Form.Check.Label>
-                                    </Form.Check>
-                                )
-                            })}
-                        </Card.Body>
-                    </Card>
-                </FlexBox>
-                <Card>
-                    <Card.Header>
-                        Product details
-                    </Card.Header>
-                    <Card.Body>
-                        <Form.Label>
-                            Price
-                        </Form.Label>
-                        <Form.Control
-                            value={price}
-                            onChange={e => setPrice(Number(e.target.value))}
-                            placeholder="Price"
-                            type="number"
-                        />
-                        <Form.Label>
-                            Stock
-                        </Form.Label>
-                        <Form.Control
-                            value={stock}
-                            onChange={e => setStock(Number(e.target.value))}
-                            placeholder="Currently in stock"
-                            type="number"
-                        />
-                        <Form.Label>
-                            Minimal order quantity (MOQ)
-                        </Form.Label>
-                        <Form.Control
-                            value={moq}
-                            onChange={e => setMoq(Number(e.target.value))}
-                            placeholder="Minimal order quantity"
-                            type="number"
-                        />
-                    </Card.Body>
-                    <Card.Footer>
-                        <Button variant="outline-success" onClick={addProduct}>Add</Button>
-                    </Card.Footer>
-                </Card>
-            </Form>
-        </AdminUI>
-    )
-} else{
-    return (<p> Nothing here</p>)
-}
+                </Form>
+            </AdminUI>
+        )
+    } else {
+        return (<p> Nothing here</p>)
+    }
 }
 export default AddProduct

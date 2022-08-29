@@ -36,7 +36,7 @@ const Product = sequelize.define('product', {
     qty_step: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
     stock: { type: DataTypes.INTEGER },
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Pre-order' },
-    category: { type: DataTypes.ARRAY, allowNull: true },
+    category: { type: DataTypes.STRING, allowNull: true },
 });
 
 // Сущность поста блога
@@ -46,7 +46,7 @@ const Post = sequelize.define('post', {
     description: { type: DataTypes.JSON, allowNull: false },
     img: { type: DataTypes.STRING },
     link: { type: DataTypes.STRING, unique: true, allowNull: true },
-    category: { type: DataTypes.ARRAY, allowNull: true },
+    category: { type: DataTypes.STRING, allowNull: true },
 })
 
 // Сущность поста вики
