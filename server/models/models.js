@@ -36,6 +36,7 @@ const Product = sequelize.define('product', {
     qty_step: { type: DataTypes.INTEGER, allowNull: false, defaultValue: 1 },
     stock: { type: DataTypes.INTEGER },
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Pre-order' },
+    category: { type: DataTypes.ARRAY, allowNull: true },
 });
 
 // Сущность поста блога
@@ -45,6 +46,7 @@ const Post = sequelize.define('post', {
     description: { type: DataTypes.JSON, allowNull: false },
     img: { type: DataTypes.STRING },
     link: { type: DataTypes.STRING, unique: true, allowNull: true },
+    category: { type: DataTypes.ARRAY, allowNull: true },
 })
 
 // Сущность поста вики
@@ -124,12 +126,6 @@ Basket.hasMany(BasketProduct); // Корзине передаём объект �
 
 Product.hasMany(ProductInfo, { as: 'info' }); // Товар может содержать множество описаний
 ProductInfo.belongsTo(Product);
-
-PostCategory.hasMany(Post);
-Post.belongsTo(PostCategory);
-
-ProductCategory.hasMany(Product);
-Product.belongsTo(ProductCategory);
 
 User.hasMany(Post);
 Post.belongsTo(User);
