@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import { fetchOneProduct, updateProduct } from "../../../../api/productAPI";
+import { fetchOneProduct, updateProduct,fetchCategories } from "../../../../api/productAPI";
 import styled from 'styled-components';
 import AdminUI from "../../Ui/AdminUI";
 import { Card } from 'react-bootstrap';
@@ -28,6 +28,10 @@ const EditProduct = () => {
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState('');
     const [preview, setPreview] = useState(null);
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [categoryList, setCategoryList] = useState(null);
+    const [loadedCats, setLoadedCats] = useState(false);
+    const [usedCategories, setUsedCategories] = useState(null);
 
     // Preview render
     useEffect(() => {
@@ -65,10 +69,30 @@ const EditProduct = () => {
         });
     }
 
+
+    // get all categories
+    useEffect(() => {
+        fetchCategories().then((data) => {
+            setCategoryList(data)
+            setLoadedCats(true)
+        })
+    }, [])
+    //apending categories to this product
+    const appendCategories = (id) => {
+        let previous = selectedCategories;
+        if (previous.includes(id)) {
+            previous.splice(previous.indexOf(id), 1)
+            console.log('Стало так' + previous)
+            setSelectedCategories(previous)
+        }
+        else {
+            previous.push(id)
+            console.log('А тут теперь так ' + previous)
+            setSelectedCategories(previous)
+        }
+    }
     // Get the id from url
-
     const { id } = useParams()
-
     // Get product using productAPI by ID
 
     useEffect(() => {
@@ -79,6 +103,7 @@ const EditProduct = () => {
             setStock(data.stock);
             setIsLoaded(true);
             setFile(data.img);
+            setUsedCategories(data.productCategoryId)
             console.log(data.img)
         },
             (error) => {
@@ -134,6 +159,19 @@ const EditProduct = () => {
                                 />
                             </Card.Body>
                         </Card>
+                        <Card>
+                        <Card.Header>Categories</Card.Header>
+                        <Card.Body>
+                            {categoryList.map(item => {
+                                return (
+                                    <Form.Check key={item.id} type={'checkbox'}>
+                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} checked={usedCategories.includes(item.id)} />
+                                        <Form.Check.Label>{item.name}</Form.Check.Label>
+                                    </Form.Check>
+                                )
+                            })}
+                        </Card.Body>
+                    </Card>
                     </FlexBox>
                     <Card>
                         <Card.Header>

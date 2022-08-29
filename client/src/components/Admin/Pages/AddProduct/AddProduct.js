@@ -30,7 +30,7 @@ const AddProduct = () => {
     const [preview, setPreview] = useState(null);
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [categoryList, setCategoryList] = useState(null);
-
+    const [loadedCats, setLoadedCats] = useState(false);
     useEffect(() => {
         if (!file) {
             setPreview(undefined)
@@ -97,7 +97,14 @@ const AddProduct = () => {
 
     }
 
-    return (
+    useEffect(() => {
+        fetchCategories().then((data) => {
+            setCategoryList(data)
+            setLoadedCats(true)
+        })
+    }, [])
+
+    if (loadedCats) { return (
         <AdminUI>
             {console.log(file)}
             <h1>Add new product</h1>
@@ -181,6 +188,8 @@ const AddProduct = () => {
             </Form>
         </AdminUI>
     )
+} else{
+    return (<p> Nothing here</p>)
 }
-
+}
 export default AddProduct
