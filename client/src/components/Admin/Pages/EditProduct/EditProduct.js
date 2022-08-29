@@ -103,8 +103,7 @@ const EditProduct = () => {
             setStock(data.stock);
             setIsLoaded(true);
             setFile(data.img);
-            setUsedCategories(data.productCategoryId)
-            console.log(data.img)
+            setUsedCategories(data.category)
         },
             (error) => {
                 setIsLoaded(true);
@@ -165,7 +164,7 @@ const EditProduct = () => {
                             {categoryList.map(item => {
                                 return (
                                     <Form.Check key={item.id} type={'checkbox'}>
-                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)} checked={usedCategories.includes(item.id)} />
+                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  checked={usedCategories.split(",").includes(item.id)} />
                                         <Form.Check.Label>{item.name}</Form.Check.Label>
                                     </Form.Check>
                                 )
