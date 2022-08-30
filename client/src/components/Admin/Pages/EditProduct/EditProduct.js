@@ -31,7 +31,6 @@ const EditProduct = () => {
     const [selectedCategories, setSelectedCategories] = useState([]);
     const [categoryList, setCategoryList] = useState(null);
     const [loadedCats, setLoadedCats] = useState(false);
-    const [usedCategories, setUsedCategories] = useState(null);
 
     // Preview render
     useEffect(() => {
@@ -58,6 +57,7 @@ const EditProduct = () => {
         formData.append('qty_step', `${qtyStep}`);
         formData.append('img', file);
         formData.append('info', JSON.stringify(info));
+        formData.append('category',selectedCategories.join(','))
         updateProduct(formData).then((data) => {
             if (data == true) {
                 console.log(data)
@@ -82,13 +82,13 @@ const EditProduct = () => {
         let previous = selectedCategories;
         if (previous.includes(id)) {
             previous.splice(previous.indexOf(id), 1)
-            console.log('Стало так' + previous)
             setSelectedCategories(previous)
+            console.log(selectedCategories.join(','))
         }
         else {
             previous.push(id)
-            console.log('А тут теперь так ' + previous)
             setSelectedCategories(previous)
+            console.log(selectedCategories.join(','))
         }
     }
     // Get the id from url
@@ -101,9 +101,11 @@ const EditProduct = () => {
             setPrice(data.price);
             setMoq(data.moq);
             setStock(data.stock);
-            setIsLoaded(true);
             setFile(data.img);
-            setUsedCategories(data.category)
+            if(typeof(data.category)==="string"){
+            setSelectedCategories(JSON.parse("[" + data.category + "]"))}
+            setIsLoaded(true);
+            
         },
             (error) => {
                 setIsLoaded(true);
@@ -132,7 +134,6 @@ const EditProduct = () => {
             <AdminUI>
                 <h1>Edit product "{name}"</h1>
                 <NotificationContainer />
-                {console.log(price)}
                 <Form>
                     <FlexBox>
                         <Card className='product-title'>
@@ -164,7 +165,8 @@ const EditProduct = () => {
                             {categoryList.map(item => {
                                 return (
                                     <Form.Check key={item.id} type={'checkbox'}>
-                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  checked={usedCategories.split(",").includes(item.id)} />
+                                        <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  defaultChecked={selectedCategories.includes(item.id) } />
+                                        {console.log(selectedCategories.includes(item.id))}
                                         <Form.Check.Label>{item.name}</Form.Check.Label>
                                     </Form.Check>
                                 )
