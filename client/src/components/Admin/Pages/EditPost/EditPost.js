@@ -6,6 +6,7 @@ import { EditorState } from "draft-js";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
+import {fetchCategories} from "../../../../api/productAPI";
 import { createPost, decodePostBody, fetchOnePost, updatePost, encodePostBody, htmlPostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useParams } from 'react-router-dom';
@@ -15,6 +16,9 @@ const FlexBox = styled.div`
 display: flex;
 justify-content: space-between;
 `;
+
+
+
 
 const EditPost = () => {
 
@@ -27,6 +31,9 @@ const EditPost = () => {
     const [link, setLink] = useState('');
     const [isLoaded, setIsLoaded] = useState(false);
     const [error, setError] = useState('');
+    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [categoryList, setCategoryList] = useState(null);
+    const [loadedCats, setLoadedCats] = useState(false);
 
     // SEO url generator
     useEffect(() => {
@@ -45,6 +52,7 @@ const EditPost = () => {
         formData.append('title', title);
         formData.append('description', encodePostBody(editorState));
         formData.append('link', link);
+        formData.append('category',selectedCategories.join(','))
         console.log(formData);
         updatePost(formData).then((data) => {
             if (data == true) {
@@ -60,6 +68,28 @@ const EditPost = () => {
     // Editor state handler
     const onEditorStateChange = (editorState) => {
         setEditorState(editorState)
+    }
+
+    useEffect(() => {
+        fetchCategories().then((data) => {
+            setCategoryList(data)
+            setLoadedCats(true)
+        })
+    }, [])
+    
+     //apending categories to this product
+    const appendCategories = (id) => {
+        let previous = selectedCategories;
+        if (previous.includes(id)) {
+            previous.splice(previous.indexOf(id), 1)
+            setSelectedCategories(previous)
+            console.log(selectedCategories.join(','))
+        }
+        else {
+            previous.push(id)
+            setSelectedCategories(previous)
+            console.log(selectedCategories.join(','))
+        }
     }
 
     useEffect(() => {
@@ -125,6 +155,22 @@ const EditPost = () => {
                                     </Card.Body>
                                     <Card.Footer />
                                 </Card>
+                            </Col>
+                            <Col>
+                            <Card>
+                                <Card.Header>Categories</Card.Header>
+                                <Card.Body>
+                                    {categoryList.map(item => {
+                                        return (
+                                            <Form.Check key={item.id} type={'checkbox'}>
+                                                <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  defaultChecked={selectedCategories.includes(item.id) } />
+                                                {console.log(selectedCategories.includes(item.id))}
+                                                <Form.Check.Label>{item.name}</Form.Check.Label>
+                                            </Form.Check>
+                                        )
+                                    })}
+                                </Card.Body>
+                            </Card>
                             </Col>
                         </Row>
                     </Container>
