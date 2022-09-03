@@ -7,11 +7,19 @@ import { ReactComponent as MobileCartIcon } from '../images/mobileCart.svg'
 import { ReactComponent as BurgerIcon } from '../images/burger.svg'
 import { ReactComponent as LogoMobileIcon } from '../images/logo-mobile.svg'
 import { ReactComponent as CloseIcon } from '../images/close.svg'
+import { ReactComponent as LogoDescktop } from '../images/logo-descktop.svg'
+import { ReactComponent as SearchDescktop } from '../images/searchDescktop.svg'
+import { ReactComponent as UserDescktop } from '../images/descktopUser.svg'
+import { ReactComponent as CartDescktop } from '../images/descktopCart.svg'
+import  MediaQuery  from 'react-responsive'
 import Navigation from './Navigation'
 const BurgerButton = styled.button`
   background-color: transparent;
   border: none;
   margin-right: 15px;
+  @media screen and (min-width: 1128px) {
+    display:none;
+  }
 `
 
 const MenuContainer = styled.div`
@@ -34,6 +42,9 @@ const MenuContainer = styled.div`
       top: 10px;
       border: none;
       background: none;
+      @media screen and (min-width: 1128px) {
+        display:none;
+      }
     }
   }
   .navigation-menu.expanded {
@@ -69,6 +80,9 @@ const MenuWrapper = styled.div`
 const SearchShowButton = styled.button`
   background-color: transparent;
   border: none;
+  @media screen and (min-width: 1128px) {
+        display:none;
+      }
 `
 
 const MobileUserButton = styled.button`
@@ -82,6 +96,9 @@ const MobileCartButton = styled.button`
 `
 const MobileLogo = styled.div`
   margin-right: auto;
+  @media screen and (min-width: 1128px){
+    margin-right: 45px;
+  }
 `
 const SearchForm = styled.div`
   .search-container {
@@ -96,6 +113,25 @@ const SearchForm = styled.div`
     left: -18px;
     box-sizing: border-box;
     padding: 10px 20px;
+    .search-input {
+      width: calc(100vw - 68px);
+      display: inline-block;
+      box-shadow: 0px 1px 0px #eaebec;
+      border: none;
+  }
+    @media screen and (min-width: 1128px) {
+        position: inherit;
+        width: 693px;
+        left: none;
+        padding: none;
+        .search-input{
+          border: 1px solid rgba(216, 216, 216, 0.3);
+          border-radius: 2px; 
+          height:40px;
+          text-indent:10px;
+          box-shadow: none;
+        }
+      }
   }
   .expanded {
     -webkit-transition: top 0.5s;
@@ -107,12 +143,6 @@ const SearchForm = styled.div`
     background-color: #fff;
     padding-top: 5px;
     vertical-align: baseline;
-  }
-  .search-input {
-    width: calc(100vw - 68px);
-    display: inline-block;
-    box-shadow: 0px 1px 0px #eaebec;
-    border: none;
   }
 `
 const HeaderMenu = () => {
@@ -136,10 +166,14 @@ const HeaderMenu = () => {
         >
           <BurgerIcon />
         </BurgerButton>
-
         <MobileLogo>
           <Link to="/">
+          <MediaQuery maxWidth={1127}>
             <LogoMobileIcon />
+          </MediaQuery>
+          <MediaQuery minWidth={1128}>
+            <LogoDescktop />
+          </MediaQuery>
           </Link>
         </MobileLogo>
         <SearchForm>
@@ -155,7 +189,13 @@ const HeaderMenu = () => {
               placeholder="Search entire store here..."
             />
             <button className="search-button">
-              <MobileSearchIcon />
+              
+              <MediaQuery maxWidth={1127}>
+                <MobileSearchIcon />
+              </MediaQuery>
+              <MediaQuery minWidth={1128}>
+                <SearchDescktop />
+              </MediaQuery>
             </button>
           </div>
         </SearchForm>
@@ -167,10 +207,20 @@ const HeaderMenu = () => {
           <MobileSearchIcon />
         </SearchShowButton>
         <MobileUserButton>
-          <MobileUserIcon />
+          <MediaQuery maxWidth={1127}>
+            <MobileUserIcon />
+          </MediaQuery>
+          <MediaQuery minWidth={1128}>
+            <UserDescktop />
+          </MediaQuery>
         </MobileUserButton>
         <MobileCartButton>
-          <MobileCartIcon />
+          <MediaQuery maxWidth={1127}>
+            <MobileCartIcon />
+          </MediaQuery>
+          <MediaQuery minWidth={1128}>
+            <CartDescktop />
+          </MediaQuery>
         </MobileCartButton>
       </MenuWrapper>
       <div
