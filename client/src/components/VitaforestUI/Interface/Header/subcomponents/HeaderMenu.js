@@ -72,6 +72,8 @@ const MenuWrapper = styled.div`
   flex-wrap: nowrap;
   align-items: center;
   padding-top: 11px;
+  margin: 0 auto;
+  width:  1128px ;
   .logo-container.expanded {
     display: none;
   }
