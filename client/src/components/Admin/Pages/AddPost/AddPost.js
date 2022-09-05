@@ -86,6 +86,7 @@ const AddPost = () => {
         formData.append('title', title);
         formData.append('description', encodePostBody(editorState))
         formData.append('link', link)
+        formData.append('category', selectedCategories)
         console.log('Айди автора из контекста ' + user.user.id)
         formData.append('userId', user.user.id)
         createPost(formData).then((data) => {

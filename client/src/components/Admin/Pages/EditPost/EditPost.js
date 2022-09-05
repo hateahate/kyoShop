@@ -57,10 +57,10 @@ const EditPost = () => {
         updatePost(formData).then((data) => {
             if (data == true) {
                 console.log(data)
-                NotificationManager.success(`Post "${title}" successfully created`, 'Success')
+                NotificationManager.success(`Post "${title}" successfully updated`, 'Success')
             }
             else {
-                NotificationManager.error(`Post "${title}" cannot be created`, `${data}`);
+                NotificationManager.error(`Post "${title}" cannot be updated`, `${data}`);
             }
         })
     }
@@ -97,6 +97,7 @@ const EditPost = () => {
             console.log(data)
             setEditorState(EditorState.createWithContent(decodePostBody(data.description)))
             setTitle(data.title)
+            setSelectedCategories(JSON.parse("[" + data.category + "]"))
             setLink(data.link)
             setIsLoaded(true)
             console.log(editorState)
@@ -164,7 +165,7 @@ const EditPost = () => {
                                         return (
                                             <Form.Check key={item.id} type={'checkbox'}>
                                                 <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  defaultChecked={selectedCategories.includes(item.id) } />
-                                                {console.log(selectedCategories.includes(item.id))}
+                                                {console.log(selectedCategories)}
                                                 <Form.Check.Label>{item.name}</Form.Check.Label>
                                             </Form.Check>
                                         )

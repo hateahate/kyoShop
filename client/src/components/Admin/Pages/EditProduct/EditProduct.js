@@ -166,7 +166,7 @@ const EditProduct = () => {
                                 return (
                                     <Form.Check key={item.id} type={'checkbox'}>
                                         <Form.Check.Input type={'checkbox'} onClick={() => appendCategories(item.id)}  defaultChecked={selectedCategories.includes(item.id) } />
-                                        {console.log(selectedCategories.includes(item.id))}
+
                                         <Form.Check.Label>{item.name}</Form.Check.Label>
                                     </Form.Check>
                                 )

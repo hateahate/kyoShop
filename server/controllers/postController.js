@@ -40,7 +40,7 @@ class PostController {
     }
     async update(req, res, next) {
         try {
-            const { id, title, description, link } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { id, title, description, link, category } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
@@ -49,7 +49,7 @@ class PostController {
                 return res.json(post);
             }
             else {
-                const post = await Post.update({ title, description }, { where: { id } });
+                const post = await Post.update({ title, description, category, link }, { where: { id } });
                 return res.json(post);
             }
         }
