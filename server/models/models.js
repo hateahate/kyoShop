@@ -112,6 +112,13 @@ const DashboardNotification = sequelize.define('dashboardnotifications', {
     body: { type: DataTypes.TEXT },
 })
 
+const Ticket = sequelize.defaine('ticket', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    subject: { type: DataTypes.STRING },
+    messages: { type: DataTypes.TEXT },
+    status: { type: DataTypes.STRING, defaultValue: 'Waiting' },
+})
+
 
 
 // Устанавливаем связи
@@ -160,6 +167,7 @@ module.exports = {
     PostCategory,
     MetaTag,
     DashboardNotification,
+    Ticket,
 }
 
 
