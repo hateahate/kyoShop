@@ -53,8 +53,10 @@ const Post = sequelize.define('post', {
 const Wiki = sequelize.define('wiki', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     title: { type: DataTypes.STRING, allowNull: false },
-    description: { type: DataTypes.STRING, allowNull: false },
+    description: { type: DataTypes.JSON, allowNull: false },
     img: { type: DataTypes.STRING },
+    link: { type: DataTypes.STRING, unique: true, allowNull: true },
+    category: { type: DataTypes.STRING, allowNull: true },
 })
 
 

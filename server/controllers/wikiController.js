@@ -5,16 +5,16 @@ const ApiError = require('../error/ApiError');
 class WikiController {
     async create(req, res, next) {
         try {
-            const { title, description } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            let { title, description, link, userId, category } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const wiki = await Wiki.create({ title, description, img: fileName });
+                const wiki = await Wiki.create({ title, description, img: fileName, link, category, userId });
                 return res.json(wiki);
             }
             else {
-                const wiki = await Wiki.create({ title, description });
+                const wiki = await Wiki.create({ title, description, link, userId, category });
                 return res.json(wiki);
             }
         }
@@ -27,8 +27,9 @@ class WikiController {
         page = page || 1; // Создаем пагинацию получения товаров, одна страница по-умолчанию если не указано другого.
         limit = limit || 9; // Лимит товаров на странице.
         let offset = page * limit - limit; // При заданном лимите пилим на странцы.
-        const wiki = await Wiki.findAndCountAll({ limit, offset });
-        return res.json(wiki);
+        let wikis;
+        wikis = await Wiki.findAndCountAll({ limit, offset });
+        return res.json(wikis);
     }
     async getOne(req, res) {
         const { id } = req.params; // Получаем ID из запроса
@@ -39,17 +40,17 @@ class WikiController {
     }
     async update(req, res, next) {
         try {
-            const { id, title, description } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { id, title, description, link, category } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
             if (req.files) {
                 const { img } = req.files; // Получаем изображение
                 let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
                 img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
-                const wiki = await Wiki.update({ title, description, img: fileName }, { where: { id } });
+                const wiki = await Wiki.update({ title, description, link, img: fileName, category, userId }, { where: { id } });
                 return res.json(wiki);
             }
             else {
-                const wiki = await Wiki.update({ title, description }, { where: { id } });
-                return res.json(wiki)
+                const wiki = await Wiki.update({ title, description, category, link }, { where: { id } });
+                return res.json(wiki);
             }
         }
         catch (e) {
@@ -58,7 +59,7 @@ class WikiController {
     }
     async remove(req, res, next) {
         try {
-            const { id } = req.query;
+            const { id } = req.body;
             await Wiki.destroy({ where: { id } });
             return res.json('Removed');
         }
