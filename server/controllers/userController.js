@@ -6,7 +6,7 @@ const generateJwt = (id, email, role) => {
     return Jwt.sign(
         { id, email, role },
         process.env.SECRET_KEY,
-        { expiresIn: '24h' }
+        { expiresIn: '1h' }
     ) // Генерируем токен для пользователя с временем жизни 24 часа
 }
 
@@ -27,6 +27,7 @@ class UserController {
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });
     }
+
     async login(req, res, next) {
         const { email, password } = req.body;
         const user = await User.findOne({ where: { email } });
@@ -40,10 +41,12 @@ class UserController {
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });
     }
+
     async check(req, res, next) {
         const token = generateJwt(req.user.id, req.user.email, req.user.role);
         return res.json({ token });
     }
+
     async getUser(req, res) {
         const { id } = req.params
         const user = await User.findOne({ where: { id } });
@@ -52,10 +55,12 @@ class UserController {
             'last_name': user.last_name,
         });
     }
+
     async getAllUsers(req, res) {
         const users = await User.findAll();
         return res.json(users)
     }
+
     async remove(req, res, next) {
         try {
             const { id } = req.body;
@@ -64,6 +69,36 @@ class UserController {
         }
         catch (e) {
             next(ApiError.badRequest(e.message));
+        }
+    }
+
+    async updateUser(req, res) {
+        try {
+            const { id, email, password, first_name, last_name, role } = req.body;
+            const user = await User.update({ email, password, first_name, last_name, role }, { where: { id } })
+            return res.json(user)
+        }
+        catch (e) {
+            return res.json(e.message)
+        }
+    }
+
+    async updatePassword(req, res, next) {
+        try {
+            const { id, password, oldpassword } = req.body
+            const user = await User.findOne({ where: { id } })
+            let comparePassword = bcrypt.compareSync(oldpassword, user.password)
+            if (!comparePassword) {
+                next(ApiError.badRequest('Password uncorrect'))
+            }
+            else {
+                const hashPassword = await bcrypt.hash(password, 5);
+                const updatePass = await User.update({ password: hashPassword }, { where: { id } })
+
+            }
+        }
+        catch (e) {
+            return res.json(e.message)
         }
     }
 }
