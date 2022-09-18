@@ -38,6 +38,10 @@ class UserController {
         if (!comparePassword) {
             return next(ApiError.internal('Password not correct'));
         }
+        let validateApprove = user.approved;
+        if (!validateApprove) {
+            return next(ApiError.internal('Account is not approved'))
+        }
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });
     }
@@ -74,8 +78,8 @@ class UserController {
 
     async updateUser(req, res) {
         try {
-            const { id, email, password, first_name, last_name, role } = req.body;
-            const user = await User.update({ email, password, first_name, last_name, role }, { where: { id } })
+            const { id, email, first_name, last_name, role } = req.body;
+            const user = await User.update({ email, first_name, last_name, role }, { where: { id } })
             return res.json(user)
         }
         catch (e) {

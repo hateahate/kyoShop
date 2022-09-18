@@ -10,6 +10,7 @@ const User = sequelize.define('user', {
     first_name: { type: DataTypes.STRING },
     last_name: { type: DataTypes.STRING },
     role: { type: DataTypes.STRING, defaultValue: 'USER' },
+    approved: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
 // Сущность компании
