@@ -3,17 +3,13 @@ import AdminUI from "../../Ui/AdminUI";
 import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
 import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { Card, Form, Button, Container, Row, Col, ButtonGroup } from "react-bootstrap";
+import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
 import { createPost, decodePostBody, encodePostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
-import { convertToRaw } from "draft-js";
 import { Context } from "../../../..";
 import { useNavigate } from "react-router-dom";
-import { ADMIN_EDIT_POST } from "../../../../utils/consts";
 import { fetchCategories } from "../../../../api/productAPI";
-import CatsDrawer from "../categoriesDrawer";
-import { render } from "react-dom";
 
 // Стилизованные компоненты
 const FlexBox = styled.div`

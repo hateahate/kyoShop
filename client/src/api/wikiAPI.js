@@ -1,7 +1,4 @@
 import { $authHost, $host } from ".";
-import jwt_decode from "jwt-decode";
-import { convertFromRaw, convertToRaw } from "draft-js";
-import draftToHtml from 'draftjs-to-html';
 
 export const removeWiki = async (id) => {
     try {

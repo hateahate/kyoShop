@@ -18,7 +18,6 @@ const User = sequelize.define('user', {
 const Company = sequelize.define('company', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     company_name: { type: DataTypes.STRING },
-    category: { type: DataTypes.STRING, defaultValue: 'UNAPPROVED' },
     vat: { type: DataTypes.STRING, unique: true },
     register_code: { type: DataTypes.INTEGER, unique: true },
     address: { type: DataTypes.STRING },

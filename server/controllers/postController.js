@@ -33,9 +33,7 @@ class PostController {
     }
     async getOne(req, res) {
         const { id } = req.params; // Получаем ID из запроса
-        const post = await Post.findOne({
-            where: { id }
-        }); // Получаем товар с заданным айди и возвращаем
+        const post = await Post.findOne({ where: { id } }); // Получаем товар с заданным айди и возвращаем
         return res.json(post);
     }
     async update(req, res, next) {

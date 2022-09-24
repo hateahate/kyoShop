@@ -90,7 +90,8 @@ class UserController {
     async updatePassword(req, res, next) {
         try {
             const { id, password, oldpassword } = req.body
-            const user = await User.findOne({ where: { id } })
+            console.log(id)
+            const user = await User.findOne({ where: { id } });
             let comparePassword = bcrypt.compareSync(oldpassword, user.password)
             if (!comparePassword) {
                 next(ApiError.badRequest('Password uncorrect'))
@@ -98,7 +99,7 @@ class UserController {
             else {
                 const hashPassword = await bcrypt.hash(password, 5);
                 const updatePass = await User.update({ password: hashPassword }, { where: { id } })
-
+                return res.json('Password updated')
             }
         }
         catch (e) {

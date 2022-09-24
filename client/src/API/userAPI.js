@@ -43,3 +43,14 @@ export const getAllUsersByAdmin = async () => {
         return e.message
     }
 }
+
+export const updatePassword = async (data) => {
+    try {
+        const { response } = await $authHost.post('/api/user/password', data)
+        return response
+    }
+    catch (e) {
+        return e.message
+    }
+}
+
