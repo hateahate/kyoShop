@@ -1,16 +1,11 @@
 import React, { useEffect } from "react";
 import AdminUI from "../../Ui/AdminUI";
-import { Editor } from 'react-draft-wysiwyg';
 import { useState } from "react";
-import { EditorState } from "draft-js";
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
 import { Card, Form, Button, Container, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
-import { fetchCategories } from "../../../../api/productAPI";
-import { createPost, decodePostBody, fetchOnePost, updatePost, encodePostBody, htmlPostBody } from "../../../../api/postAPI";
 import { NotificationContainer, NotificationManager } from "react-notifications";
 import { useParams } from 'react-router-dom';
-import { getUserById } from "../../../../api/userAPI";
+import { getUserById, updateUser } from "../../../../api/userAPI"
 
 // Styled components
 const FlexBox = styled.div`
@@ -30,6 +25,7 @@ const EditUser = () => {
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [role, setRole] = useState('')
+    const [approved, setApproved] = useState('')
 
     // Load Data
     useEffect(() => {
@@ -38,12 +34,73 @@ const EditUser = () => {
             setLastName(data.last_name)
             setEmail(data.email)
             setRole(data.role)
-            console.log(data)
+            setApproved(data.approved)
         })
     }, [])
 
+    // Save changes
+    const UserUpdate = () => {
+        const formData = new FormData();
+        formData.append('id', id)
+        formData.append('first_name', firstName)
+        formData.append('last_name', lastName)
+        formData.append('email', email)
+        formData.append('approved', approved)
+        formData.append('role', role)
+        updateUser(formData).then((data) => { console.log(data) })
+    }
+
     return (
-        <AdminUI></AdminUI>
+        <AdminUI>
+            <NotificationContainer />
+            <Form>
+                <Container>
+                    <Card>
+                        <Card>
+                            <Card.Header>
+                                First name
+                            </Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large" value={firstName} onChange={e => setFirstName(String(e.target.value))} placeholder='First name' type='text' />
+                            </Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                Last name
+                            </Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large" value={lastName} onChange={e => setLastName(String(e.target.value))} placeholder='First name' type='text' />
+                            </Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                Email
+                            </Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large" value={email} onChange={e => setEmail(String(e.target.value))} placeholder='user@dejikyo.com' type='email' />
+                            </Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                Role
+                            </Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large" value={role} onChange={e => setRole(String(e.target.value))} placeholder='role' type='text' />
+                            </Card.Body>
+                        </Card>
+                        <Card>
+                            <Card.Header>
+                                Approved
+                            </Card.Header>
+                            <Card.Body>
+                                <Form.Control aria-label="large" value={approved} onChange={e => setApproved(String(e.target.value))} placeholder='' type='text' />
+                            </Card.Body>
+                        </Card>
+                        <Card.Footer><Button variant="success" onClick={UserUpdate}>Update</Button></Card.Footer>
+                    </Card>
+                </Container>
+            </Form>
+        </AdminUI>
     )
 }
 

@@ -3,6 +3,7 @@ import AdminUI from './Ui/AdminUI';
 import { Context } from '../..';
 import { Button, Form } from 'react-bootstrap';
 import { updatePassword } from '../../api/userAPI';
+import Input from '../VitaforestUI/Interface/Input/Input';
 
 
 const Admin = () => {
@@ -26,7 +27,9 @@ const Admin = () => {
         <AdminUI>
             <Form.Control onChange={(e) => setPrevPass(e.target.value)} ></Form.Control>
             <Form.Control onChange={(e) => setNewPass(e.target.value)} ></Form.Control>
+            <Form.Control type='date' onChange={(e) => console.log(e.target.value)} />
             <Button onClick={() => { changePassword() }}>Change</Button>
+            <Input type='date' onChange={(e) => console.log(e.target.value)}></Input>
         </AdminUI>
     )
 }

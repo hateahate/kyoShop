@@ -13,7 +13,7 @@ const generateJwt = (id, email, role) => {
 const { User, Basket } = require('../models/models');
 class UserController {
     async registration(req, res, next) {
-        const { email, password, first_name, last_name, role } = req.body;
+        const { email, password, first_name, last_name, role, birthDate } = req.body;
         if (!email || !password) {
             return next(ApiError.badRequest('Uncorrent email or password')); //Проверяем получаемые данные
         }
@@ -22,7 +22,7 @@ class UserController {
             return next(ApiError.badRequest('User with this email already exist'));
         }
         const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({ email, first_name, last_name, role, password: hashPassword }); // Создаём пользователя в БД
+        const user = await User.create({ email, first_name, last_name, birthDate, role, password: hashPassword }); // Создаём пользователя в БД
         const basket = await Basket.create({ userId: user.id });
         const token = generateJwt(user.id, user.email, user.role);
         return res.json({ token });
@@ -59,6 +59,7 @@ class UserController {
             'last_name': user.last_name,
             'email': user.email,
             'role': user.role,
+            'approved': user.approved,
         });
     }
 
@@ -80,8 +81,8 @@ class UserController {
 
     async updateUser(req, res) {
         try {
-            const { id, email, first_name, last_name, role } = req.body;
-            const user = await User.update({ email, first_name, last_name, role }, { where: { id } })
+            const { id, email, first_name, last_name, role, approved } = req.body;
+            const user = await User.update({ email, first_name, last_name, role, approved }, { where: { id } })
             return res.json(user)
         }
         catch (e) {
