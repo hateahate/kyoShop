@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS, ADMIN_EDIT_PRODUCT, ADMIN_ADD_POST,
-  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY,
+  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
@@ -23,6 +23,7 @@ import EditPost from './components/Admin/Pages/EditPost/EditPost'
 import PostListPage from './components/Admin/Pages/PostList/PostListPage'
 import UsersListPage from './components/Admin/Pages/UsersList/UsersListPage'
 import AddProductCategory from './components/Admin/Pages/AddProductCategory/AddProductCategory'
+import EditUser from './components/Admin/Pages/EditUser/EditUser'
 
 export const authRoutes = [
 
@@ -65,6 +66,10 @@ export const authRoutes = [
   {
     path: ADMIN_ADD_PRODUCT_CATEGORY,
     Component: AddProductCategory,
+  },
+  {
+    path: ADMIN_EDIT_USER,
+    Component: EditUser,
   },
 ]
 export const publicRoutes = [
