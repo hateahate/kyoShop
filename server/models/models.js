@@ -116,6 +116,7 @@ const PostCategory = sequelize.define('post_category', {
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'NEW' },
+    items: { type: DataTypes.JSON },
 });
 
 const MetaTag = sequelize.define('metatag', {
