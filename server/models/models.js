@@ -14,6 +14,18 @@ const User = sequelize.define('user', {
     approved: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
+
+// Сущность адреса
+
+const Address = sequelize.define('address', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    country: { type: DataTypes.STRING },
+    city: { type: DataTypes.STRING },
+    postAddress: { type: DataTypes.STRING },
+    postCode: { type: DataTypes.STRING },
+})
+
+
 // Сущность компании
 
 const Company = sequelize.define('company', {
@@ -140,6 +152,9 @@ ProductInfo.belongsTo(Product);
 User.hasMany(Post);
 Post.belongsTo(User);
 
+User.hasMany(Address);
+Address.belongsTo(User);
+
 User.hasMany(Wiki);
 Wiki.belongsTo(User);
 
@@ -171,6 +186,7 @@ module.exports = {
     MetaTag,
     DashboardNotification,
     Ticket,
+    Address,
 }
 
 
