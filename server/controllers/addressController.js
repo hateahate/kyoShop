@@ -3,12 +3,12 @@ const ApiError = require('../error/ApiError');
 class AddressController {
     async create(req, res, next) {
         try {
-            let { country, type, city, postAddress, postCode } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            let { country, type, city, postAddress, postCode } = req.body;
             const address = await Address.create({ country, type, city, postAddress, postCode });
             return res.json(address);
         }
         catch (e) {
-            next(ApiError.badRequest(e.message)); // Если ошибка возвращаем сообщение об ошибке
+            next(ApiError.badRequest(e.message));
         }
     }
     async getAll(req, res, next) {
