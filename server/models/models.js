@@ -19,6 +19,7 @@ const User = sequelize.define('user', {
 
 const Address = sequelize.define('address', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type: { type: DataTypes.STRING },
     country: { type: DataTypes.STRING },
     city: { type: DataTypes.STRING },
     postAddress: { type: DataTypes.STRING },
