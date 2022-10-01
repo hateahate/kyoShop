@@ -11,10 +11,20 @@ class AddressController {
             next(ApiError.badRequest(e.message));
         }
     }
+    async getOne(req, res, next) {
+        let { id } = req.body
+        try {
+            const address = await Address.findOne({ where: { id } })
+            return res.json(address)
+        }
+        catch (e) {
+            return next(ApiError.badRequest(e.message))
+        }
+    }
     async getAll(req, res, next) {
         try {
-            posts = await Address.findAll();
-            return res.json(posts);
+            const address = await Address.findAll();
+            return res.json(address);
         }
         catch (e) {
             next(ApiError.badRequest(e.message));

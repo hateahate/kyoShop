@@ -11,6 +11,7 @@ const postRouter = require('./postRouter');
 const wikiRouter = require('./wikiRouter');
 const postCategoryRouter = require('./postCategoryRouter');
 const liveSearchRouter = require('./liveSearchRouter');
+const addressRouter = require('./addressRouter')
 
 // Связываем внешние роутеры с путями
 router.use('/user', userRouter);
@@ -21,6 +22,7 @@ router.use('/post', postRouter);
 router.use('/wiki', wikiRouter);
 router.use('/postcat', postCategoryRouter);
 router.use('/search', liveSearchRouter);
+router.use('/address', addressRouter);
 
 
 module.exports = router;
