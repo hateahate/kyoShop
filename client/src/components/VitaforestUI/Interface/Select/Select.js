@@ -59,7 +59,9 @@ margin: 0px 0px 10px 0px;
 const Select = (props) => {
     if(props.type === 'country'){
     return (
+       
         <Container onChange={props.onChange}>
+             {console.log(props.options)}
             <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
             <SelectElement value={props.value} name={props.name}>
                 {props.options.map((item)=>(

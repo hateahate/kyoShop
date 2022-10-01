@@ -34,20 +34,34 @@ const Registration = () => {
     const [regisrty, setRegistry] = useState('');
     const [vat, setVat] = useState('');
     const [country, setCountry] = useState('');
+    const [countryIso, setCountryIco] = useState('');
+    const [state,setState] = useState('')
+    const [city,setCity] = useState('');
+    const [zip,setZip]= useState('');
+    const [post,setPost]= useState('');
+    const [phone,setPhone]= useState('');
 
 
     const countriesRaw = Country.getAllCountries();
-    const CountriesArray = [];
-    countriesRaw.forEach(elem =>{
-        if(elem.name === "Kosovo"){
-            return;
-        }else
-        CountriesArray.push(elem.name)
 
+
+    const updateCountry = function(e){
+        setCountry(e.target.value)
+        countriesRaw.forEach(elem=>{
+            if(elem.name === e.target.value){
+                setCountryIco(elem.isoCode)
+            }
+        })
+        console.log(countryIso)
     }
-    )
 
-    //const UpdatedStates = State.getStatesOfCountry(countryCode)
+    const UpdatedStates = function(){
+        if(countryIso){
+         return State.getStatesOfCountry(countryIso)
+        } else{
+        return State.getStatesOfCountry("AF")
+        }
+    }
 
     const Send = (e) => {
         
@@ -85,13 +99,19 @@ const Registration = () => {
                 <Input label='Company website' placeholder='website.com' type='text' onChange={(e) => { setWebsite(e.target.value )} }/>
                 <Input label='Registry code' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setRegistry(e.target.value )} }/>
                 <Input label='Tax/VAT number' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setVat(e.target.value )} }/>
-                <Select label="Country" options={countriesRaw} name={country} type='country'/>
-
+                <Select label="Country" options={countriesRaw} name={country} type='country'  onChange={(e) => { updateCountry(e)} }/>
+                <Select label="State/province" options={UpdatedStates()} name={country} type='country'  onChange={(e) => { setState(e.target.value )} }/>
+                <Input label='City' placeholder='Your city' type='text' onChange={(e) => { setCity(e.target.value )} }/>
+                <Input label='Zip/postal code' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setZip(e.target.value )} }/>
+                <Input label='Post address' placeholder='Your post address' type='text' onChange={(e) => { setPost(e.target.value )} }/>
+                <Input label='Phone number' placeholder='+ _ _ _ (_ _ _)' type='text' onChange={(e) => { setPhone(e.target.value )} }/>
             </FormContainer>
-            <Form.Label>Мыло</Form.Label>
-            <Form.Control value={email} onChange={e => setEmail(e.target.value)}></Form.Control>
-            <Form.Label>Пасс</Form.Label>
-            <Form.Control value={password} onChange={e => setPassword(e.target.value)}></Form.Control>
+            <FormContainer>
+                <SubHeading>Sign In information</SubHeading>
+                <Input label='Email' placeholder='youraddress@yourmail.com' type='email' onChange={e => setEmail(e.target.value)}/>
+                <Input label='Password' placeholder='• • • • • • • •' type='password' onChange={e => setPassword(e.target.value)}/>
+                <Input label='Confirm Password' placeholder='• • • • • • • •' type='password' onChange={e => setPassword(e.target.value)}/>
+            </FormContainer>
             <DefaultButton title="Create an account" onClick={(e) => Send()} />
         </form>
     );
