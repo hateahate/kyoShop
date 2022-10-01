@@ -77,6 +77,12 @@ const Registration = () => {
       formData.append('registryCode', regisrty);
       formData.append('vat',vat);
       formData.append('country',country)
+      formData.append('website',website)
+      formData.append('state',state)
+      formData.append('city',city)
+      formData.append('zip',zip)
+      formData.append('post',post)
+      formData.append('phone',phone)
       registration(formData).then(data => console.log(data))
       e.preventDefault();
 
@@ -91,7 +97,7 @@ const Registration = () => {
                 <Input label='First name' placeholder='Your name' type='text' onChange={(e) => { setfirstName(e.target.value)}}/>
                 <Input label='Last name' placeholder='Your last name' type='text' onChange={(e) => { setLastName(e.target.value )} }/>
                 <Input label='Date of birth' placeholder='dd/mm/yy' type='date' onChange={(e) => { setBirthday(e.target.value)}}/>
-                <Select label='Gender' options={["1","2"]} name="gender" onChange={(e) => { setGender(e.target.value)}} />
+                <Select label='Gender' options={["male", "female", "transgender", 'gender neutral', 'non-binary', 'agender', 'pangender', 'genderqueer', 'two-spirit', 'third gender', 'and all', 'none or a combination of these']} name="gender" onChange={(e) => { setGender(e.target.value)}} />
             </FormContainer>
             <FormContainer>
                 <SubHeading>Company information</SubHeading>
