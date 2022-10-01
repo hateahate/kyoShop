@@ -57,18 +57,30 @@ margin: 0px 0px 10px 0px;
 `;
 
 const Select = (props) => {
+    if(props.type === 'country'){
     return (
         <Container onChange={props.onChange}>
             <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
             <SelectElement value={props.value} name={props.name}>
-                
+                {props.options.map((item)=>(
+                    <option value={item.name}>{item.name}</option>
+                ))}
             </SelectElement>
-            {props.options.forEach(element => {
-                    {console.log(element.name)}
-                    <p >{element.name}</p>
-                })}
         </Container>
     )
+    } else{
+        return(
+            <Container onChange={props.onChange}>
+            <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
+            <SelectElement value={props.value} name={props.name}>
+                {props.options.map((item)=>(
+                    <option value={item}>{item}</option>
+                ))}
+            </SelectElement>
+        </Container> 
+        )
+    }
+
 }
 
 export default Select;

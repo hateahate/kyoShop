@@ -85,7 +85,7 @@ const Registration = () => {
                 <Input label='Company website' placeholder='website.com' type='text' onChange={(e) => { setWebsite(e.target.value )} }/>
                 <Input label='Registry code' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setRegistry(e.target.value )} }/>
                 <Input label='Tax/VAT number' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setVat(e.target.value )} }/>
-                <Select label="Country" options={countriesRaw} name={country}/>
+                <Select label="Country" options={countriesRaw} name={country} type='country'/>
 
             </FormContainer>
             <Form.Label>Мыло</Form.Label>
