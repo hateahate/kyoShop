@@ -51,21 +51,25 @@ class UserController {
         return res.json({ token });
     }
 
-    async getUser(req, res) {
-        const { id } = req.params
-        const user = await User.findOne({ where: { id } });
-        return res.json({
-            'first_name': user.first_name,
-            'last_name': user.last_name,
-            'email': user.email,
-            'role': user.role,
-            'approved': user.approved,
-        });
+    async getUser(req, res, next) {
+        try {
+            const { id } = req.params
+            const user = await User.findOne({ where: { id }, attributes: ['first_name', 'last_name', 'id', 'role', 'approved', 'email'] });
+            return res.json(user);
+        }
+        catch (e) {
+            return next(ApiError.internal('Cannot get user'))
+        }
     }
 
-    async getAllUsers(req, res) {
-        const users = await User.findAll();
-        return res.json(users)
+    async getAllUsers(req, res, next) {
+        try {
+            const users = await User.findAll({ attributes: ['first_name', 'last_name', 'id', 'role', 'approved', 'email'] });
+            return res.json(users)
+        }
+        catch (e) {
+            return next(ApiError.internal('Internal Error'))
+        }
     }
 
     async remove(req, res, next) {
@@ -79,14 +83,14 @@ class UserController {
         }
     }
 
-    async updateUser(req, res) {
+    async updateUser(req, res, next) {
         try {
             const { id, email, first_name, last_name, role, approved } = req.body;
             const user = await User.update({ email, first_name, last_name, role, approved }, { where: { id } })
             return res.json(user)
         }
         catch (e) {
-            return res.json(e.message)
+            return next(ApiError.badRequest('User cannot be updated'))
         }
     }
 
@@ -105,7 +109,7 @@ class UserController {
             }
         }
         catch (e) {
-            return res.json(e.message)
+            return next(ApiError.badRequest(e.message))
         }
     }
 }
