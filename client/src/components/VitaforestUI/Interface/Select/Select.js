@@ -1,4 +1,5 @@
 import React from "react";
+import { Prev } from "react-bootstrap/esm/PageItem";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -6,7 +7,7 @@ display: flex;
 flex-direction: column;
 `;
 
-const InputElement = styled.input`
+const SelectElement = styled.select`
 display: flex;
 flex-direction: row;
 align-items: center;
@@ -56,13 +57,17 @@ color: #303236;
 margin: 0px 0px 10px 0px;
 `;
 
-const Input = (props) => {
+const Select = (props) => {
     return (
         <Container onChange={props.onChange}>
             <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
-            <InputElement placeholder={props.placeholder} type={props.type} value={props.value} />
+            <SelectElement value={props.value} name={props.name}>
+                {props.options.map((item)=>(
+                    <option value={item}>{item}</option>
+                ))}
+            </SelectElement>
         </Container>
     )
 }
 
-export default Input;
+export default Select;

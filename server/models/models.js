@@ -14,6 +14,19 @@ const User = sequelize.define('user', {
     approved: { type: DataTypes.BOOLEAN, defaultValue: false },
 });
 
+
+// Сущность адреса
+
+const Address = sequelize.define('address', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    type: { type: DataTypes.STRING },
+    country: { type: DataTypes.STRING },
+    city: { type: DataTypes.STRING },
+    postAddress: { type: DataTypes.STRING },
+    postCode: { type: DataTypes.STRING },
+})
+
+
 // Сущность компании
 
 const Company = sequelize.define('company', {
@@ -74,6 +87,7 @@ const ProductInfo = sequelize.define('product_info', {
 
 const Basket = sequelize.define('basket', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    items: { type: DataTypes.JSON },
 });
 
 // Продукт в корзине
@@ -102,6 +116,7 @@ const PostCategory = sequelize.define('post_category', {
 const Order = sequelize.define('order', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'NEW' },
+    items: { type: DataTypes.JSON },
 });
 
 const MetaTag = sequelize.define('metatag', {
@@ -140,6 +155,9 @@ ProductInfo.belongsTo(Product);
 User.hasMany(Post);
 Post.belongsTo(User);
 
+User.hasMany(Address);
+Address.belongsTo(User);
+
 User.hasMany(Wiki);
 Wiki.belongsTo(User);
 
@@ -171,6 +189,7 @@ module.exports = {
     MetaTag,
     DashboardNotification,
     Ticket,
+    Address,
 }
 
 
