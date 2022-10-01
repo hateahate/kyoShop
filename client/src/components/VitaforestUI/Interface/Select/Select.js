@@ -1,5 +1,4 @@
 import React from "react";
-import { Prev } from "react-bootstrap/esm/PageItem";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -62,10 +61,12 @@ const Select = (props) => {
         <Container onChange={props.onChange}>
             <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
             <SelectElement value={props.value} name={props.name}>
-                {props.options.map((item)=>(
-                    <option value={item}>{item}</option>
-                ))}
+                
             </SelectElement>
+            {props.options.forEach(element => {
+                    {console.log(element.name)}
+                    <p >{element.name}</p>
+                })}
         </Container>
     )
 }

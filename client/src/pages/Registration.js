@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { registration } from '../api/userAPI';
 import DefaultButton from '../components/VitaforestUI/Interface/Buttons/DefaultButton';
 import { Form } from 'react-bootstrap'
+import { Country, State, City }  from 'country-state-city';
 import Input from '../components/VitaforestUI/Interface/Input/Input'
 import Select from '../components/VitaforestUI/Interface/Select/Select'
 const PageContainer = styled.div`
@@ -29,6 +30,24 @@ const Registration = () => {
     const [birthday, setBirthday] = useState('')
     const [gender,setGender] = useState('');
     const [companyName,setCompanyName] = useState('');
+    const [website, setWebsite] = useState('');
+    const [regisrty, setRegistry] = useState('');
+    const [vat, setVat] = useState('');
+    const [country, setCountry] = useState('');
+
+
+    const countriesRaw = Country.getAllCountries();
+    const CountriesArray = [];
+    countriesRaw.forEach(elem =>{
+        if(elem.name === "Kosovo"){
+            return;
+        }else
+        CountriesArray.push(elem.name)
+
+    }
+    )
+
+    //const UpdatedStates = State.getStatesOfCountry(countryCode)
 
     const Send = (e) => {
         
@@ -40,7 +59,10 @@ const Registration = () => {
       formData.append('birthDate', birthday);
       formData.append('gender',gender);
       formData.append('role', 'user');
-      formData.append('companyName',companyName)
+      formData.append('companyName',companyName);
+      formData.append('registryCode', regisrty);
+      formData.append('vat',vat);
+      formData.append('country',country)
       registration(formData).then(data => console.log(data))
       e.preventDefault();
 
@@ -60,6 +82,11 @@ const Registration = () => {
             <FormContainer>
                 <SubHeading>Company information</SubHeading>
                 <Input label='Company name' placeholder='Company' type='text' onChange={(e) => { setCompanyName(e.target.value )} }/>
+                <Input label='Company website' placeholder='website.com' type='text' onChange={(e) => { setWebsite(e.target.value )} }/>
+                <Input label='Registry code' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setRegistry(e.target.value )} }/>
+                <Input label='Tax/VAT number' placeholder='_ _ _ _ _ _' type='text' onChange={(e) => { setVat(e.target.value )} }/>
+                <Select label="Country" options={countriesRaw} name={country}/>
+
             </FormContainer>
             <Form.Label>Мыло</Form.Label>
             <Form.Control value={email} onChange={e => setEmail(e.target.value)}></Form.Control>
