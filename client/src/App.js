@@ -4,8 +4,6 @@ import 'react-notifications/lib/notifications.css';
 import { BrowserRouter } from 'react-router-dom'
 import AppRouter from './components/AppRouter'
 import styled from 'styled-components'
-import Header from './components/VitaforestUI/Interface/Header/Header'
-import Footer from './components/VitaforestUI/Interface/Footer/Footer'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { observer } from 'mobx-react-lite';
 import { check } from './api/userAPI';

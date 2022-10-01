@@ -16,9 +16,7 @@ justify-content: space-between;
 
 
 
-const EditUser = () => {
-
-    const { id } = useParams()
+const AddUser = () => {
 
     // States
     const [firstName, setFirstName] = useState('')
@@ -27,34 +25,22 @@ const EditUser = () => {
     const [role, setRole] = useState('')
     const [approved, setApproved] = useState('')
 
-    // Load Data
-    useEffect(() => {
-        getUserById(id).then((data) => {
-            setFirstName(data.first_name)
-            setLastName(data.last_name)
-            setEmail(data.email)
-            setRole(data.role)
-            setApproved(data.approved)
-        })
-    }, [])
-
     // Save changes
-    const UserUpdate = () => {
+    const UserCreate = () => {
         const formData = new FormData();
-        formData.append('id', id)
         formData.append('first_name', firstName)
         formData.append('last_name', lastName)
         formData.append('email', email)
         formData.append('approved', Boolean(approved))
         formData.append('role', role)
-        updateUser(formData).then((data) => {
-            if (data == true) {
-                NotificationManager.success(`User "${email}" successfully updated`, 'Success')
-            }
-            else {
-                NotificationManager.error(`User "${email}" cannot be updated`, `${data}`);
-            }
-        });
+        // updateUser(formData).then((data) => {
+        //    if (data == true) {
+        //        NotificationManager.success(`User "${email}" successfully updated`, 'Success')
+        //    }
+        //    else {
+        //        NotificationManager.error(`User "${email}" cannot be updated`, `${data}`);
+        //    }
+        // });
     }
 
     return (
@@ -103,7 +89,7 @@ const EditUser = () => {
                                 <Form.Control aria-label="large" value={approved} onChange={e => setApproved(String(e.target.value))} placeholder='' type='text' />
                             </Card.Body>
                         </Card>
-                        <Card.Footer><Button variant="success" onClick={UserUpdate}>Update</Button></Card.Footer>
+                        <Card.Footer><Button variant="success" onClick={UserCreate}>Update</Button></Card.Footer>
                     </Card>
                 </Container>
             </Form>
@@ -111,4 +97,4 @@ const EditUser = () => {
     )
 }
 
-export default EditUser
+export default AddUser

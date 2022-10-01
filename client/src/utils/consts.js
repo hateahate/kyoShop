@@ -18,4 +18,5 @@ export const ADMIN_SEE_POSTS = '/admin/posts';
 export const ADMIN_SEE_USERS = '/admin/users';
 export const ADMIN_ADD_PRODUCT_CATEGORY = '/admin/products/categories/add'
 export const ADMIN_EDIT_USER = '/admin/users/edit/:id'
+export const ADMIN_ADD_USER = '/admin/users/add'
 

@@ -72,6 +72,7 @@ function UsersList() {
                             <th>Email</th>
                             <th>Name</th>
                             <th>Role</th>
+                            <th>Approved</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -79,10 +80,12 @@ function UsersList() {
                     <tbody>
                         {items.map((item) => (
                             <tr key={item.id}>
+                                {console.log(item)}
                                 <td>{item.id}</td>
                                 <td>{item.email}</td>
                                 <td>{item.first_name + ' ' + item.last_name}</td>
                                 <td>{item.role}</td>
+                                <td>{String(item.approved)}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
                                 <td><Button variant={'primary'}><Link to={'/admin/users/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>
