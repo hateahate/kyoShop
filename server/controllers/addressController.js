@@ -3,8 +3,8 @@ const ApiError = require('../error/ApiError');
 class AddressController {
     async create(req, res, next) {
         try {
-            let { country, type, city, postAddress, postCode } = req.body;
-            const address = await Address.create({ country, type, city, postAddress, postCode });
+            let { country, type, city, post, zip, state, userId } = req.body;
+            const address = await Address.create({ country, type, city, post, zip, state, userId });
             return res.json(address);
         }
         catch (e) {

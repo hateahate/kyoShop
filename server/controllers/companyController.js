@@ -4,12 +4,12 @@ const Validator = require('validate-vat');
 class CompanyController {
     async create(req, res, next) {
         try {
-            const { company_name, category, vat, register_code, address } = req.body;
+            const { companyName, vat, registryCode, website, userId } = req.body;
             const validate = await Company.findOne({ where: { vat } });
             if (validate) {
                 return next(ApiError.badRequest('Company already exist'));
             }
-            const company = await Company.create({ company_name, category, vat, register_code, address });
+            const company = await Company.create({ companyName, vat, registryCode, website, userId });
             return res.json(company);
         }
         catch (e) {

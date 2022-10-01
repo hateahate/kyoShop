@@ -6,12 +6,14 @@ const { DataTypes } = require('sequelize'); // Импортируем библи
 const User = sequelize.define('user', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     email: { type: DataTypes.STRING, unique: true },
-    password: { type: DataTypes.STRING },
+    password: { type: DataTypes.STRING, allowNull: false },
     birthDate: { type: DataTypes.DATEONLY },
-    first_name: { type: DataTypes.STRING },
-    last_name: { type: DataTypes.STRING },
+    first_name: { type: DataTypes.STRING, allowNull: false },
+    last_name: { type: DataTypes.STRING, allowNull: false },
+    gender: { type: DataTypes.STRING },
     role: { type: DataTypes.STRING, defaultValue: 'USER' },
     approved: { type: DataTypes.BOOLEAN, defaultValue: false },
+    phone: { type: DataTypes.STRING },
 });
 
 
@@ -20,10 +22,11 @@ const User = sequelize.define('user', {
 const Address = sequelize.define('address', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     type: { type: DataTypes.STRING },
-    country: { type: DataTypes.STRING },
-    city: { type: DataTypes.STRING },
-    postAddress: { type: DataTypes.STRING },
-    postCode: { type: DataTypes.STRING },
+    country: { type: DataTypes.STRING, allowNull: false },
+    city: { type: DataTypes.STRING, allowNull: false },
+    state: { type: DataTypes.STRING, allowNull: false },
+    post: { type: DataTypes.STRING, allowNull: false },
+    zip: { type: DataTypes.STRING, allowNull: false },
 })
 
 
@@ -31,10 +34,10 @@ const Address = sequelize.define('address', {
 
 const Company = sequelize.define('company', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    company_name: { type: DataTypes.STRING },
+    companyName: { type: DataTypes.STRING },
     vat: { type: DataTypes.STRING, unique: true },
-    register_code: { type: DataTypes.INTEGER, unique: true },
-    address: { type: DataTypes.STRING },
+    registryCode: { type: DataTypes.STRING, unique: true },
+    website: { type: DataTypes.STRING },
 });
 
 

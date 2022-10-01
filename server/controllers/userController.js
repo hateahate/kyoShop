@@ -7,25 +7,37 @@ const generateJwt = (id, email, role) => {
         { id, email, role },
         process.env.SECRET_KEY,
         { expiresIn: '1h' }
-    ) // Генерируем токен для пользователя с временем жизни 24 часа
+    )
 }
 
-const { User, Basket } = require('../models/models');
+const { User, Basket, Address, Company } = require('../models/models');
 class UserController {
     async registration(req, res, next) {
-        const { email, password, first_name, last_name, role, birthDate } = req.body;
-        if (!email || !password) {
-            return next(ApiError.badRequest('Uncorrent email or password')); //Проверяем получаемые данные
+        try {
+            const { email, password, first_name, last_name, role, birthDate, gender, companyName, vat, website, state, country, city, zip, post, phone, registryCode } = req.body;
+            if (!email || !password) {
+                return next(ApiError.badRequest('Uncorrent email or password')); //Проверяем получаемые данные
+            }
+            const candidate = await User.findOne({ where: { email } }); // Проверяем используется ли EMail
+            if (candidate) {
+                return next(ApiError.badRequest('User with this email already exist'));
+            }
+            const hashPassword = await bcrypt.hash(password, 5);
+            const user = await User.create({ email, first_name, last_name, birthDate, role, phone, gender, password: hashPassword }); // User
+            const address = await Address.create({ country, city, zip, post, state, userId: user.id }) // Create address
+            const company = await Company.create({ companyName, vat, registryCode, website, userId: user.id }); // Create company
+            const basket = await Basket.create({ userId: user.id });
+            const token = generateJwt(user.id, user.email, user.role);
+            if (address && user && company && basket) {
+                return res.json({ token });
+            }
+            else {
+                return next(ApiError.badRequest('Internal server error'))
+            }
         }
-        const candidate = await User.findOne({ where: { email } }); // Проверяем используется ли EMail
-        if (candidate) {
-            return next(ApiError.badRequest('User with this email already exist'));
+        catch (e) {
+            return next(ApiError.badRequest(e.message))
         }
-        const hashPassword = await bcrypt.hash(password, 5);
-        const user = await User.create({ email, first_name, last_name, birthDate, role, password: hashPassword }); // Создаём пользователя в БД
-        const basket = await Basket.create({ userId: user.id });
-        const token = generateJwt(user.id, user.email, user.role);
-        return res.json({ token });
     }
 
     async login(req, res, next) {
