@@ -6,6 +6,7 @@ export const BASKET_ROUTE = '/cart';
 export const PRODUCT_ROUTE = '/product';
 export const HOME_ROUTE = '/';
 export const UI_KIT = '/ui-kit';
+export const MY_ACCOUNT = '/account';
 
 // Admin panel
 export const ADMIN_SEE_PRODUCTS = '/admin/products/';
@@ -19,4 +20,5 @@ export const ADMIN_SEE_USERS = '/admin/users';
 export const ADMIN_ADD_PRODUCT_CATEGORY = '/admin/products/categories/add'
 export const ADMIN_EDIT_USER = '/admin/users/edit/:id'
 export const ADMIN_ADD_USER = '/admin/users/add'
+
 

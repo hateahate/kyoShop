@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS, ADMIN_EDIT_PRODUCT, ADMIN_ADD_POST,
-  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER,
+  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER, MY_ACCOUNT,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
@@ -25,13 +25,10 @@ import UsersListPage from './components/Admin/Pages/UsersList/UsersListPage'
 import AddProductCategory from './components/Admin/Pages/AddProductCategory/AddProductCategory'
 import EditUser from './components/Admin/Pages/EditUser/EditUser'
 import AddUser from './components/Admin/Pages/AddUser/AddUser'
+import MyAccount from './pages/MyAccount'
 
-export const authRoutes = [
-
-  {
-    path: BASKET_ROUTE,
-    Component: Basket,
-  },
+// Administrator routes
+export const adminRoutes = [
   {
     path: ADMIN_ADD_PRODUCT,
     Component: AddProduct,
@@ -75,6 +72,17 @@ export const authRoutes = [
   {
     path: ADMIN_ADD_USER,
     Component: AddUser,
+  },
+]
+// Authorized user routes
+export const authRoutes = [
+  {
+    path: BASKET_ROUTE,
+    Component: Basket,
+  },
+  {
+    path: MY_ACCOUNT,
+    Component: MyAccount,
   },
 ]
 export const publicRoutes = [
