@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { observer } from 'mobx-react-lite';
 import { check } from './api/userAPI';
 import { Spinner } from 'react-bootstrap';
-import { Context } from '.';
+import { BasketContext, Context } from '.';
 
 
 const Page = styled.div`
@@ -21,6 +21,7 @@ const Content = styled.div`
 `
 const App = observer(() => {
   const { user } = useContext(Context)
+  const { basket } = useContext(Context)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
@@ -33,7 +34,6 @@ const App = observer(() => {
   if (loading) {
     return <Spinner animation={"grow"} />
   }
-
   return (
     <Page>
       <BrowserRouter>

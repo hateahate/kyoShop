@@ -1,11 +1,13 @@
 import React, { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { authRoutes, publicRoutes } from '../routes'
-import { Context } from "../index";
+import { BasketContext, Context } from "../index";
 
 const AppRouter = () => {
+  const { basket } = useContext(Context);
   const { user } = useContext(Context);
-  console.log(user);
+  console.log(user)
+  console.log(basket)
   return (
     <Routes>
       {user.isAuth && user.user.role == 'admin' && authRoutes.map(({ path, Component }) =>
