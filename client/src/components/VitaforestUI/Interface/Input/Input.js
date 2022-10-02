@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const Container = styled.div`
 display: flex;
@@ -7,26 +7,26 @@ flex-direction: column;
 `;
 
 const InputElement = styled.input`
-display: flex;
-flex-direction: row;
-align-items: center;
-padding: 16px 10px 16px 20px;
-gap: 10px;
-width: ${props => props.width ? props.width : '248px'};
-height: ${props => props.height ? props.height : 'auto'};
-background: #FFFFFF;
-border: 1px solid #EAEBEC;
-font-family: 'Proxima Nova';
-font-style: normal;
-font-weight: 400;
-font-size: 13px;
-line-height: 16px;
-display: flex;
-align-items: center;
-color: #303236;
-opacity: 0.8;
-border-radius: 4px;
-outline: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 16px 10px 16px 20px;
+    gap: 10px;
+    width: 100%;
+    height: ${props => props.height ? props.height : 'auto'};
+    background: #FFFFFF;
+    border: 1px solid #EAEBEC;
+    font-family: 'Proxima Nova';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 16px;
+    display: flex;
+    align-items: center;
+    color: #303236;
+    opacity: 0.8;
+    border-radius: 4px;
+    outline: none;
 &:focus{
     border: 1px solid #BBBBBB;
 }
@@ -54,12 +54,20 @@ display: flex;
 align-items: center;
 color: #303236;
 margin: 0px 0px 10px 0px;
+padding-top: 10px;
+&.required{
+    position: relative;
+    &::after{
+        content: "*";
+        color: red;
+    }
+  }
 `;
 
 const Input = (props) => {
     return (
         <Container onChange={props.onChange}>
-            <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
+            <Label className={props.required ? 'required' : ''} fs={props.fs} lh={props.lh}>{props.label}</Label>
             <InputElement placeholder={props.placeholder} type={props.type} value={props.value} />
         </Container>
     )

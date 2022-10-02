@@ -12,8 +12,7 @@ flex-direction: row;
 align-items: center;
 padding: 16px 10px 16px 20px;
 gap: 10px;
-width: ${props => props.width ? props.width : '248px'};
-height: ${props => props.height ? props.height : 'auto'};
+width: 100%;
 background: #FFFFFF;
 border: 1px solid #EAEBEC;
 font-family: 'Proxima Nova';
@@ -54,6 +53,14 @@ display: flex;
 align-items: center;
 color: #303236;
 margin: 0px 0px 10px 0px;
+padding-top: 10px;
+&.required{
+    position: relative;
+    &::after{
+        content: "*";
+        color: red;
+    }
+  }
 `;
 
 const Select = (props) => {
@@ -61,8 +68,7 @@ const Select = (props) => {
     return (
        
         <Container onChange={props.onChange}>
-             {console.log(props.options)}
-            <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
+            <Label className={props.required ? 'required' : ''} fs={props.fs} lh={props.lh}>{props.label}</Label>
             <SelectElement value={props.value} name={props.name}>
                 {props.options.map((item)=>(
                     <option value={item.name}>{item.name}</option>
@@ -73,7 +79,7 @@ const Select = (props) => {
     } else{
         return(
             <Container onChange={props.onChange}>
-            <Label fs={props.fs} lh={props.lh}>{props.label}</Label>
+            <Label className={props.required ? 'required' : ''} fs={props.fs} lh={props.lh}>{props.label}</Label>
             <SelectElement value={props.value} name={props.name}>
                 {props.options.map((item)=>(
                     <option value={item}>{item}</option>

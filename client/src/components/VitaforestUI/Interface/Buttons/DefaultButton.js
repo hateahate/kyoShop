@@ -5,7 +5,7 @@ const Component = styled.button`
 display: flex;
 justify-content: center;
 align-items: center;
-width: ${props => props.width ? props.width : '144px'};
+min-width: ${props => props.width ? props.width : '144px'};
 height: ${props => props.height ? props.height : '40px'};
 padding: 12px 24px;
 background: ${props => props.variant == 'dark' ? '#3C3F54' : '#40BF6A'};

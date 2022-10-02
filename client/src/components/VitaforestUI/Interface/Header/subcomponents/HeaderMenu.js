@@ -73,7 +73,10 @@ const MenuWrapper = styled.div`
   align-items: center;
   padding-top: 11px;
   margin: 0 auto;
-  width:  1128px ;
+  width:  100vw ;
+  @media screen and (min-width: 1128px) {
+        width:1128px;
+      }
   .logo-container.expanded {
     display: none;
   }
