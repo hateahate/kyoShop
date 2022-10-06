@@ -8,16 +8,19 @@ import Input from '../VitaforestUI/Interface/Input/Input';
 
 const Admin = () => {
     const { user } = useContext(Context);
+    const { basket } = useContext(Context);
     const [isLoaded, setIsLoaded] = useState(true);
     const [prevPass, setPrevPass] = useState(null);
     const [newPass, setNewPass] = useState(null);
 
-    const changePassword = () => {
-        const formData = new FormData();
-        formData.append('oldpassword', prevPass);
-        formData.append('password', newPass);
-        formData.append('id', user.user.id)
-        updatePassword(formData).then(data => console.log(data))
+    const updateCart = () => {
+        let product = { id: 10, qty: 200, price: 100 };
+        let prevBasket = basket.items;
+        console.log('Ниже предыдущее состояние корзины')
+        console.log(typeof prevBasket);
+        prevBasket.push(product);
+        basket.setItems(prevBasket);
+        console.log(basket.items);
     }
 
     if (isLoaded == false) {
@@ -25,11 +28,8 @@ const Admin = () => {
     }
     return (
         <AdminUI>
-            <Form.Control onChange={(e) => setPrevPass(e.target.value)} ></Form.Control>
-            <Form.Control onChange={(e) => setNewPass(e.target.value)} ></Form.Control>
-            <Form.Control type='date' onChange={(e) => console.log(e.target.value)} />
-            <Button onClick={() => { changePassword() }}>Change</Button>
-            <Input type='date' onChange={(e) => console.log(e.target.value)}></Input>
+            {console.log(basket.items)}
+            <Button onClick={updateCart}>Add to cart</Button>
         </AdminUI>
     )
 }
