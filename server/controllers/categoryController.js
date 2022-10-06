@@ -20,7 +20,7 @@ class CategoryController {
         return res.json(category);
     }
     async remove(req, res) {
-        const { id } = req.params;
+        const { id } = req.body;
         await ProductCategory.destroy({ where: { id } });
         return res.json({ id } + 'successfully removed');
     }

@@ -1,24 +1,44 @@
 const { PostCategory } = require('../models/models');
-const ApiError = require('../error/ApiError');
 class PostCategoryController {
     async create(req, res) {
-        const { name, categorylink } = req.body;
-        const category = await PostCategory.create({ name, categorylink });
-        return res.json(category);
+        try {
+            const { name } = req.body;
+            const find = await PostCategory.findAll({ where: { name } })
+            if (find) {
+                return res.json(`${name} already exist`)
+            }
+            const category = await PostCategory.create({ name });
+            return res.json(category);
+        }
+        catch (e) {
+            return e.message
+        }
     }
     async getAll(req, res) {
-        const categories = await PostCategory.findAll();
-        return res.json(categories);
+        try {
+            const categories = await PostCategory.findAll();
+            return res.json(categories);
+        } catch (e) {
+            return e.message
+        }
     }
     async update(req, res) {
-        const { id, name, categorylink } = req.body;
-        const category = await PostCategory.update({ name, categorylink }, { where: { id } });
-        return res.json(category);
+        try {
+            const { id, name, categorylink } = req.body;
+            const category = await PostCategory.update({ name, categorylink }, { where: { id } });
+            return res.json(category);
+        } catch (e) {
+            return e.message
+        }
     }
     async remove(req, res) {
-        const { id } = req.params;
-        await PostCategory.destroy({ where: { id } });
-        return res.json({ id } + 'successfully removed');
+        try {
+            const { id } = req.body;
+            await PostCategory.destroy({ where: { id } });
+            return res.json({ id } + 'successfully removed');
+        } catch (e) {
+            return e.message
+        }
     }
 }
 module.exports = new PostCategoryController();

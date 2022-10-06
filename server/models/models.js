@@ -111,7 +111,6 @@ const ProductCategory = sequelize.define('product_category', {
 const PostCategory = sequelize.define('post_category', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    categorylink: { type: DataTypes.STRING, allowNull: false, unique: true },
 })
 
 // Сущность заказа
