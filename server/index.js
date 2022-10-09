@@ -23,11 +23,7 @@ const fileUpload = require('express-fileupload');
 const sequelize = require('./db');
 
 // Error handler import
-const errorHandler = require('./middleware/ErrorHandlingMiddleware');
-
-// Email sender
-
-const mailTransport = require('./middleware/mailSenderMiddleware');
+const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 
 // Getting port from config
 const PORT = process.env.PORT || 5000;
@@ -40,7 +36,6 @@ app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
 app.use(errorHandler);
-app.use(mailTransport);
 
 
 
