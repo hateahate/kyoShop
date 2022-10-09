@@ -26,24 +26,11 @@ const Admin = () => {
         })
     }
 
-    useEffect(() => {
-        fetchBasket(6).then((data) => {
-            console.log(data);
-        })
-    }, [isLoaded])
-
-    useEffect(() => {
-        fetchOnePost(2).then((data) => {
-            console.log(data)
-        })
-    }, [isLoaded])
-
     if (isLoaded == false) {
         return <h1>Loading</h1>
     }
     return (
         <AdminUI>
-            {console.log(basketData)}
             <Button onClick={updateCart}>Add to cart</Button>
         </AdminUI>
     )
