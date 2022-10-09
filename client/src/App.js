@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { observer } from 'mobx-react-lite';
 import { check } from './api/userAPI';
 import { Spinner } from 'react-bootstrap';
-import { BasketContext, Context } from '.';
+import { Context } from '.';
+import { fetchBasket } from './api/basketAPI';
 
 
 const Page = styled.div`
@@ -26,8 +27,8 @@ const App = observer(() => {
 
   useEffect(() => {
     check().then(data => {
-      user.setUser(data)
-      user.setIsAuth(true)
+      user.setUser(data);
+      user.setIsAuth(true);
     }).finally(() => setLoading(false))
   }, [])
 
@@ -36,6 +37,7 @@ const App = observer(() => {
   }
   return (
     <Page>
+      {console.log(basket)}
       <BrowserRouter>
         <Content>
           <AppRouter />

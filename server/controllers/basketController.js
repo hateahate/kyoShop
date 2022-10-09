@@ -13,9 +13,9 @@ class BasketController {
     }
     async getBasket(req, res, next) {
         try {
-            let { userId } = req.body;
+            let { userId } = req.params;
             const basket = await Basket.findOne({ where: { userId } });
-            return res.json(basket);
+            return res.json(basket.items);
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }

@@ -28,7 +28,7 @@ const Admin = () => {
     }
     return (
         <AdminUI>
-            {console.log(basket.items)}
+            {console.log(basket)}
             <Button onClick={updateCart}>Add to cart</Button>
         </AdminUI>
     )
