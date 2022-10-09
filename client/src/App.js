@@ -32,12 +32,13 @@ const App = observer(() => {
     }).finally(() => setLoading(false))
   }, [])
 
+
   if (loading) {
     return <Spinner animation={"grow"} />
   }
   return (
     <Page>
-      {console.log(basket)}
+
       <BrowserRouter>
         <Content>
           <AppRouter />
