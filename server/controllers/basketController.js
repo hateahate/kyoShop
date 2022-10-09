@@ -1,6 +1,6 @@
 const { Basket } = require('../models/models')
 const ApiError = require('../error/ApiError');
-const MailService = require('../services/MailService');
+const MailService = require('../services/mailService');
 
 
 class BasketController {
