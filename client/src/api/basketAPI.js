@@ -2,8 +2,8 @@ import { $authHost } from ".";
 
 export const fetchBasket = async (id) => {
     try {
-        const { basket } = await $authHost.get(`api/basket/${id}`);
-        return basket;
+        const { data } = await $authHost.get(`api/basket/${id}`);
+        return data;
     } catch (e) {
         return e.message;
     }
@@ -11,8 +11,8 @@ export const fetchBasket = async (id) => {
 
 export const updateBasket = async (body) => {
     try {
-        const { basket } = await $authHost.post('api/basket', body);
-        return basket;
+        const { data } = await $authHost.post('api/basket', body);
+        return data;
     } catch (e) {
         return e.message;
     }
