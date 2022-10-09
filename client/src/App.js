@@ -36,11 +36,7 @@ const App = observer(() => {
   }, [])
 
   // Set user basket
-  useEffect(() => {
-    fetchBasket(userId).then((data) => {
-      basket.setItems(JSON.parse(data.items));
-    })
-  }, [userId])
+
 
 
   if (loading) {
@@ -48,7 +44,6 @@ const App = observer(() => {
   }
   return (
     <Page>
-      {console.log(basket.items[0].price)}
       <BrowserRouter>
         <Content>
           <AppRouter />

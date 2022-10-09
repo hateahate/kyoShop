@@ -53,13 +53,6 @@ const start = async () => {
         await sequelize.sync(); // Data and tables sync
         console.log('kyoServer connected to database');
         app.listen(PORT, () => console.log('kyoServer started on port ' + PORT));
-        mailTransport({
-            from: '"Fred Foo 👻" <mailtransport@vitaforest.kz>', // sender address
-            to: "stepanpavlenko@icloud.com", // list of receivers
-            subject: "Hello ✔", // Subject line
-            text: "Hello world?", // plain text body
-            html: "<b>Hello world?</b>", // html body
-        })
     }
     catch (e) {
         console.log('kyoServer critical error: ' + e);
