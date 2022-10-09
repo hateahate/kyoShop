@@ -1,8 +1,7 @@
-// Импортируем класс роутера из Express
 const Router = require('express');
 const router = new Router();
 
-// Импортируем все роутеры
+// Import all routers
 const categoryRouter = require('./categoryRouter');
 const productRouter = require('./productRouter');
 const userRouter = require('./userRouter');
@@ -11,9 +10,10 @@ const postRouter = require('./postRouter');
 const wikiRouter = require('./wikiRouter');
 const postCategoryRouter = require('./postCategoryRouter');
 const liveSearchRouter = require('./liveSearchRouter');
-const addressRouter = require('./addressRouter')
+const addressRouter = require('./addressRouter');
+const basketRouter = require('./basketRouter');
 
-// Связываем внешние роутеры с путями
+// API waypoints
 router.use('/user', userRouter);
 router.use('/product', productRouter);
 router.use('/company', companyRouter);
@@ -23,6 +23,7 @@ router.use('/wiki', wikiRouter);
 router.use('/postcat', postCategoryRouter);
 router.use('/search', liveSearchRouter);
 router.use('/address', addressRouter);
+router.use('/basket', basketRouter);
 
 
 module.exports = router;
