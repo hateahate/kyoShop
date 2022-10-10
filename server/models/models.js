@@ -54,6 +54,7 @@ const Product = sequelize.define('product', {
     stock: { type: DataTypes.INTEGER },
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Pre-order' },
     category: { type: DataTypes.STRING, allowNull: true },
+    sku: { type: DataTypes.STRING },
 });
 
 // Сущность поста блога

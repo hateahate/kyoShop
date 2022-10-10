@@ -1,54 +1,53 @@
-// Включаем dotenv
+// Enable dotenv
 require('dotenv').config();
 
-// Импортируем cors
+// Import cors
 const cors = require('cors');
 
-// Импортируем корневой файл роутеров
+// Import routes
 const router = require('./routes/index');
 
-// Подключаем Express и файл конфигурации .env
+// Connect express for dotenv
 const express = require('express');
 
-// Указываем путь до папки со статикой
+// Static (img) path
 const path = require('path');
 
-// Импортируем модели сущностей
+// DB models import
 const models = require('./models/models');
 
-// Подключаем загрузчик файлов
+// Connect file uploader
 const fileUpload = require('express-fileupload');
 
-// Импортируем подключение к БД
+// Import database credentials
 const sequelize = require('./db');
 
-// Импорт обработчика ошибок
-const errorHandler = require('./middleware/ErrorHandlingMiddleware');
+// Error handler import
+const errorHandler = require('./middleware/ErrorHandlingMiddleware')
 
-// Получаем порт для сервера из конфига, если не выбран запускаем на 5000-ом
+// Getting port from config
 const PORT = process.env.PORT || 5000;
 
-// Инициализируем Express и иные либы
+// Init
 const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.resolve(__dirname, 'static')));
 app.use(fileUpload({}));
 app.use('/api', router);
-
-// Обработчик ошибок, последний вызываемый middleware
 app.use(errorHandler);
 
 
 
-// Запускаем сервер
+
+// Run
 const start = async () => {
     console.log('kyoServer starting...');
     try {
-        await sequelize.authenticate(); // Подключаемся к базе
-        await sequelize.sync(); // Синхронизируем данные
+        await sequelize.authenticate(); // DB auth
+        await sequelize.sync(); // Data and tables sync
         console.log('kyoServer connected to database');
-        app.listen(PORT, () => console.log('kyoServer started on port ' + PORT)); // Если всё ок, сообщаем что сервер успешно запущен
+        app.listen(PORT, () => console.log('kyoServer started on port ' + PORT));
     }
     catch (e) {
         console.log('kyoServer critical error: ' + e);

@@ -21,16 +21,22 @@ const Content = styled.div`
   flex: 1 0 auto;
 `
 const App = observer(() => {
-  const { user } = useContext(Context)
-  const { basket } = useContext(Context)
-  const [loading, setLoading] = useState(true)
+  const { user } = useContext(Context);
+  const { basket } = useContext(Context);
+  const [loading, setLoading] = useState(true);
+  const [userId, setUserId] = useState(null);
 
+  // Set user data
   useEffect(() => {
     check().then(data => {
       user.setUser(data);
       user.setIsAuth(true);
+      setUserId(data.id);
     }).finally(() => setLoading(false))
   }, [])
+
+  // Set user basket
+
 
 
   if (loading) {
@@ -38,7 +44,6 @@ const App = observer(() => {
   }
   return (
     <Page>
-
       <BrowserRouter>
         <Content>
           <AppRouter />
