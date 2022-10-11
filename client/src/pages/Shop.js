@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from 'react'
+import styled from 'styled-components'
 import ProductCard from '../components/VitaforestUI/Product/ProductCard/ProductCard'
+
+const ProductsContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+`
+
 function Shop() {
   const [error, setError] = useState(null)
   const [isLoaded, setIsLoaded] = useState(false)
@@ -31,16 +39,17 @@ function Shop() {
   } else {
     return (
       <section>
-        <div>
+        <ProductsContainer>
           {items.map((item) => (
             <ProductCard
-              variant="registered "
-              img={item.img}
+              variant="line"
+              image={item.img}
               title={item.name}
               sku={item.sku}
+
             />
           ))}
-        </div>
+        </ProductsContainer>
       </section>
     )
   }
