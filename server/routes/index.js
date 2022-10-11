@@ -12,6 +12,7 @@ const postCategoryRouter = require('./postCategoryRouter');
 const liveSearchRouter = require('./liveSearchRouter');
 const addressRouter = require('./addressRouter');
 const basketRouter = require('./basketRouter');
+const orderRouter = require('./orderRouter');
 
 // API waypoints
 router.use('/user', userRouter);
@@ -24,6 +25,7 @@ router.use('/postcat', postCategoryRouter);
 router.use('/search', liveSearchRouter);
 router.use('/address', addressRouter);
 router.use('/basket', basketRouter);
+router.use('/order', orderRouter);
 
 
 module.exports = router;
