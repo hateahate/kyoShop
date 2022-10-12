@@ -1,6 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
+const { MailService } = require('../services/MailService');
 
 const generateJwt = (id, email, role) => {
     return Jwt.sign(
@@ -28,6 +29,14 @@ class UserController {
             const company = await Company.create({ companyName, vat, registryCode, website, userId: user.id }); // Create company
             const basket = await Basket.create({ userId: user.id });
             const token = generateJwt(user.id, user.email, user.role);
+
+            MailService.send({
+                from: '"Vitaforest" <mailtransport@vitaforest.kz>', // sender address
+                to: email, // list of receivers
+                subject: "New account registration", // Subject line
+                text: "You get cart?", // plain text body
+                html: "<b>Hello world?</b>", // html body
+            })
             if (address && user && company && basket) {
                 return res.json({ token });
             }
