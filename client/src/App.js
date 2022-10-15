@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import './App.css'
 import 'react-notifications/lib/notifications.css';
 import { BrowserRouter } from 'react-router-dom'
-import AppRouter from './components/AppRouter'
+import AppRouter from './app-router/AppRouter'
 import styled from 'styled-components'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { observer } from 'mobx-react-lite';
