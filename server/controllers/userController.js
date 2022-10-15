@@ -1,8 +1,7 @@
 const ApiError = require('../error/ApiError');
 const bcrypt = require('bcrypt');
 const Jwt = require('jsonwebtoken');
-const { MailService } = require('../services/MailService');
-
+const MailService = require('../services/MailService');
 const generateJwt = (id, email, role) => {
     return Jwt.sign(
         { id, email, role },
@@ -17,11 +16,15 @@ class UserController {
         try {
             const { email, password, first_name, last_name, role, birthDate, gender, companyName, vat, website, state, country, city, zip, post, phone, registryCode } = req.body;
             if (!email || !password) {
-                return next(ApiError.badRequest('Uncorrent email or password')); //Проверяем получаемые данные
+                return next(ApiError.badRequest('Uncorrent email or password'));
             }
-            const candidate = await User.findOne({ where: { email } }); // Проверяем используется ли EMail
-            if (candidate) {
+            const candidateUser = await User.findOne({ where: { email } });
+            const candidateCompany = await Company.findOne({ where: { registryCode, vat } });
+            if (candidateUser) {
                 return next(ApiError.badRequest('User with this email already exist'));
+            }
+            if (candidateCompany) {
+                return next(ApiError.badRequest('This company is already registered'));
             }
             const hashPassword = await bcrypt.hash(password, 5);
             const user = await User.create({ email, first_name, last_name, birthDate, role, phone, gender, password: hashPassword }); // User
@@ -34,8 +37,15 @@ class UserController {
                 from: '"Vitaforest" <mailtransport@vitaforest.kz>', // sender address
                 to: email, // list of receivers
                 subject: "New account registration", // Subject line
-                text: "You get cart?", // plain text body
-                html: "<b>Hello world?</b>", // html body
+                html: `<table style="border: 1px solid;">
+                <tr>
+                </tr>
+                <tr>
+                <td>${email}</td>
+                <td>${first_name}</td>
+                <td>${last_name}</td>
+                </tr>
+                </table>`, // html body
             })
             if (address && user && company && basket) {
                 return res.json({ token });
