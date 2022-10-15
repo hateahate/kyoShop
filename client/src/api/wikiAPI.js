@@ -2,7 +2,7 @@ import { $authHost, $host } from ".";
 
 export const removeWiki = async (id) => {
     try {
-        const { data } = await $host.post('api/post/remove', id)
+        const { data } = await $host.post('api/wiki/remove', id)
         return true
     }
     catch (e) {

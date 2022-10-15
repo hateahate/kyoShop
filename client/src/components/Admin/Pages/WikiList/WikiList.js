@@ -26,7 +26,9 @@ function WikiList() {
         console.log(id)
         const formData = new FormData();
         formData.append('id', id);
-        removeWiki(formData).then(NotificationManager.success(`Post removed`, 'Success'));
+        removeWiki(formData).then(data => {
+            console.log(data)
+        });
         setNeedReload(true);
     }
 
@@ -87,7 +89,7 @@ function WikiList() {
                                 <td>{item.title}</td>
                                 <td>{item.userId}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
-                                <td><Button variant={'primary'}><Link to={'/admin/posts/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
+                                <td><Button variant={'primary'}><Link to={'/admin/wiki/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>
                         ))}
                     </tbody>
