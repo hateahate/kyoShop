@@ -17,8 +17,12 @@ export const ADMIN_ADD_POST = '/admin/posts/add';
 export const ADMIN_EDIT_POST = '/admin/posts/edit/:id';
 export const ADMIN_SEE_POSTS = '/admin/posts';
 export const ADMIN_SEE_USERS = '/admin/users';
-export const ADMIN_ADD_PRODUCT_CATEGORY = '/admin/products/categories/add'
-export const ADMIN_EDIT_USER = '/admin/users/edit/:id'
-export const ADMIN_ADD_USER = '/admin/users/add'
+export const ADMIN_ADD_PRODUCT_CATEGORY = '/admin/products/categories/add';
+export const ADMIN_EDIT_USER = '/admin/users/edit/:id';
+export const ADMIN_ADD_USER = '/admin/users/add';
+export const ADMIN_SEE_WIKI = '/admin/wiki';
+export const ADMIN_ADD_WIKI = '/admin/wiki/add';
+export const ADMIN_EDIT_WIKI = '/admin/wiki/edit/:id';
+
 
 

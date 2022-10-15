@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS, ADMIN_EDIT_PRODUCT, ADMIN_ADD_POST,
-  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER, MY_ACCOUNT,
+  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER, MY_ACCOUNT, ADMIN_ADD_WIKI, ADMIN_EDIT_WIKI, ADMIN_SEE_WIKI,
 } from './utils/consts'
 import HomePage from "./pages/HomePage";
 import Registration from "./pages/Registration";
@@ -26,6 +26,9 @@ import AddProductCategory from './components/Admin/Pages/AddProductCategory/AddP
 import EditUser from './components/Admin/Pages/EditUser/EditUser'
 import AddUser from './components/Admin/Pages/AddUser/AddUser'
 import MyAccount from './pages/MyAccount'
+import AddWiki from './components/Admin/Pages/AddWiki/AddWiki'
+import EditWiki from './components/Admin/Pages/EditWiki/EditWiki'
+import WikiListPage from './components/Admin/Pages/WikiList/WikiListPage'
 
 // Administrator routes
 export const adminRoutes = [
@@ -72,6 +75,18 @@ export const adminRoutes = [
   {
     path: ADMIN_ADD_USER,
     Component: AddUser,
+  },
+  {
+    path: ADMIN_ADD_WIKI,
+    Component: AddWiki,
+  },
+  {
+    path: ADMIN_EDIT_WIKI,
+    Component: EditWiki,
+  },
+  {
+    path: ADMIN_SEE_WIKI,
+    Component: WikiListPage,
   },
 ]
 // Authorized user routes

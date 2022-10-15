@@ -44,6 +44,15 @@ function AdminSidebar() {
                         </NavDropdown>
                         <NavDropdown
                             id="nav-dropdown-posts"
+                            title="Wiki"
+                            menuVariant='dark'
+                        >
+                            <NavDropdown.Item><CustomLink to='/admin/wiki'>See all posts</CustomLink></NavDropdown.Item>
+                            <NavDropdown.Divider></NavDropdown.Divider>
+                            <NavDropdown.Item><CustomLink to='/admin/wiki/add'>Add new post</CustomLink></NavDropdown.Item>
+                        </NavDropdown>
+                        <NavDropdown
+                            id="nav-dropdown-posts"
                             title="Users"
                             menuVariant='dark'
                         >
