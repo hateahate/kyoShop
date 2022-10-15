@@ -80,7 +80,6 @@ function UsersList() {
                     <tbody>
                         {items.map((item) => (
                             <tr key={item.id}>
-                                {console.log(item)}
                                 <td>{item.id}</td>
                                 <td>{item.email}</td>
                                 <td>{item.first_name + ' ' + item.last_name}</td>
