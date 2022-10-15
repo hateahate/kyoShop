@@ -24,7 +24,6 @@ const Auth = observer(() => {
       user.setUser(data);
       user.setIsAuth(true);
       NotificationManager.success('Welcome!', 'Success');
-      console.log(data)
       setTimeout(() => {
         if (data.role == 'admin') {
           navigate('/admin')

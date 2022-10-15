@@ -105,6 +105,7 @@ const BasketProduct = sequelize.define('basket_product', {
 const ProductCategory = sequelize.define('product_category', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
+    childOf: { type: DataTypes.INTEGER },
 });
 
 // Сущность категории поста
