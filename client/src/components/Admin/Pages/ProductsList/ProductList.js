@@ -83,7 +83,7 @@ function ProductList() {
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Name</th>
+                            <th>Title</th>
                             <th>Price</th>
                             <th>Stock</th>
                             <th></th>
@@ -94,7 +94,7 @@ function ProductList() {
                         {items.map((item) => (
                             <tr key={item.id}>
                                 <td>{item.id}</td>
-                                <td>{item.name}</td>
+                                <td>{item.title}</td>
                                 <td>{item.price}</td>
                                 <td>{item.stock}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>

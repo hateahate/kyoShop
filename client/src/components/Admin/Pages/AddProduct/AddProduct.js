@@ -25,7 +25,7 @@ const FlexBox = styled.div`
 const AddProduct = () => {
   const navigate = useNavigate();
   const { product } = useContext(Context);
-  const [name, setName] = useState("");
+  const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);
   const [info, setInfo] = useState([]);
@@ -80,7 +80,7 @@ const AddProduct = () => {
   const addProduct = () => {
     let itemId = 0;
     const formData = new FormData();
-    formData.append("name", name);
+    formData.append("title", title);
     formData.append("price", `${price}`);
     formData.append("stock", `${stock}`);
     formData.append("moq", `${moq}`);
@@ -93,13 +93,13 @@ const AddProduct = () => {
       .then((data) => {
         if (data) {
           NotificationManager.success(
-            `Product "${name}" successfully created`,
+            `Product "${title}" successfully created`,
             "Success"
           );
           return data.id;
         } else {
           NotificationManager.error(
-            `Product "${name}" cannot be created`,
+            `Product "${title}" cannot be created`,
             `${data}`
           );
         }
@@ -127,13 +127,13 @@ const AddProduct = () => {
         <Form>
           <FlexBox>
             <Card className="product-title">
-              <Card.Header>Product name</Card.Header>
+              <Card.Header>Product title</Card.Header>
               <Card.Body>
                 <Form.Control
                   aria-label="large"
-                  value={name}
-                  onChange={(e) => setName(String(e.target.value))}
-                  placeholder="Product name"
+                  value={title}
+                  onChange={(e) => setTitle(String(e.target.value))}
+                  placeholder="Product title"
                   type="text"
                 ></Form.Control>
               </Card.Body>
@@ -159,7 +159,7 @@ const AddProduct = () => {
                         type={"checkbox"}
                         onClick={() => appendCategories(item.id)}
                       />
-                      <Form.Check.Label>{item.name}</Form.Check.Label>
+                      <Form.Check.Label>{item.title}</Form.Check.Label>
                     </Form.Check>
                   );
                 })}
