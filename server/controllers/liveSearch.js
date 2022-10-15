@@ -5,9 +5,9 @@ class LiveSearchController {
     async getAll(req, res, next) {
         try {
             let { title } = req.query;
-            const products = await Product.findAll({ where: { title: { [Op.like]: `%${title}%` } } });
-            const posts = await Post.findAll({ where: { title: { [Op.like]: `%${title}%` } } });
-            const wiki = await Wiki.findAll({ where: { title: { [Op.like]: `%${title}%` } } });
+            const products = await Product.findAll({ where: { title: { [Op.iLike]: `%${title}%` } }, attributes: ['title', 'img', 'status'] });
+            const posts = await Post.findAll({ where: { title: { [Op.iLike]: `%${title}%` } }, attributes: ['title', 'img'] });
+            const wiki = await Wiki.findAll({ where: { title: { [Op.iLike]: `%${title}%` } }, attributes: ['title', 'img'] });
             let response = [{ products_res: products }, { posts_res: posts }, { wiki_res: wiki }]
             return res.json(response);
         }
