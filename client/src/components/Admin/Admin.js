@@ -6,6 +6,7 @@ import { updatePassword } from '../../api/userAPI';
 import Input from '../VitaforestUI/Interface/Input/Input';
 import { fetchBasket, updateBasket } from '../../api/basketAPI';
 import { fetchOnePost } from '../../api/postAPI';
+import { liveSearch } from '../../api/searchAPI';
 
 
 const Admin = () => {
@@ -15,23 +16,25 @@ const Admin = () => {
     const [prevPass, setPrevPass] = useState(null);
     const [newPass, setNewPass] = useState(null);
     const [basketData, setBasketData] = useState(null);
+    const [sq, setSq] = useState('');
+    const [sr, setSr] = useState([]);
 
-    const updateCart = () => {
-        let product = [{ id: 10, qty: 200, price: 100 }];
-        const formData = new FormData();
-        formData.append('userId', 6);
-        formData.append('items', JSON.stringify(product));
-        updateBasket(formData).then((data) => {
-            console.log(data);
+    useEffect(() => {
+        liveSearch(sq).then(data => {
+            setSr(data);
         })
-    }
+    }, [sq])
+
 
     if (isLoaded == false) {
         return <h1>Loading</h1>
     }
     return (
         <AdminUI>
-            <Button onClick={updateCart}>Add to cart</Button>
+            <Input type='text' onChange={(e) => { setSq(e.target.value); console.log(e.target.value) }}></Input>
+            {sr.map((item) => {
+                console.log(item)
+            })}
         </AdminUI>
     )
 }
