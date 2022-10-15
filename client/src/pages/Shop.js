@@ -1,58 +1,85 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-import ProductCard from '../components/VitaforestUI/Product/ProductCard/ProductCard'
+import React, { useState } from "react";
+import styled from "styled-components";
+import ShopProducts from "../components/VitaforestUI/Shop/ShopProducts";
+import Page from "../components/VitaforestUI/Interface/Page/Page";
+import { ReactComponent as Burger } from "../components/VitaforestUI/Shop/images/Burger.svg";
+import { ReactComponent as Filter } from "../components/VitaforestUI/Shop/images/filter.svg";
+import { ReactComponent as Sliders } from "../components/VitaforestUI/Shop/images/sliders.svg";
+import { ReactComponent as Sort } from "../components/VitaforestUI/Shop/images/sort.svg";
+import MediaQuery from "react-responsive";
+import ShopFilter from "../components/VitaforestUI/Shop/ShopFilter";
+const ShopContainer = styled.div`
+  width: calc(100vw - 36px);
+  margin: 0 auto;
+  position: relative;
+  .darked {
+    z-index: 2;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: #000;
+    opacity: 0.7;
+    display: none;
+    left: -18px;
+  }
+  .darked.shown {
+    display: block;
+  }
+`;
 
-const ProductsContainer = styled.div`
+const ShopHeading = styled.h3`
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  line-height: 17px;
+  color: #303236;
+`;
+
+const MobileButtons = styled.div`
+  position: absolute;
+  top: -6px;
+  right: 5px;
   display: flex;
+  width: 150px;
   justify-content: space-between;
-  flex-wrap: wrap;
-`
+`;
+
+const FiltersButton = styled.button`
+  border: none;
+  background-color: transparent;
+  width: 30px;
+  height: 30px;
+`;
 
 function Shop() {
-  const [error, setError] = useState(null)
-  const [isLoaded, setIsLoaded] = useState(false)
-  const [items, setItems] = useState([])
-
-  // Примечание: пустой массив зависимостей [] означает, что
-  // этот useEffect будет запущен один раз
-  // аналогично componentDidMount()
-  useEffect(() => {
-    fetch('http://5.144.96.71:66/api/product')
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true)
-          setItems(result.rows)
-        },
-        // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-        // чтобы не перехватывать исключения из ошибок в самих компонентах.
-        (error) => {
-          setIsLoaded(true)
-          setError(error)
-        },
-      )
-  }, [])
-  if (error) {
-    return <div>Ошибка: {error.message}</div>
-  } else if (!isLoaded) {
-    return <div>Загрузка</div>
-  } else {
-    return (
-      <section>
-        <ProductsContainer>
-          {items.map((item) => (
-            <ProductCard
-              variant="line"
-              image={item.img}
-              title={item.name}
-              sku={item.sku}
-
-            />
-          ))}
-        </ProductsContainer>
-      </section>
-    )
-  }
+  const [isCard, setIsCard] = useState(true);
+  const [isFilterShown, setIsFilterShown] = useState(false);
+  return (
+    <Page>
+      <ShopContainer>
+        <ShopHeading>Products</ShopHeading>
+        <div className={isFilterShown ? "darked shown" : "darked"}></div>
+        <MediaQuery maxWidth={1127}>
+          <MobileButtons>
+            <FiltersButton onClick={() => setIsCard(!isCard)}>
+              <Burger />
+            </FiltersButton>
+            <FiltersButton>
+              <Filter />
+            </FiltersButton>
+            <FiltersButton onClick={() => setIsFilterShown(!isFilterShown)}>
+              <Sliders />
+            </FiltersButton>
+            <FiltersButton>
+              <Sort />
+            </FiltersButton>
+          </MobileButtons>
+        </MediaQuery>
+        <ShopFilter isShown={isFilterShown} />
+        <ShopProducts isCard={isCard} />
+      </ShopContainer>
+    </Page>
+  );
 }
 
-export default Shop
+export default Shop;
