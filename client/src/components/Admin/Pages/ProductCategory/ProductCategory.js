@@ -39,7 +39,6 @@ const ProductCategory = () => {
 
 
     const removeSelectedCategory = (id) => {
-        console.log(`Зашли в удаление с айди ${id}`)
         let formData = new FormData();
         formData.append('id', id);
         removeCategory(formData).then((data) => {

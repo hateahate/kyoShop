@@ -2,6 +2,7 @@ import React, { useContext } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { authRoutes, publicRoutes, adminRoutes } from '../routes'
 import { Context } from "../index";
+import NotFound from '../pages/NotFound';
 
 const AppRouter = () => {
   const { user } = useContext(Context);
@@ -16,6 +17,7 @@ const AppRouter = () => {
       {publicRoutes.map(({ path, Component }) =>
         <Route key={path} path={path} element={<Component />} exact />
       )}
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

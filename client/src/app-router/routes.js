@@ -100,6 +100,7 @@ export const authRoutes = [
     Component: MyAccount,
   },
 ]
+// Routes with public visibiliy
 export const publicRoutes = [
   {
     path: HOME_ROUTE,

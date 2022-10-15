@@ -10,6 +10,7 @@ import { check } from './api/userAPI';
 import { Spinner } from 'react-bootstrap';
 import { Context } from '.';
 import { fetchBasket } from './api/basketAPI';
+import NotFound from './pages/NotFound';
 
 
 const Page = styled.div`
