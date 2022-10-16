@@ -137,7 +137,7 @@ const DashboardNotification = sequelize.define('dashboardnotifications', {
 const Ticket = sequelize.define('ticket', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     subject: { type: DataTypes.STRING },
-    messages: { type: DataTypes.TEXT },
+    messages: { type: DataTypes.JSON },
     status: { type: DataTypes.STRING, defaultValue: 'Waiting' },
 })
 
@@ -167,6 +167,9 @@ Wiki.belongsTo(User);
 
 User.hasMany(Order);
 Order.belongsTo(User);
+
+User.hasMany(Ticket);
+Ticket.belongsTo(User);
 
 Wiki.hasMany(MetaTag);
 Product.hasMany(MetaTag);
