@@ -75,7 +75,10 @@ function Shop() {
             </FiltersButton>
           </MobileButtons>
         </MediaQuery>
-        <ShopFilter isShown={isFilterShown} />
+        <ShopFilter
+          isShown={isFilterShown}
+          onClick={() => setIsFilterShown(!isFilterShown)}
+        />
         <ShopProducts isCard={isCard} />
       </ShopContainer>
     </Page>

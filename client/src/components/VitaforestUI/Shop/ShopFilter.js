@@ -1,5 +1,8 @@
 import React from "react";
+import { CloseButton } from "react-bootstrap";
 import styled from "styled-components";
+import FiltersLists from "./FilterComponents/FilterLists";
+import { ReactComponent as Close } from "../Interface/Header/images/close.svg";
 
 const FilterContainer = styled.div`
   .filter {
@@ -8,6 +11,7 @@ const FilterContainer = styled.div`
     position: absolute;
     width: 100vw;
     left: -10px;
+    background-color: #ffffff;
   }
   .shown {
     display: block;
@@ -20,9 +24,18 @@ const FilterTitle = styled.h4`
   font-size: 20px;
   line-height: 17px;
   color: #303236;
-  padding: 10px 12px 10px 18px;
+  padding: 10px 15px 10px 18px;
   width: 100%;
   background: #f3f7f2;
+  margin-bottom: 0;
+`;
+
+const CloseFilters = styled.button`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 18px;
+  top: 7px;
 `;
 
 function ShopFilter(props) {
@@ -30,6 +43,10 @@ function ShopFilter(props) {
     <FilterContainer>
       <div className={props.isShown ? "filter shown" : "filter"}>
         <FilterTitle>Filters</FilterTitle>
+        <CloseFilters onClick={() => props.onClick()}>
+          <Close />
+        </CloseFilters>
+        <FiltersLists />
       </div>
     </FilterContainer>
   );
