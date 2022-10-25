@@ -105,7 +105,13 @@ const BasketProduct = sequelize.define('basket_product', {
 const ProductCategory = sequelize.define('product_category', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    childOf: { type: DataTypes.INTEGER },
+    categoryType: { type: DataTypes.STRING },
+});
+
+// Сущность подкатегории
+const ProductSubCategory = sequelize.define('product_category', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING, unique: true, allowNull: false },
 });
 
 // Сущность категории поста
@@ -122,11 +128,6 @@ const Order = sequelize.define('order', {
     status: { type: DataTypes.STRING, allowNull: false, defaultValue: 'NEW' },
     items: { type: DataTypes.JSON },
 });
-
-const MetaTag = sequelize.define('metatag', {
-    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    name: { type: DataTypes.STRING, allowNull: false, defaultValue: 'Unknown' },
-})
 
 const DashboardNotification = sequelize.define('dashboardnotifications', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
@@ -175,9 +176,8 @@ Wiki.hasMany(MetaTag);
 Product.hasMany(MetaTag);
 Post.hasMany(MetaTag);
 
-MetaTag.belongsTo(Wiki);
-MetaTag.belongsTo(Post);
-MetaTag.belongsTo(Product);
+ProductCategory.hasMany(ProductSubCategory);
+ProductSubCategory.belongsTo(ProductCategory);
 
 // Экспортируем модели сущностей для дальнейшего использования
 
@@ -193,10 +193,10 @@ module.exports = {
     Order,
     Wiki,
     PostCategory,
-    MetaTag,
     DashboardNotification,
     Ticket,
     Address,
+    ProductSubCategory,
 }
 
 
