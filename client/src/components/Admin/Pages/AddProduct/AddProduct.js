@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Form, Button, Row, Col } from "react-bootstrap";
 import { Context } from "../../../../index";
 import {
   createProduct,
@@ -49,6 +49,7 @@ const AddProduct = () => {
   }, [file]);
 
   const addInfo = () => {
+    console.log(info)
     setInfo([...info, { title: "", description: "", number: Date.now() }]);
   };
   const removeInfo = (number) => {
@@ -87,7 +88,7 @@ const AddProduct = () => {
     formData.append("qty_step", `${qtyStep}`);
     formData.append("img", file);
     formData.append("sku", sku);
-    formData.append("info", JSON.stringify(info));
+    formData.append("attributes", JSON.stringify(info));
     formData.append("category", selectedCategories);
     createProduct(formData)
       .then((data) => {
@@ -104,11 +105,6 @@ const AddProduct = () => {
           );
         }
       })
-      .then((id) => {
-        setTimeout(() => {
-          navigate(`/admin/products/edit/${id}`);
-        }, 2000);
-      });
   };
 
   useEffect(() => {
@@ -204,6 +200,40 @@ const AddProduct = () => {
               </Button>
             </Card.Footer>
           </Card>
+        </Form>
+        <Form>
+          <Button
+            variant={"outline-dark"}
+            onClick={addInfo}
+          >
+            Добавить новое свойство
+          </Button>
+          {info.map(i =>
+            <Row className="mt-4" key={i.number}>
+              <Col md={4}>
+                <Form.Control
+                  value={i.title}
+                  onChange={(e) => changeInfo('title', e.target.value, i.number)}
+                  placeholder="Введите название свойства"
+                />
+              </Col>
+              <Col md={4}>
+                <Form.Control
+                  value={i.description}
+                  onChange={(e) => changeInfo('description', e.target.value, i.number)}
+                  placeholder="Введите описание свойства"
+                />
+              </Col>
+              <Col md={4}>
+                <Button
+                  onClick={() => removeInfo(i.number)}
+                  variant={"outline-danger"}
+                >
+                  Удалить
+                </Button>
+              </Col>
+            </Row>
+          )}
         </Form>
       </AdminUI>
     );

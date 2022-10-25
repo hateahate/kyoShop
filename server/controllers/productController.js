@@ -2,14 +2,33 @@ const uuid = require('uuid');
 const path = require('path');
 const { Product, ProductInfo } = require('../models/models');
 const ApiError = require('../error/ApiError');
+const { Model } = require('sequelize');
+const sequelize = require('../db');
+const queryInterface = sequelize.getQueryInterface();
+const { DataTypes } = require('sequelize');
 class ProductController {
     async create(req, res, next) {
         try {
-            const { title, price, status, stock, moq, qty_step, sku, description, category, productInfo } = req.body; // Получаем данные о создаваемом товаре из GET-запроса
+            const { title, price, status, stock, moq, qty_step, sku, description, category, productInfo } = req.body;
+            const attributes = JSON.parse(req.body.attributes);
+            console.log(attributes);
+            attributes.map((item) => {
+                for (let key in Product.rawAttributes) {
+                    if (item.title.toLowerCase() == key) {
+                        console.log('Есть!')
+                    }
+                    else {
+                        let attrName = item.title.toLowerCase();
+                        console.log(typeof attrName);
+                        queryInterface.addColumn('products', attrName, { type: DataTypes.STRING })
+                        sequelize.sync();
+                    }
+                }
+            })
             if (req.files) {
-                const { img } = req.files; // Получаем изображение
-                let fileName = uuid.v4() + ".jpg"; // Генерируем уникальное название изображению
-                img.mv(path.resolve(__dirname, '..', 'static', fileName)); // Загружаемые изображения кидаем в директорию static на сервере и даём уникальное имя
+                const { img } = req.files;
+                let fileName = uuid.v4() + ".jpg";
+                img.mv(path.resolve(__dirname, '..', 'static', fileName));
 
                 if (productInfo) {
                     productInfo = JSON.parse(productInfo);
@@ -23,7 +42,7 @@ class ProductController {
                 }
 
                 const product = await Product.create({ title, price, category, status, stock, sku, moq, qty_step, description, img: fileName });
-                return res.json(product); // На основе полученных данных пытаемся создать/создаём товар.
+                return res.json(product);
             }
             else {
                 if (productInfo) {
