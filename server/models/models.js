@@ -105,7 +105,6 @@ const BasketProduct = sequelize.define('basket_product', {
 const ProductCategory = sequelize.define('product_category', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
-    categoryType: { type: DataTypes.STRING },
 });
 
 // Сущность подкатегории
@@ -142,6 +141,12 @@ const Ticket = sequelize.define('ticket', {
     status: { type: DataTypes.STRING, defaultValue: 'Waiting' },
 })
 
+const Attribute = sequelize.define('attribute', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
+    name: { type: DataTypes.STRING },
+    description: { type: DataTypes.STRING },
+})
+
 
 
 // Устанавливаем связи
@@ -157,6 +162,9 @@ Basket.hasMany(BasketProduct); // Корзине передаём объект �
 Product.hasMany(ProductInfo, { as: 'info' }); // Товар может содержать множество описаний
 ProductInfo.belongsTo(Product);
 
+Product.hasMany(Attribute)
+Attribute.belongsTo(Product)
+
 User.hasMany(Post);
 Post.belongsTo(User);
 
@@ -171,10 +179,6 @@ Order.belongsTo(User);
 
 User.hasMany(Ticket);
 Ticket.belongsTo(User);
-
-Wiki.hasMany(MetaTag);
-Product.hasMany(MetaTag);
-Post.hasMany(MetaTag);
 
 ProductCategory.hasMany(ProductSubCategory);
 ProductSubCategory.belongsTo(ProductCategory);
@@ -197,6 +201,7 @@ module.exports = {
     Ticket,
     Address,
     ProductSubCategory,
+    Attribute,
 }
 
 

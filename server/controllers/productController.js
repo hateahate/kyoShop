@@ -1,6 +1,6 @@
 const uuid = require('uuid');
 const path = require('path');
-const { Product, ProductInfo } = require('../models/models');
+const { Product, ProductInfo, Attribute } = require('../models/models');
 const ApiError = require('../error/ApiError');
 const { Model } = require('sequelize');
 const sequelize = require('../db');
@@ -10,21 +10,6 @@ class ProductController {
     async create(req, res, next) {
         try {
             const { title, price, status, stock, moq, qty_step, sku, description, category, productInfo } = req.body;
-            const attributes = JSON.parse(req.body.attributes);
-            console.log(attributes);
-            attributes.map((item) => {
-                for (let key in Product.rawAttributes) {
-                    if (item.title.toLowerCase() == key) {
-                        console.log('Есть!')
-                    }
-                    else {
-                        let attrName = item.title.toLowerCase();
-                        console.log(typeof attrName);
-                        queryInterface.addColumn('products', attrName, { type: DataTypes.STRING })
-                        sequelize.sync();
-                    }
-                }
-            })
             if (req.files) {
                 const { img } = req.files;
                 let fileName = uuid.v4() + ".jpg";
@@ -82,7 +67,7 @@ class ProductController {
         const { id } = req.params; // Получаем ID из запроса
         const product = await Product.findOne({
             where: { id },
-            include: [{ model: ProductInfo, as: 'info' }]
+            include: [{ model: ProductInfo, as: 'info' }, { model: Attribute, as: 'attributes' }]
         }); // Получаем товар с заданным айди и возвращаем
         return res.json(product);
     }
