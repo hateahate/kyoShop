@@ -16,9 +16,9 @@ class AttributeController {
         return res.json(attribute);
     }
     async remove(req, res) {
-        const { id } = req.body;
+        const { id } = req.params;
         await Attribute.destroy({ where: { id } });
-        return res.json('Removed');
+        return res.json({ status: 'removed' });
     }
     async test(req, res) {
         const result = await Attribute.aggregate('description', 'UNIQUE',)

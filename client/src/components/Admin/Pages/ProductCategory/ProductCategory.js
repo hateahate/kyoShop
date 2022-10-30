@@ -11,6 +11,10 @@ const TableContainer = styled.div`
 
 `
 
+const FlexBox = styled.div`
+display: flex;
+`
+
 const ProductCategory = () => {
     const [categories, setCategories] = useState(null);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -78,7 +82,7 @@ const ProductCategory = () => {
             <Button onClick={() => openAddModal()}>Add new</Button>
             <NotificationContainer />
             <TableContainer>
-                <Table>
+                <Table striped bordered hover variant="dark">
                     <thead>
                         <tr>
                             <th>ID</th>
