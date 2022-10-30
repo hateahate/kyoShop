@@ -12,6 +12,15 @@ const List = styled.div`
   .shown {
     display: block;
   }
+  @media screen and (min-width: 1128px) {
+    .wrapper.shown {
+      background: #f7f8f9;
+      h4 {
+        opacity: 1;
+        box-shadow: none;
+      }
+    }
+  }
 `;
 
 const ListTitle = styled.h4`
@@ -64,25 +73,27 @@ function SingleList(props) {
   const [listShown, setListShown] = useState(false);
   return (
     <List>
-      <ListTitle onClick={() => setListShown(!listShown)}>
-        {props.title}
-      </ListTitle>
-      <div className={listShown ? "list shown" : "list "}>
-        <ListItems>
-          {props.items.map((item) => {
-            return (
-              <Item>
-                <input
-                  id={item.title}
-                  className="custom-checkbox"
-                  value={item.value}
-                  type="checkbox"
-                ></input>
-                <label for={item.title}>{item.title}</label>
-              </Item>
-            );
-          })}
-        </ListItems>
+      <div className={listShown ? "wrapper shown" : "wrapper"}>
+        <ListTitle onClick={() => setListShown(!listShown)}>
+          {props.title}
+        </ListTitle>
+        <div className={listShown ? "list shown" : "list "}>
+          <ListItems>
+            {props.items.map((item) => {
+              return (
+                <Item>
+                  <input
+                    id={item.title}
+                    className="custom-checkbox"
+                    value={item.value}
+                    type="checkbox"
+                  ></input>
+                  <label for={item.title}>{item.title}</label>
+                </Item>
+              );
+            })}
+          </ListItems>
+        </div>
       </div>
     </List>
   );
