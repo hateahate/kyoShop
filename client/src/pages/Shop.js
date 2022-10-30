@@ -12,6 +12,9 @@ const ShopContainer = styled.div`
   width: calc(100vw - 36px);
   margin: 0 auto;
   position: relative;
+  @media screen and (min-width: 1128px) {
+    width: 1128px;
+  }
   .darked {
     z-index: 2;
     position: absolute;
@@ -24,6 +27,12 @@ const ShopContainer = styled.div`
   }
   .darked.shown {
     display: block;
+  }
+`;
+
+const ShopFlex = styled.div`
+  @media screen and (min-width: 1128px) {
+    display: flex;
   }
 `;
 
@@ -75,11 +84,13 @@ function Shop() {
             </FiltersButton>
           </MobileButtons>
         </MediaQuery>
-        <ShopFilter
-          isShown={isFilterShown}
-          onClick={() => setIsFilterShown(!isFilterShown)}
-        />
-        <ShopProducts isCard={isCard} />
+        <ShopFlex>
+          <ShopFilter
+            isShown={isFilterShown}
+            onClick={() => setIsFilterShown(!isFilterShown)}
+          />
+          <ShopProducts isCard={isCard} />
+        </ShopFlex>
       </ShopContainer>
     </Page>
   );

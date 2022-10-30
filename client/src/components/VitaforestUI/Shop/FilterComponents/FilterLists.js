@@ -5,6 +5,9 @@ import SingleList from "./SinglieList";
 const FiltersContainer = styled.div`
   box-sizing: border-box;
   padding: 15px 18px;
+  @media screen and (min-width: 1128px) {
+    padding: 0px;
+  }
 `;
 
 function FiltersLists() {

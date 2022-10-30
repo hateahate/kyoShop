@@ -17,6 +17,19 @@ const List = styled.div`
 const ListTitle = styled.h4`
   font-size: 16px;
   line-height: 19px;
+  @media screen and (min-width: 1128px) {
+    color: #303236;
+    opacity: 0.6;
+    box-shadow: 0px 1px 0px #eaebec;
+    padding: 14px;
+    margin-bottom: 0;
+    position: relative;
+    &::after {
+      position: absolute;
+      content: url("arrow.svg");
+      right: 17px;
+    }
+  }
 `;
 
 const ListItems = styled.ul`

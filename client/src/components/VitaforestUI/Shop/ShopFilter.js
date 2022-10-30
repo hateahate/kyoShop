@@ -12,6 +12,12 @@ const FilterContainer = styled.div`
     width: 100vw;
     left: -10px;
     background-color: #ffffff;
+    @media screen and (min-width: 1128px) {
+      display: block;
+      width: 264px;
+      position: relative;
+      left: none;
+    }
   }
   .shown {
     display: block;
@@ -28,6 +34,9 @@ const FilterTitle = styled.h4`
   width: 100%;
   background: #f3f7f2;
   margin-bottom: 0;
+  @media screen and (min-width: 1128px) {
+    display: none;
+  }
 `;
 
 const CloseFilters = styled.button`
@@ -36,6 +45,9 @@ const CloseFilters = styled.button`
   position: absolute;
   right: 18px;
   top: 7px;
+  @media screen and (min-width: 1128px) {
+    display: none;
+  }
 `;
 
 function ShopFilter(props) {
