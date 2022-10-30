@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { NotificationManager, NotificationContainer } from 'react-notifications';
 import { Link, Route } from "react-router-dom";
 import RemoveModal from "../RemoveModal"
-import { getAllUsersByAdmin } from "../../../../api/userAPI";
+import { approveUser, getAllUsersByAdmin } from "../../../../api/userAPI";
 const TableContainer = styled.div`
 
 `
@@ -29,6 +29,19 @@ function UsersList() {
     const HandleClicker = (id) => {
         setCurrentItemId(Number(id))
         setModalActive(true)
+    }
+
+    const ApproveUser = (id) => {
+        approveUser(id).then((data) => {
+            console.log(data)
+            if (data.approve == true) {
+                NotificationManager.success(`User approved`, 'Success')
+                setNeedReload(!needReload);
+            }
+            else {
+                NotificationManager.error(`${data.message}`, 'Error')
+            }
+        })
     }
 
     useEffect(() => {
@@ -75,6 +88,7 @@ function UsersList() {
                             <th>Approved</th>
                             <th></th>
                             <th></th>
+                            <th></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,6 +99,7 @@ function UsersList() {
                                 <td>{item.first_name + ' ' + item.last_name}</td>
                                 <td>{item.role}</td>
                                 <td>{String(item.approved)}</td>
+                                <td>{!item.approved ? <Button onClick={() => ApproveUser(item.id)}>Approve</Button> : null}</td>
                                 <td><Button onClick={() => HandleClicker(item.id)}>Delete</Button></td>
                                 <td><Button variant={'primary'}><Link to={'/admin/users/edit/' + item.id}><EditLabel>Edit</EditLabel></Link></Button></td>
                             </tr>

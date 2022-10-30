@@ -143,5 +143,15 @@ class UserController {
             return next(ApiError.badRequest(e.message))
         }
     }
+
+    async approveUser(req, res, next) {
+        try {
+            const { id } = req.params;
+            const user = await User.update({ approved: true }, { where: { id } });
+            return res.json({ approve: true });
+        } catch (e) {
+            return next(ApiError.badRequest('Internal error'));
+        }
+    }
 }
 module.exports = new UserController();

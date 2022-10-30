@@ -54,13 +54,22 @@ export const updateUser = async (body) => {
     }
 }
 
-export const updatePassword = async (data) => {
+export const updatePassword = async (body) => {
     try {
-        const { response } = await $authHost.post('/api/user/password', data)
-        return response
+        const { data } = await $authHost.post('/api/user/password', body);
+        return data
     }
     catch (e) {
-        return e.message
+        return e.message;
+    }
+}
+
+export const approveUser = async (id) => {
+    try {
+        const { data } = await $authHost.post(`/api/user/approve/${id}`);
+        return data
+    } catch (e) {
+        return e.message;
     }
 }
 
