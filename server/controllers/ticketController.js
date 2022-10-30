@@ -38,6 +38,15 @@ class TicketController {
             return next(ApiError.badRequest(e.message));
         }
     }
+    async addMessage(req, res, next) {
+        try {
+            const { messages, status, id } = req.body;
+            const ticket = await Ticket.update({ messages, status }, { where: id });
+            return res.json({ updated: true });
+        } catch (e) {
+            return next(ApiError.badRequest('Internal Error'));
+        }
+    }
 }
 
 module.exports = new TicketController();

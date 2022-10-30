@@ -14,6 +14,7 @@ const addressRouter = require('./addressRouter');
 const basketRouter = require('./basketRouter');
 const orderRouter = require('./orderRouter');
 const attributeRouter = require('./attributeRouter');
+const ticketRouter = require('./ticketRouter');
 
 // API waypoints
 router.use('/user', userRouter);
@@ -28,6 +29,7 @@ router.use('/address', addressRouter);
 router.use('/basket', basketRouter);
 router.use('/order', orderRouter);
 router.use('/attribute', attributeRouter);
+router.use('/tickets', ticketRouter);
 
 
 module.exports = router;
