@@ -29,7 +29,7 @@ export const fetchTickets = async () => {
 
 export const updateTicket = async (body) => {
     try {
-        const { data } = await $authHost.post('api/ticket/update', body)
+        const { data } = await $authHost.post('api/tickets/update', body)
         return data
     } catch (e) {
         return e.message
