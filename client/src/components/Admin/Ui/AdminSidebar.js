@@ -30,6 +30,7 @@ function AdminSidebar() {
                         >
                             <NavDropdown.Item><CustomLink to='/admin/products'>See all products</CustomLink></NavDropdown.Item>
                             <NavDropdown.Item><CustomLink to='/admin/products/categories'>Categories</CustomLink></NavDropdown.Item>
+                            <NavDropdown.Item><CustomLink to='/admin/attributes'>View attributes</CustomLink></NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item>
                                 <CustomLink to='/admin/products/add'>Add new product</CustomLink>

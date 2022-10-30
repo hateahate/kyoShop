@@ -105,7 +105,7 @@ const BasketProduct = sequelize.define('basket_product', {
 const ProductCategory = sequelize.define('product_category', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING, unique: true, allowNull: false },
-});
+}, { timestamps: false });
 
 // Сущность подкатегории
 const ProductSubCategory = sequelize.define('product_category', {
@@ -145,7 +145,7 @@ const Attribute = sequelize.define('attribute', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
     name: { type: DataTypes.STRING },
     description: { type: DataTypes.STRING },
-})
+}, { timestamps: false })
 
 
 

@@ -32,9 +32,9 @@ class AddressController {
     }
     async remove(req, res, next) {
         try {
-            const { id } = req.body;
+            const { id } = req.params;
             await Post.destroy({ where: { id } });
-            return res.json('Removed');
+            return res.json({ status: 'removed' });
         }
         catch (e) {
             next(ApiError.badRequest(e.message));

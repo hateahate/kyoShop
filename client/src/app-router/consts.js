@@ -23,6 +23,7 @@ export const ADMIN_ADD_USER = '/admin/users/add';
 export const ADMIN_SEE_WIKI = '/admin/wiki';
 export const ADMIN_ADD_WIKI = '/admin/wiki/add';
 export const ADMIN_EDIT_WIKI = '/admin/wiki/edit/:id';
+export const ADMIN_SEE_ATTRIBUTES = '/admin/attributes';
 
 
 
