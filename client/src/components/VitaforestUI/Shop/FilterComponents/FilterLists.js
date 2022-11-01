@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import SingleList from "./SinglieList";
-import { fetchAttributes } from "../../../../api/categoriesAPI";
+import { fetchFilterAttributes } from "../../../../api/categoriesAPI";
 
 const FiltersContainer = styled.div`
   box-sizing: border-box;
@@ -16,7 +16,7 @@ function FiltersLists() {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    fetchAttributes()
+    fetchFilterAttributes()
       .then((data) => {
         setAttributes(data);
         console.log(data);

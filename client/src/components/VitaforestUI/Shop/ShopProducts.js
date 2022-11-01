@@ -44,8 +44,9 @@ function ShopProducts(props) {
             <ProductCard
               variant={props.isCard ? "card" : "line"}
               image={item.img}
-              title={item.name}
+              title={item.title}
               sku={item.sku}
+              status={item.status}
             />
           ))}
         </ProductsContainer>

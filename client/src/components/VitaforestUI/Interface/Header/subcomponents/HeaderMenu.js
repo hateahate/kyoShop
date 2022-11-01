@@ -23,7 +23,7 @@ const BurgerButton = styled.button`
 `;
 
 const MenuContainer = styled.div`
-  width: calc(100vw - 36px);
+  width: calc(100% - 36px);
   margin: 0 auto;
   position: relative;
   .navigation-menu {
@@ -73,7 +73,7 @@ const MenuWrapper = styled.div`
   align-items: center;
   padding-top: 11px;
   margin: 0 auto;
-  width: 100vw;
+  width: 100%;
   @media screen and (min-width: 1128px) {
     width: 1128px;
   }
