@@ -22,7 +22,7 @@ function AdminSidebar() {
                 <Navbar.Collapse id="navbar-dark kyoadmin-nav">
                     <Nav>
                         <Nav.Link><CustomLink to='/admin/'>Dashboard</CustomLink></Nav.Link>
-                        <Nav.Link><CustomLink to='/tickets/'>Tickets</CustomLink></Nav.Link>
+                        <Nav.Link><CustomLink to='/admin/tickets/'>Tickets</CustomLink></Nav.Link>
                         <NavDropdown
                             id="nav-dropdown-products"
                             title="Products"

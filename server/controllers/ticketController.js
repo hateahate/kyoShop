@@ -4,7 +4,7 @@ class TicketController {
     async create(req, res, next) {
         try {
             let { subject, status, messages, userId } = req.body;
-            const ticket = Ticket.create({ subject, status, messages, userId });
+            const ticket = await Ticket.create({ subject, status, messages, userId });
             return res.json(ticket);
         } catch (e) {
             next(ApiError.badRequest(e.message));
@@ -24,7 +24,7 @@ class TicketController {
     async userGetAllTickets(req, res, next) {
         let { userId } = req.params;
         try {
-            const tickets = Ticket.findAll({ where: { userId } });
+            const tickets = await Ticket.findAll({ where: { userId } });
             return res.json(tickets);
         } catch (e) {
             return next(ApiError.badRequest(e.message));
@@ -32,7 +32,7 @@ class TicketController {
     }
     async adminGetAllTickets(req, res, next) {
         try {
-            const tickets = Ticket.findAll();
+            const tickets = await Ticket.findAll();
             return res.json(tickets);
         } catch (e) {
             return next(ApiError.badRequest(e.message));
@@ -41,10 +41,10 @@ class TicketController {
     async addMessage(req, res, next) {
         try {
             const { messages, status, id } = req.body;
-            const ticket = await Ticket.update({ messages, status }, { where: id });
+            const ticket = await Ticket.update({ messages, status }, { where: { id } });
             return res.json({ updated: true });
         } catch (e) {
-            return next(ApiError.badRequest('Internal Error'));
+            return next(ApiError.badRequest(`Internal Error (${e.message})`));
         }
     }
 }

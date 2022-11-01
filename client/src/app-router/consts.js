@@ -25,6 +25,7 @@ export const ADMIN_ADD_WIKI = '/admin/wiki/add';
 export const ADMIN_EDIT_WIKI = '/admin/wiki/edit/:id';
 export const ADMIN_SEE_ATTRIBUTES = '/admin/attributes';
 export const ADMIN_SEE_TICKETS = '/admin/tickets';
+export const ADMIN_SEE_TICKET = '/admin/tickets/:id';
 
 
 
