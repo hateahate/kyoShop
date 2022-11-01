@@ -42,6 +42,28 @@ const SendMessageContainer = styled.div`
 display: flex;
 `
 
+const StatusChangeContainer = styled.div`
+display: flex;
+margin: 0 auto;
+width: 80%;
+justify-content: space-between;
+margin-bottom: 20px;
+`
+
+const BeforeSelectText = styled.p`
+margin: 0px;
+align-self: center;
+width: 30%;
+`
+
+const StatusSelect = styled(Form.Select)`
+margin-right: 20px;
+`
+
+const StatusChangeButton = styled(Button)`
+width: 30%;
+`
+
 
 const TicketPage = () => {
     const { id } = useParams();
@@ -52,6 +74,7 @@ const TicketPage = () => {
     const [needReload, setNeedReload] = useState(false);
     const [error, setError] = useState(false);
     const [messageText, setMessageText] = useState('');
+    const [ticketStatus, setTicketStatus] = useState('');
 
     const SendMessage = () => {
         let message = new Object();
@@ -63,7 +86,7 @@ const TicketPage = () => {
         const formData = new FormData();
         formData.append('id', ticket.id);
         formData.append('messages', JSON.stringify(messages));
-        formData.append('status', ticket.status);
+        formData.append('status', ticketStatus);
         updateTicket(formData).then((data) => {
             if (data.message) {
                 { NotificationManager.error(`${error.message}`, 'Error') }
@@ -74,11 +97,27 @@ const TicketPage = () => {
         })
     }
 
+    const ChangeStatus = () => {
+        const formData = new FormData();
+        formData.append('id', ticket.id);
+        formData.append('messages', JSON.stringify(messages));
+        formData.append('status', ticketStatus);
+        updateTicket(formData).then((data) => {
+            if (data.message) {
+                { NotificationManager.error(`${error.message}`, 'Error') }
+            }
+            setMessageText('');
+            setNeedReload(!needReload);
+            { NotificationManager.success(`Status successfully changed to ${ticketStatus}`, 'Success') }
+        })
+    }
+
     useEffect(() => {
         getTicket(id).then((data) => {
             setTicket(data);
             setMessages(JSON.parse(data.messages));
             setIsLoaded(true);
+            setTicketStatus(data.status);
         }, (error) => {
             setIsLoaded(true);
             setError(error)
@@ -103,8 +142,16 @@ const TicketPage = () => {
             <AdminUI>
                 <NotificationContainer />
                 <h1>Subject: {ticket.subject}<StyledBadge bg="secondary">{ticket.status}</StyledBadge></h1>
+                <StatusChangeContainer>
+                    <BeforeSelectText>Change ticket status</BeforeSelectText>
+                    <StatusSelect aria-label="Default select example" value={ticketStatus} onChange={(e) => { setTicketStatus(e.target.value); }}>
+                        <option value="Waiting">Waiting</option>
+                        <option value="Work in progress">Work in progress</option>
+                        <option value="Closed">Closed</option>
+                    </StatusSelect>
+                    {ticketStatus != ticket.status ? <StatusChangeButton onClick={() => ChangeStatus()}>Update status</StatusChangeButton> : null}
+                </StatusChangeContainer>
                 <Container>
-                    {console.log(messages)}
                     <ChatContainer>
                         {messages.map((item) => (
                             <Message key={item.senderId}>
@@ -115,10 +162,10 @@ const TicketPage = () => {
                         ))}
 
                     </ChatContainer>
-                    <SendMessageContainer>
-                        <ChatBar type="text" value={messageText} onChange={(e) => { setMessageText(e.target.value); console.log(e.target.value) }}></ChatBar>
+                    {ticketStatus == 'Closed' ? null : <SendMessageContainer>
+                        <ChatBar type="text" value={messageText} onChange={(e) => { setMessageText(e.target.value); }}></ChatBar>
                         <SendButton onClick={() => { SendMessage() }}>Send</SendButton>
-                    </SendMessageContainer>
+                    </SendMessageContainer>}
                 </Container>
             </AdminUI>
         )
