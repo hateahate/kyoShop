@@ -5,7 +5,7 @@ const checkRole = require("../middleware/checkRoleMiddleware");
 
 router.post("/", attributeController.create);
 router.get("/", attributeController.getAll);
-router.get("/test", attributeController.getFilterAtributes);
+router.get("/filter", attributeController.getFilterAtributes);
 router.post("/update", checkRole("admin"), attributeController.update);
 router.post("/remove/:id", checkRole("admin"), attributeController.remove);
 module.exports = router;

@@ -86,18 +86,19 @@ const Status = styled.p`
 `;
 
 function CardUnLogged(props) {
-  return (<CardContainer>
-    <CardImage src={getProductImgUrl(props.image)} />
-    <CardContent>
-      <Title>{props.title}</Title>
-      <Sku className="SKU">{`SKU: ${props.sku}`}</Sku>
-      <LinedButton variant="lined-small" title="Request" />
-    </CardContent>
-    <AbsoluteRow>
-      <WishlistButton className="wish" />
-      <Status>{props.status}</Status>
-    </AbsoluteRow>
-  </CardContainer>);
+  return (
+    <CardContainer>
+      <CardImage src={getProductImgUrl(props.image)} />
+      <CardContent>
+        <Title>{props.title}</Title>
+        <Sku className="SKU">{`SKU: ${props.sku}`}</Sku>
+        <LinedButton variant="lined-small" title="Request" />
+      </CardContent>
+      <AbsoluteRow>
+        <WishlistButton className="wish" />
+        <Status>{props.status}</Status>
+      </AbsoluteRow>
+    </CardContainer>);
 }
 
 export default CardUnLogged;

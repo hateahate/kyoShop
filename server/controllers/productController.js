@@ -63,6 +63,20 @@ class ProductController {
         }
         return res.json(products);
     }
+    async getAllNonAuth(req, res) {
+        let { category, limit, page } = req.query;
+        page = page || 1; // Создаем пагинацию получения товаров, одна страница по-умолчанию если не указано другого.
+        limit = limit || 9; // Лимит товаров на странице.
+        let offset = page * limit - limit; // При заданном лимите пилим на странцы.
+        let products;
+        if (!category) {
+            products = await Product.findAndCountAll({ limit, offset, attributes: ['title', 'sku', 'status', 'img'] });
+        }
+        if (category) {
+            products = await Product.findAndCountAll({ where: { category }, limit, offset, attributes: ['title', 'sku', 'status'] }); // Ищем товары в базе с заданным ID категории.
+        }
+        return res.json(products);
+    }
     async getOne(req, res) {
         const { id } = req.params; // Получаем ID из запроса
         const product = await Product.findOne({
