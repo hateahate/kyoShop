@@ -67,5 +67,5 @@ export const fetchOneProduct = async (id) => {
 }
 
 export const getProductImgUrl = (url) => {
-    return String(String(process.env.REACT_APP_API_URL) + `/${url}`);
+    return process.env.REACT_APP_API_URL + `/${url}`;
 }
