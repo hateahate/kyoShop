@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../..";
 import CardLoged from "./subcomponents/CardLoged";
 import CardUnLoged from "./subcomponents/CardUnLoged";
 import LineLoged from "./subcomponents/LineLoged";
@@ -7,22 +8,22 @@ import LineUnLoged from "./subcomponents/LineUnLoged";
 const userloged = true
 
 function ProductCard(props) {
-  console.log(props.variant == "card");
-  if (props.variant == "card" && userloged == false) {
+  const { user } = useContext(Context);
+  if (props.variant == "card" && !user.isAuth) {
     return (
-      <CardUnLoged title={props.title} sku={props.sku} image={props.image} status={props.status}/>
+      <CardUnLoged title={props.title} sku={props.sku} image={props.image} status={props.status} />
     );
-  } else  if(props.variant == 'line' && userloged == false){
+  } else if (props.variant == 'line' && user.isAuth) {
     return (
-      <LineUnLoged title={props.title} sku={props.sku} image={props.image} status={props.status}/>
+      <LineUnLoged title={props.title} sku={props.sku} image={props.image} status={props.status} />
     );
-  } else if(props.variant == "card" && userloged == true){
-    return(
-    <CardLoged title={props.title} sku={props.sku} image={props.image} status={props.status}/>
+  } else if (props.variant == "card" && user.isAuth) {
+    return (
+      <CardLoged title={props.title} sku={props.sku} image={props.image} status={props.status} />
     )
-  } else{
+  } else {
     return (
-      <LineLoged title={props.title} sku={props.sku} image={props.image} status={props.status}/>
+      <LineLoged title={props.title} sku={props.sku} image={props.image} status={props.status} />
     );
   }
 }
