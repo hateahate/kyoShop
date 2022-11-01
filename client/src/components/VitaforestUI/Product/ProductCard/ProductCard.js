@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { Context } from "../../../..";
-import CardLoged from "./subcomponents/CardLoged";
-import CardUnLoged from "./subcomponents/CardUnLoged";
-import LineLoged from "./subcomponents/LineLoged";
-import LineUnLoged from "./subcomponents/LineUnLoged";
+import CardLoged from "./subcomponents/CardLogged";
+import CardUnLoged from "./subcomponents/CardUnLogged";
+import LineLoged from "./subcomponents/LineLogged";
+import LineUnLoged from "./subcomponents/LineUnLogged";
 
 const userloged = true
 

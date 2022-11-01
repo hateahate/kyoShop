@@ -1,7 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { $host } from "../../../../../api";
 import LinedButton from "../../../Interface/Buttons/LinedButton";
 import WishlistButton from "../../../Interface/WishlistButton/WishlistButton";
+import { getProductImgUrl } from "../../../../../api/productAPI";
 
 const CardContainer = styled.div`
   width: calc(50% - 22px);
@@ -83,19 +85,19 @@ const Status = styled.p`
   left: 0px;
 `;
 
-function CardUnLoged(props) {
-    return ( <CardContainer>
-        <CardImage src={"http://5.144.96.71:66/" + props.image} />
-        <CardContent>
-          <Title>{props.title}</Title>
-          <Sku className="SKU">{"SKU: " + props.sku}</Sku>
-          <LinedButton variant="lined-small" title="Request" />
-        </CardContent>
-        <AbsoluteRow>
-          <WishlistButton className="wish" />
-          <Status>{props.status}</Status>
-        </AbsoluteRow>
-      </CardContainer> );
+function CardUnLogged(props) {
+  return (<CardContainer>
+    <CardImage src={getProductImgUrl(props.image)} />
+    <CardContent>
+      <Title>{props.title}</Title>
+      <Sku className="SKU">{`SKU: ${props.sku}`}</Sku>
+      <LinedButton variant="lined-small" title="Request" />
+    </CardContent>
+    <AbsoluteRow>
+      <WishlistButton className="wish" />
+      <Status>{props.status}</Status>
+    </AbsoluteRow>
+  </CardContainer>);
 }
 
-export default CardUnLoged;
+export default CardUnLogged;

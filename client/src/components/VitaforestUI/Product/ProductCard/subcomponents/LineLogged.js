@@ -64,20 +64,20 @@ const RowContent = styled.div`
 `;
 
 
-function LineLoged(props) {
-    return ( <LineContainer>
-        <RowContent className="first">
-          <Title>{props.title}</Title>
-          <WishlistButton></WishlistButton>
-        </RowContent>
-        <RowContent>
-          <Sku>{"SKU: " + props.sku}</Sku>
-          <LinedButton variant="lined-small" title="buy" />
-        </RowContent>
-        <AbsoluteRow>
-          <Status>{props.status}</Status>
-        </AbsoluteRow>
-      </LineContainer> );
+function LineLogged(props) {
+  return (<LineContainer>
+    <RowContent className="first">
+      <Title>{props.title}</Title>
+      <WishlistButton></WishlistButton>
+    </RowContent>
+    <RowContent>
+      <Sku>{`SKU: ${props.sku}`}</Sku>
+      <LinedButton variant="lined-small" title="buy" />
+    </RowContent>
+    <AbsoluteRow>
+      <Status>{props.status}</Status>
+    </AbsoluteRow>
+  </LineContainer>);
 }
 
-export default LineLoged;
+export default LineLogged;

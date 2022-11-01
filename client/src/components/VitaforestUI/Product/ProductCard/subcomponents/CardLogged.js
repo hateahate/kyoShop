@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { $host } from "../../../../../api";
+import { getProductImgUrl } from "../../../../../api/productAPI";
 import LinedButton from "../../../Interface/Buttons/LinedButton";
 import WishlistButton from "../../../Interface/WishlistButton/WishlistButton";
 
@@ -103,19 +105,19 @@ const RowContent = styled.div`
 `;
 
 
-function CardLoged(props) {
-    return (  <CardContainer>
-        <CardImage src={"http://5.144.96.71:66/" + props.image} />
-        <CardContent>
-          <Title>{props.title}</Title>
-          <Sku className="SKU">{"SKU: " + props.sku}</Sku>
-          <LinedButton variant="lined-small" title="BUY" />
-        </CardContent>
-        <AbsoluteRow>
-          <WishlistButton className="wish" />
-          <Status>{props.status}</Status>
-        </AbsoluteRow>
-      </CardContainer>);
+function CardLogged(props) {
+  return (<CardContainer>
+    <CardImage src={getProductImgUrl(props.image)} />
+    <CardContent>
+      <Title>{props.title}</Title>
+      <Sku className="SKU">{`SKU: ${props.sku}`}</Sku>
+      <LinedButton variant="lined-small" title="BUY" />
+    </CardContent>
+    <AbsoluteRow>
+      <WishlistButton className="wish" />
+      <Status>{props.status}</Status>
+    </AbsoluteRow>
+  </CardContainer>);
 }
 
-export default CardLoged;
+export default CardLogged;
