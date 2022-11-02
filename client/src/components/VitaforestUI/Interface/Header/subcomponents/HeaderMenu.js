@@ -90,14 +90,50 @@ const SearchShowButton = styled.button`
   }
 `;
 
-const MobileUserButton = styled.button`
+const UserButton = styled.button`
   background-color: transparent;
   border: none;
+  @media screen and (min-width: 1128px) {
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 30px;
+    color: #303236;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 5px 30px 5px 13px;
+    gap: 10px;
+    width: 137px;
+    height: 40px;
+    border: 1px solid rgba(216, 216, 216, 0.3);
+    border-radius: 2px;
+    position: relative;
+    margin-right: 20px;
+    margin-left: 48px;
+    &::after {
+      content: url("arrow.svg");
+      position: absolute;
+      right: 13px;
+    }
+  }
 `;
 
-const MobileCartButton = styled.button`
+const CartButton = styled.button`
   background-color: transparent;
   border: none;
+  @media screen and (min-width: 1128px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 17.5px;
+    gap: 10px;
+    width: 51px;
+    height: 40px;
+    border: 1px solid rgba(216, 216, 216, 0.3);
+    border-radius: 2px;
+  }
 `;
 const MobileLogo = styled.div`
   margin-right: auto;
@@ -126,13 +162,13 @@ const SearchForm = styled.div`
     }
     @media screen and (min-width: 1128px) {
       position: inherit;
-      width: 693px;
+      width: 633px;
       left: none;
       padding: none;
       .search-input {
         border: 1px solid rgba(216, 216, 216, 0.3);
         border-radius: 2px;
-        height: 40px;
+        height: 38px;
         text-indent: 10px;
         box-shadow: none;
       }
@@ -148,6 +184,18 @@ const SearchForm = styled.div`
     background-color: #fff;
     padding-top: 5px;
     vertical-align: baseline;
+    @media screen and (min-width: 1128px) {
+      width: 60px;
+      height: 38px;
+      background: #eaebec;
+      border-radius: 0px 1px 1px 0px;
+      padding: 12.5px 23.5px;
+      gap: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
   }
 `;
 const HeaderMenu = () => {
@@ -212,22 +260,23 @@ const HeaderMenu = () => {
         >
           <MobileSearchIcon />
         </SearchShowButton>
-        <MobileUserButton>
+        <UserButton>
           <MediaQuery maxWidth={1127}>
             <MobileUserIcon />
           </MediaQuery>
           <MediaQuery minWidth={1128}>
             <UserDescktop />
+            <span>My account</span>
           </MediaQuery>
-        </MobileUserButton>
-        <MobileCartButton>
+        </UserButton>
+        <CartButton>
           <MediaQuery maxWidth={1127}>
             <MobileCartIcon />
           </MediaQuery>
           <MediaQuery minWidth={1128}>
             <CartDescktop />
           </MediaQuery>
-        </MobileCartButton>
+        </CartButton>
       </MenuWrapper>
       <div
         className={
