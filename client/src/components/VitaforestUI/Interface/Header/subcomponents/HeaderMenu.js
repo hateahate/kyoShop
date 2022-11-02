@@ -36,6 +36,14 @@ const MenuContainer = styled.div`
     left: -100vw;
     -webkit-transition: left 0.5s;
     transition: left 0.5s;
+    @media screen and (min-width: 1128px) {
+      display: block;
+      position: relative;
+      left: 0px;
+      height: auto;
+      width: 1128px;
+      margin: 0 auto;
+    }
     .close {
       position: absolute;
       right: 10px;
@@ -104,13 +112,13 @@ const UserButton = styled.button`
     align-items: center;
     padding: 5px 30px 5px 13px;
     gap: 10px;
-    width: 137px;
+    width: 159px;
     height: 40px;
     border: 1px solid rgba(216, 216, 216, 0.3);
     border-radius: 2px;
     position: relative;
     margin-right: 20px;
-    margin-left: 48px;
+    margin-left: 33px;
     &::after {
       content: url("arrow.svg");
       position: absolute;
@@ -154,6 +162,13 @@ const SearchForm = styled.div`
     left: -18px;
     box-sizing: border-box;
     padding: 10px 20px;
+    @media screen and (min-width: 1128px) {
+      width: 693px;
+      position: inherit;
+      left: 0px;
+      padding: 0px;
+    }
+
     .search-input {
       width: calc(100vw - 68px);
       display: inline-block;
@@ -161,16 +176,13 @@ const SearchForm = styled.div`
       border: none;
     }
     @media screen and (min-width: 1128px) {
-      position: inherit;
-      width: 633px;
-      left: none;
-      padding: none;
       .search-input {
         border: 1px solid rgba(216, 216, 216, 0.3);
         border-radius: 2px;
         height: 38px;
         text-indent: 10px;
         box-shadow: none;
+        width: 633px;
       }
     }
   }

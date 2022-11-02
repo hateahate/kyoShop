@@ -1,9 +1,12 @@
-import React, { useState } from 'react'
-import styled from 'styled-components'
+import React, { useState } from "react";
+import styled from "styled-components";
 
 const Nav = styled.nav`
   background-color: #fff;
   margin-top: 50px;
+  @media screen and (min-width: 1128px) {
+    margin-top: 0;
+  }
   @keyframes down1 {
     0% {
       height: 0%;
@@ -33,10 +36,12 @@ const Nav = styled.nav`
       height: max-content;
     }
   }
-`
+`;
 const MainList = styled.div`
   list-style: none;
-`
+  display: flex;
+  flex-direction: row;
+`;
 const SubList = styled.ul`
   margin: 0px;
   list-style: none;
@@ -54,10 +59,10 @@ const SubList = styled.ul`
   .first-sub-item {
     padding-top: 0px;
   }
-`
+`;
 
 const MainItem = styled.p`
-  font-family: 'Proxima Nova';
+  font-family: "Proxima Nova";
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
@@ -72,10 +77,10 @@ const MainItem = styled.p`
   &:active {
     color: #40bf6a;
   }
-`
+`;
 const SubItem = styled.li`
   padding-top: 15px;
-  font-family: 'Proxima Nova';
+  font-family: "Proxima Nova";
   font-style: normal;
   font-weight: 400;
   font-size: 14px;
@@ -86,10 +91,10 @@ const SubItem = styled.li`
   &:active {
     color: #40bf6a;
   }
-`
+`;
 const SubItemMain = styled.li`
   font-weight: 600;
-  font-family: 'Proxima Nova';
+  font-family: "Proxima Nova";
   font-size: 16px;
   line-height: 19px;
   text-decoration-line: underline;
@@ -100,22 +105,22 @@ const SubItemMain = styled.li`
   &:active {
     color: #40bf6a;
   }
-`
+`;
 const Navigation = () => {
-  const [isSubFirstNavExpanded, setIsSubFirstNavExpanded] = useState(false)
-  const [isSubSecondNavExpanded, setIsSubSecondExpanded] = useState(false)
+  const [isSubFirstNavExpanded, setIsSubFirstNavExpanded] = useState(false);
+  const [isSubSecondNavExpanded, setIsSubSecondExpanded] = useState(false);
 
   return (
     <Nav>
       <MainList>
         <MainItem
           onClick={() => {
-            setIsSubFirstNavExpanded(!isSubFirstNavExpanded)
+            setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
           }}
         >
           Products
         </MainItem>
-        <SubList className={isSubFirstNavExpanded ? 'sub-expanded' : 'null'}>
+        <SubList className={isSubFirstNavExpanded ? "sub-expanded" : "null"}>
           <SubItemMain className="first-sub-item">Extracts</SubItemMain>
           <SubItem>Herbal extracts</SubItem>
           <SubItem>Mushroom extracts</SubItem>
@@ -127,12 +132,12 @@ const Navigation = () => {
         </SubList>
         <MainItem
           onClick={() => {
-            setIsSubSecondExpanded(!isSubSecondNavExpanded)
+            setIsSubSecondExpanded(!isSubSecondNavExpanded);
           }}
         >
           Company
         </MainItem>
-        <SubList className={isSubSecondNavExpanded ? 'sub-expanded' : 'null'}>
+        <SubList className={isSubSecondNavExpanded ? "sub-expanded" : "null"}>
           <SubItem className="first-sub-item">About us</SubItem>
           <SubItem>Production</SubItem>
           <SubItem>FAQ</SubItem>
@@ -143,7 +148,7 @@ const Navigation = () => {
         <MainItem>In stock products</MainItem>
       </MainList>
     </Nav>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;
