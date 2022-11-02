@@ -47,10 +47,12 @@ const Nav = styled.nav`
 `;
 const MainList = styled.div`
   list-style: none;
-  display: flex;
-  flex-direction: row;
-  width: 1128px;
-  margin: 0 auto;
+  @media screen and (min-width: 1128px) {
+    display: flex;
+    flex-direction: row;
+    width: 1128px;
+    margin: 0 auto;
+  }
 `;
 const SubList = styled.ul`
   margin: 0px;
@@ -139,17 +141,16 @@ const Navigation = () => {
   return (
     <Nav>
       <MainList>
-        <RelativeParrent>
+        <RelativeParrent
+          onMouseEnter={() => {
+            setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
+          }}
+          onMouseLeave={() => setIsSubFirstNavExpanded(!isSubFirstNavExpanded)}
+        >
           <MainItem
             onClick={() => {
               setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
             }}
-            onMouseEnter={() => {
-              setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
-            }}
-            onMouseLeave={() =>
-              setIsSubFirstNavExpanded(!isSubFirstNavExpanded)
-            }
           >
             Products
           </MainItem>
@@ -164,15 +165,16 @@ const Navigation = () => {
             <SubItem>Fruit powders</SubItem>
           </SubList>
         </RelativeParrent>
-        <RelativeParrent>
+        <RelativeParrent
+          onMouseEnter={() => {
+            setIsSubSecondExpanded(!isSubSecondNavExpanded);
+          }}
+          onMouseLeave={() => setIsSubSecondExpanded(!isSubSecondNavExpanded)}
+        >
           <MainItem
             onClick={() => {
               setIsSubSecondExpanded(!isSubSecondNavExpanded);
             }}
-            onMouseEnter={() => {
-              setIsSubSecondExpanded(!isSubSecondNavExpanded);
-            }}
-            onMouseLeave={() => setIsSubSecondExpanded(!isSubSecondNavExpanded)}
           >
             Company
           </MainItem>
