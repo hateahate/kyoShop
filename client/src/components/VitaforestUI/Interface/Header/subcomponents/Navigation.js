@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-
+import MediaQuery from "react-responsive";
+import Promo from "./Promo";
 const Nav = styled.nav`
   background-color: #fff;
   margin-top: 50px;
@@ -69,6 +70,7 @@ const SubList = styled.ul`
       border: 1px solid #eaebec;
       border-radius: 4px;
       z-index: 8;
+      padding: 21px 32px;
     }
   }
   .first-sub-item {
@@ -103,7 +105,9 @@ const MainItem = styled.p`
   }
 `;
 const FirstItem = styled(MainItem)`
-  padding-left: 0px;
+  @media screen and (min-width: 1128px) {
+    padding-left: 0px;
+  }
 `;
 const LastItem = styled(MainItem)`
   border-right: none;
@@ -165,6 +169,8 @@ const RelativeParrent = styled.div`
   }
 `;
 
+const Column = styled.div``;
+const PromoColumn = styled.div``;
 const Navigation = () => {
   const [isSubFirstNavExpanded, setIsSubFirstNavExpanded] = useState(false);
   const [isSubSecondNavExpanded, setIsSubSecondExpanded] = useState(false);
@@ -188,14 +194,21 @@ const Navigation = () => {
           <SubListProducts
             className={isSubFirstNavExpanded ? "sub-expanded" : "sub"}
           >
-            <SubItemMain className="first-sub-item">Extracts</SubItemMain>
-            <SubItem>Herbal extracts</SubItem>
-            <SubItem>Mushroom extracts</SubItem>
-            <SubItem>Fruit extracts</SubItem>
-            <SubItemMain>Powders</SubItemMain>
-            <SubItem>Herbal powders</SubItem>
-            <SubItem>Mushroom powders</SubItem>
-            <SubItem>Fruit powders</SubItem>
+            <Column>
+              <SubItemMain className="first-sub-item">Extracts</SubItemMain>
+              <SubItem>Herbal extracts</SubItem>
+              <SubItem>Mushroom extracts</SubItem>
+              <SubItem>Fruit extracts</SubItem>
+              <SubItemMain>Powders</SubItemMain>
+              <SubItem>Herbal powders</SubItem>
+              <SubItem>Mushroom powders</SubItem>
+              <SubItem>Fruit powders</SubItem>
+            </Column>
+            <PromoColumn>
+              <MediaQuery minWidth={1128}>
+                <Promo />
+              </MediaQuery>
+            </PromoColumn>
           </SubListProducts>
         </RelativeParrent>
         <RelativeParrent
