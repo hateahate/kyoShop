@@ -26,6 +26,9 @@ const MenuContainer = styled.div`
   width: calc(100% - 36px);
   margin: 0 auto;
   position: relative;
+  @media screen and (min-width: 1128px) {
+    width: 100vw;
+  }
   .navigation-menu {
     position: absolute;
     top: 0;
@@ -41,8 +44,7 @@ const MenuContainer = styled.div`
       position: relative;
       left: 0px;
       height: auto;
-      width: 1128px;
-      margin: 0 auto;
+      width: 100vw;
     }
     .close {
       position: absolute;

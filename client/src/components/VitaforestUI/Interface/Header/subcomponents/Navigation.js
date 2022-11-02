@@ -1,39 +1,47 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
+const RelativeParrent = styled.div`
+  position: relative;
+`;
+
 const Nav = styled.nav`
   background-color: #fff;
   margin-top: 50px;
   @media screen and (min-width: 1128px) {
     margin-top: 0;
+    border: 1px solid #eaebec;
+    margin-top: 20px;
   }
-  @keyframes down1 {
-    0% {
-      height: 0%;
-    }
-    10% {
-      height: 10%;
-    }
-    25% {
-      height: 25%;
-    }
-    40% {
-      height: 40%;
-    }
-    50% {
-      height: 50%;
-    }
-    60% {
-      height: 60%;
-    }
-    75% {
-      height: 75%;
-    }
-    80% {
-      height: 80%;
-    }
-    100% {
-      height: max-content;
+  @media screen and (max-width: 1128px) {
+    @keyframes down1 {
+      0% {
+        height: 0%;
+      }
+      10% {
+        height: 10%;
+      }
+      25% {
+        height: 25%;
+      }
+      40% {
+        height: 40%;
+      }
+      50% {
+        height: 50%;
+      }
+      60% {
+        height: 60%;
+      }
+      75% {
+        height: 75%;
+      }
+      80% {
+        height: 80%;
+      }
+      100% {
+        height: max-content;
+      }
     }
   }
 `;
@@ -41,6 +49,8 @@ const MainList = styled.div`
   list-style: none;
   display: flex;
   flex-direction: row;
+  width: 1128px;
+  margin: 0 auto;
 `;
 const SubList = styled.ul`
   margin: 0px;
@@ -55,6 +65,13 @@ const SubList = styled.ul`
     animation-name: down1;
     animation-duration: 1s;
     animation-timing-function: ease-in;
+    @media screen and (min-width: 1128px) {
+      position: absolute;
+      background: #ffffff;
+      border: 1px solid #eaebec;
+      border-radius: 4px;
+      z-index: 8;
+    }
   }
   .first-sub-item {
     padding-top: 0px;
@@ -76,6 +93,15 @@ const MainItem = styled.p`
   &:focus,
   &:active {
     color: #40bf6a;
+  }
+  @media screen and (min-width: 1128px) {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #303236;
+    box-shadow: none;
+    padding: 14px 20px;
+    border-right: 1px solid #eaebec;
   }
 `;
 const SubItem = styled.li`
@@ -113,35 +139,50 @@ const Navigation = () => {
   return (
     <Nav>
       <MainList>
-        <MainItem
-          onClick={() => {
-            setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
-          }}
-        >
-          Products
-        </MainItem>
-        <SubList className={isSubFirstNavExpanded ? "sub-expanded" : "null"}>
-          <SubItemMain className="first-sub-item">Extracts</SubItemMain>
-          <SubItem>Herbal extracts</SubItem>
-          <SubItem>Mushroom extracts</SubItem>
-          <SubItem>Fruit extracts</SubItem>
-          <SubItemMain>Powders</SubItemMain>
-          <SubItem>Herbal powders</SubItem>
-          <SubItem>Mushroom powders</SubItem>
-          <SubItem>Fruit powders</SubItem>
-        </SubList>
-        <MainItem
-          onClick={() => {
-            setIsSubSecondExpanded(!isSubSecondNavExpanded);
-          }}
-        >
-          Company
-        </MainItem>
-        <SubList className={isSubSecondNavExpanded ? "sub-expanded" : "null"}>
-          <SubItem className="first-sub-item">About us</SubItem>
-          <SubItem>Production</SubItem>
-          <SubItem>FAQ</SubItem>
-        </SubList>
+        <RelativeParrent>
+          <MainItem
+            onClick={() => {
+              setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
+            }}
+            onMouseEnter={() => {
+              setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
+            }}
+            onMouseLeave={() =>
+              setIsSubFirstNavExpanded(!isSubFirstNavExpanded)
+            }
+          >
+            Products
+          </MainItem>
+          <SubList className={isSubFirstNavExpanded ? "sub-expanded" : "sub"}>
+            <SubItemMain className="first-sub-item">Extracts</SubItemMain>
+            <SubItem>Herbal extracts</SubItem>
+            <SubItem>Mushroom extracts</SubItem>
+            <SubItem>Fruit extracts</SubItem>
+            <SubItemMain>Powders</SubItemMain>
+            <SubItem>Herbal powders</SubItem>
+            <SubItem>Mushroom powders</SubItem>
+            <SubItem>Fruit powders</SubItem>
+          </SubList>
+        </RelativeParrent>
+        <RelativeParrent>
+          <MainItem
+            onClick={() => {
+              setIsSubSecondExpanded(!isSubSecondNavExpanded);
+            }}
+            onMouseEnter={() => {
+              setIsSubSecondExpanded(!isSubSecondNavExpanded);
+            }}
+            onMouseLeave={() => setIsSubSecondExpanded(!isSubSecondNavExpanded)}
+          >
+            Company
+          </MainItem>
+          <SubList className={isSubSecondNavExpanded ? "sub-expanded" : "sub"}>
+            <SubItem className="first-sub-item">About us</SubItem>
+            <SubItem>Production</SubItem>
+            <SubItem>FAQ</SubItem>
+          </SubList>
+        </RelativeParrent>
+
         <MainItem>Plants database</MainItem>
         <MainItem>Blog</MainItem>
         <MainItem>Contacts</MainItem>
