@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const RelativeParrent = styled.div`
-  position: relative;
-`;
-
 const Nav = styled.nav`
   background-color: #fff;
   margin-top: 50px;
@@ -106,6 +102,18 @@ const MainItem = styled.p`
     border-right: 1px solid #eaebec;
   }
 `;
+const FirstItem = styled(MainItem)`
+  padding-left: 0px;
+`;
+const LastItem = styled(MainItem)`
+  border-right: none;
+`;
+const SubListProducts = styled(SubList)`
+  @media screen and (min-width: 1128px) {
+    width: 840px;
+  }
+`;
+
 const SubItem = styled.li`
   padding-top: 15px;
   font-family: "Proxima Nova";
@@ -114,6 +122,9 @@ const SubItem = styled.li`
   font-size: 14px;
   line-height: 17px;
   color: #303236;
+  @media screen and (min-width: 1128px) {
+    opacity: 0.8;
+  }
   &:hover,
   &:focus,
   &:active {
@@ -128,12 +139,32 @@ const SubItemMain = styled.li`
   text-decoration-line: underline;
   padding-top: 15px;
   color: #303236;
-  &:hover,
-  &:focus,
-  &:active {
-    color: #40bf6a;
+  @media screen and (min-width: 1128px) {
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 19px;
+    text-decoration: none;
+    color: #303236;
+    opacity: 0.8;
+    &:hover,
+    &:focus,
+    &:active {
+      text-decoration: underline;
+    }
   }
 `;
+const RelativeParrent = styled.div`
+  position: relative;
+  p {
+    padding-right: 33px;
+    &::after {
+      position: absolute;
+      content: url("arrow.svg");
+      right: 13px;
+    }
+  }
+`;
+
 const Navigation = () => {
   const [isSubFirstNavExpanded, setIsSubFirstNavExpanded] = useState(false);
   const [isSubSecondNavExpanded, setIsSubSecondExpanded] = useState(false);
@@ -147,14 +178,16 @@ const Navigation = () => {
           }}
           onMouseLeave={() => setIsSubFirstNavExpanded(!isSubFirstNavExpanded)}
         >
-          <MainItem
+          <FirstItem
             onClick={() => {
               setIsSubFirstNavExpanded(!isSubFirstNavExpanded);
             }}
           >
             Products
-          </MainItem>
-          <SubList className={isSubFirstNavExpanded ? "sub-expanded" : "sub"}>
+          </FirstItem>
+          <SubListProducts
+            className={isSubFirstNavExpanded ? "sub-expanded" : "sub"}
+          >
             <SubItemMain className="first-sub-item">Extracts</SubItemMain>
             <SubItem>Herbal extracts</SubItem>
             <SubItem>Mushroom extracts</SubItem>
@@ -163,7 +196,7 @@ const Navigation = () => {
             <SubItem>Herbal powders</SubItem>
             <SubItem>Mushroom powders</SubItem>
             <SubItem>Fruit powders</SubItem>
-          </SubList>
+          </SubListProducts>
         </RelativeParrent>
         <RelativeParrent
           onMouseEnter={() => {
@@ -184,11 +217,10 @@ const Navigation = () => {
             <SubItem>FAQ</SubItem>
           </SubList>
         </RelativeParrent>
-
         <MainItem>Plants database</MainItem>
         <MainItem>Blog</MainItem>
         <MainItem>Contacts</MainItem>
-        <MainItem>In stock products</MainItem>
+        <LastItem>In stock products</LastItem>
       </MainList>
     </Nav>
   );
