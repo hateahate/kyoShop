@@ -51,12 +51,12 @@ class ProductController {
     }
     async getAll(req, res) {
         let { category, limit, page, isAuth } = req.query;
-        console.log(isAuth)
+        console.log(typeof isAuth)
         page = page || 1; // Создаем пагинацию получения товаров, одна страница по-умолчанию если не указано другого.
         limit = limit || 9; // Лимит товаров на странице.
         let offset = page * limit - limit; // При заданном лимите пилим на странцы.
         let products;
-        if (isAuth) {
+        if (isAuth == 'true') {
             if (!category) {
                 products = await Product.findAndCountAll({ limit, offset });
             }

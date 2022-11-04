@@ -1,5 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
+import { Context } from "../../..";
+import { fetchProducts } from "../../../api/productAPI";
 import ProductCard from "../Product/ProductCard/ProductCard";
 
 const ProductsContainer = styled.div`
@@ -9,28 +11,23 @@ const ProductsContainer = styled.div`
 `;
 
 function ShopProducts(props) {
+  const { user } = useContext(Context);
+
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
-  // Примечание: пустой массив зависимостей [] означает, что
-  // этот useEffect будет запущен один раз
-  // аналогично componentDidMount()
   useEffect(() => {
-    fetch("http://5.144.96.71:66/api/product")
-      .then((res) => res.json())
-      .then(
-        (result) => {
-          setIsLoaded(true);
-          setItems(result.rows);
-        },
-        // Примечание: важно обрабатывать ошибки именно здесь, а не в блоке catch(),
-        // чтобы не перехватывать исключения из ошибок в самих компонентах.
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        }
-      );
+    fetchProducts(null, 1, 100, user.isAuth).then(
+      (data) => {
+        setIsLoaded(true);
+        setItems(data.rows);
+      },
+      (e) => {
+        setIsLoaded(true);
+        setError(e);
+      }
+    );
   }, []);
   if (error) {
     return <div>Ошибка: {error.message}</div>;
