@@ -7,8 +7,8 @@ class MailService {
             port: 465,
             secure: true,
             auth: {
-                user: 'mailtransport@vitaforest.kz',
-                pass: 'Waxtinoff1224!',
+                user: '',
+                pass: '',
             },
         });
         try {
