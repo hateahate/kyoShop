@@ -108,10 +108,49 @@ class OrderController {
     async update(req, res, next) {
         try {
             let { id, status, items, userId } = req.body;
+            let orderItems = JSON.parse(items);
+            // get order item ids
+            let orderItemsIds = [];
+            // parse items id
+            orderItems.map((item) => {
+                orderItemsIds.push(item.id)
+            })
+            // fetching previous order state
+            const previous_order = await Order.findOne({ where: { id } });
+            // get items from previous order from sequelize instanse
+            // get all products data from order
+            const products = await Product.findAll({ where: { id: { [Op.in]: orderItemsIds } } });
+            // get previous order items
+            let previous_order_items = JSON.stringify(previous_order.items)
+            // from json sting to object
+            orderItems.map((item) => {
+                // get current item id
+                let currentItemId = item.id;
+                // find 
+                previous_order_items.find((elem) => {
+                    if (elem.id == currentItemId) {
+                        let previous_order_item_qty = elem.qty;
+                        if (elem.qty < item.qty) {
+                            let diff = item.qty - item.qty;
+                            Product.update({})
+                        }
+                    }
+                })
+            })
+            previous_order_items = JSON.parse(previous_order_items)
             const order = await Order.update({ status, items, userId }, { where: { id } })
             return res.json(order);
         } catch (e) {
             return next(ApiError.badRequest(e.message));
+        }
+    }
+
+    async updateStatus(req, res, next) {
+        const status = {}
+        try {
+
+        } catch (e) {
+
         }
     }
 }
