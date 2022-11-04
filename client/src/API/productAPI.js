@@ -42,14 +42,26 @@ export const updateProduct = async (product) => {
     }
 }
 
-export const fetchProducts = async (categoryId, page, limit = 5) => {
+export const fetchProducts = async (categoryId, page, limit = 5, isAuth) => {
     try {
-        const { data } = await $host.get('api/product', {
-            params: {
-                categoryId, page, limit
+        if (isAuth) {
+            const { data } = await $host.get('api/product', {
+                params: {
+                    categoryId, page, limit, isAuth
+                }
+            })
+            return data
+        }
+        else {
+            if (isAuth) {
+                const { data } = await $host.get('api/product/non-auth', {
+                    params: {
+                        categoryId, page, limit
+                    }
+                })
+                return data
             }
-        })
-        return data
+        }
     }
     catch (e) {
         return e.message

@@ -24,7 +24,7 @@ const FlexBox = styled.div`
 
 const AddProduct = () => {
   const navigate = useNavigate();
-  const { product } = useContext(Context);
+  const { user } = useContext(Context);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
   const [file, setFile] = useState(null);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Button, Table, Dropdown, Form, Row, Col } from "react-bootstrap";
 import Modal from "react-bootstrap/Modal";
 import { Context } from "../../../..";
@@ -21,6 +21,8 @@ text-decoration: none;
 `
 
 function ProductList() {
+
+    const { user } = useContext(Context)
 
     // States
     const [items, setItems] = useState([])
@@ -46,7 +48,7 @@ function ProductList() {
 
     // useEffect for products loading
     useEffect(() => {
-        fetchProducts(null, 1, 100).then(
+        fetchProducts(null, 1, 100, user.isAuth).then(
             (result) => {
                 setIsLoaded(true)
                 setItems(result.rows)

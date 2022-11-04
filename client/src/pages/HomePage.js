@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Header from "../../src/components/VitaforestUI/Interface/Header/Header";
 import ProductCard from "../components/VitaforestUI/Product/ProductCard/ProductCard";
 import {
@@ -6,14 +6,16 @@ import {
   NotificationContainer,
 } from "react-notifications";
 import { fetchProducts } from "../api/productAPI";
+import { Context } from "..";
 
 const HomePage = () => {
+  const { user } = useContext(Context);
   const [items, setItems] = useState([]);
   const [needReload, setNeedReload] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [error, setError] = useState(null);
   useEffect(() => {
-    fetchProducts(null, 1, 100).then(
+    fetchProducts(null, 1, 100, user.isAuth).then(
       (result) => {
         setIsLoaded(true);
         setItems(result.rows);
@@ -24,7 +26,7 @@ const HomePage = () => {
         setError(error);
       }
     );
-    return () => {};
+    return () => { };
   }, [needReload]);
   if (error) {
     return (

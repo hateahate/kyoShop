@@ -4,8 +4,7 @@ const productController = require('../controllers/productController');
 const authMiddleware = require('../middleware/authMiddleware');
 
 router.post('/', productController.create);
-router.get('/', productController.getAllNonAuth);
-router.get('/', authMiddleware, productController.getAll);
+router.get('/', productController.getAll);
 router.get('/:id', productController.getOne);
 router.post('/update', productController.update);
 router.post('/remove', productController.remove);
