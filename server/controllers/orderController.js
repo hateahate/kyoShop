@@ -7,36 +7,33 @@ class OrderController {
     async create(req, res, next) {
         try {
             let { status, items, userId } = req.body;
-            let jsonItems = JSON.parse(items);
-            let itemsId = [];
-            let descQty = [];
+            let orderItems = JSON.parse(items);
+            let orderItemsIds = [];
             // parse items id
-            jsonItems.map((item) => {
-                itemsId.push(item.id)
+            orderItems.map((item) => {
+                orderItemsIds.push(item.id)
             })
             // fetch all products with ids
-            const products = await Product.findAll({ where: { id: { [Op.in]: itemsId } } });
+            const products = await Product.findAll({ where: { id: { [Op.in]: orderItemsIds } } });
             // convert to json from sequelize instance
             let productsList = JSON.stringify(products)
             // reparse list from string to object
             productsList = JSON.parse(productsList)
             console.log(productsList)
             await productsList.map((item) => {
-                let listItemId = item.id;
-                jsonItems.find((elem) => {
-                    if (elem.id === listItemId) {
+                let currentItemId = item.id;
+                // find item in order with equals ids and update products qty values in database
+                orderItems.find((elem) => {
+                    if (elem.id === currentItemId) {
                         item.stock = item.stock - elem.qty;
                         Product.update({ stock: item.stock }, { where: { id: item.id } })
                         console.log(item.stock)
                     }
-
                 })
-                console.log(productsList)
             })
-            console.log(qtysfromlist)
             // create order
             const order = await Order.create({ status, items, userId });
-            return res.json('yep');
+            return res.json(order);
         } catch (e) {
             next(ApiError.badRequest(e.message));
         }
