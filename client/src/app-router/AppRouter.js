@@ -3,6 +3,8 @@ import { Routes, Route } from "react-router-dom";
 import { authRoutes, publicRoutes, adminRoutes } from "./routes";
 import { Context } from "../index";
 import NotFound from "../pages/NotFound";
+import MyAccount from "../pages/MyAccount";
+import Auth from "../pages/Auth";
 
 const AppRouter = () => {
   const { user } = useContext(Context);
@@ -21,6 +23,7 @@ const AppRouter = () => {
         <Route key={path} path={path} element={<Component />} exact />
       ))}
       <Route path="*" element={<NotFound />} />
+      {user.isAuth ? <Route path="/account" element={<MyAccount />} /> : <Route path="/account" element={<Auth />} />}
     </Routes>
   );
 };

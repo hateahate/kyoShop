@@ -10,7 +10,7 @@ import {
   LOGIN_ROUTE,
   REGISTRATION_ROUTE,
   PRODUCT_ROUTE, HOME_ROUTE, UI_KIT, ADMIN_ADD_PRODUCT, ADMIN_SEE_PRODUCTS, ADMIN_EDIT_PRODUCT, ADMIN_ADD_POST,
-  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER, MY_ACCOUNT, ADMIN_ADD_WIKI, ADMIN_EDIT_WIKI, ADMIN_SEE_WIKI, ADMIN_SEE_ATTRIBUTES, ADMIN_SEE_TICKETS, ADMIN_SEE_TICKET,
+  ADMIN_EDIT_POST, ADMIN_SEE_POSTS, ADMIN_SEE_USERS, ADMIN_ADD_PRODUCT_CATEGORY, ADMIN_EDIT_USER, ADMIN_ADD_USER, ADMIN_ADD_WIKI, ADMIN_EDIT_WIKI, ADMIN_SEE_WIKI, ADMIN_SEE_ATTRIBUTES, ADMIN_SEE_TICKETS, ADMIN_SEE_TICKET,
 } from './consts'
 import HomePage from "../pages/HomePage";
 import Registration from "../pages/Registration";
@@ -25,7 +25,6 @@ import UsersListPage from '../components/Admin/Pages/UsersList/UsersListPage'
 import AddProductCategory from '../components/Admin/Pages/ProductCategory/ProductCategory'
 import EditUser from '../components/Admin/Pages/EditUser/EditUser'
 import AddUser from '../components/Admin/Pages/AddUser/AddUser'
-import MyAccount from '../pages/MyAccount'
 import AddWiki from '../components/Admin/Pages/AddWiki/AddWiki'
 import EditWiki from '../components/Admin/Pages/EditWiki/EditWiki'
 import WikiListPage from '../components/Admin/Pages/WikiList/WikiListPage'
@@ -109,10 +108,6 @@ export const authRoutes = [
   {
     path: BASKET_ROUTE,
     Component: Basket,
-  },
-  {
-    path: MY_ACCOUNT,
-    Component: MyAccount,
   },
 ]
 // Routes with public visibiliy
